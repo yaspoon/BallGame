@@ -1,0 +1,268 @@
+# depslib dependency file v1.0
+1401894161 source:/home/brock/code/c/BallGame/BallGame.cpp
+	"BallGame.h"
+	"Level.h"
+	"VisualEntity.h"
+	"Timer.h"
+	<typeinfo>
+	<iostream>
+	<string>
+	<sstream>
+	<boost/foreach.hpp>
+	<math.h>
+	<algorithm>
+
+1401891448 /home/brock/code/c/BallGame/BallGame.h
+	<SDL/SDL.h>
+	<SDL/SDL_opengl.h>
+	"Entity.h"
+	"CollisionHandle.h"
+	"bgCommon.h"
+	"VisualEntity.h"
+
+1337639354 /home/brock/code/c/BallGame/Entity.h
+	<string>
+	<SDL/SDL.h>
+	"bgCommon.h"
+	<list>
+
+1337722276 /home/brock/code/c/BallGame/bgCommon.h
+
+1401886964 /home/brock/code/c/BallGame/CollisionHandle.h
+
+1401889852 /home/brock/code/c/BallGame/VisualEntity.h
+	"Entity.h"
+	<SDL/SDL_opengl.h>
+	<vector>
+
+1337639354 /home/brock/code/c/BallGame/Level.h
+	"Block.h"
+	"Player.h"
+
+1337639354 /home/brock/code/c/BallGame/Block.h
+	"VisualEntity.h"
+
+1401892684 /home/brock/code/c/BallGame/Player.h
+	"VisualEntity.h"
+
+1337639354 /home/brock/code/c/BallGame/Timer.h
+	"SDL/SDL.h"
+
+1337723012 source:/home/brock/code/c/BallGame/Block.cpp
+	"Block.h"
+
+1337639354 source:/home/brock/code/c/BallGame/EngineManager.cpp
+	"EngineManager.h"
+
+1337639354 /home/brock/code/c/BallGame/EngineManager.h
+
+1337639354 source:/home/brock/code/c/BallGame/Entity.cpp
+	"Entity.h"
+	"BallGame.h"
+
+1401894870 source:/home/brock/code/c/BallGame/Level.cpp
+	"Level.h"
+
+1337639354 source:/home/brock/code/c/BallGame/Main.cpp
+	"BallGame.h"
+	<SDL/SDL.h>
+
+1401893112 source:/home/brock/code/c/BallGame/Player.cpp
+	"Player.h"
+	<SDL/SDL.h>
+	"BallGame.h"
+
+1337639354 source:/home/brock/code/c/BallGame/ResourceLoader.cpp
+	"ResourceLoader.h"
+
+1337639354 /home/brock/code/c/BallGame/ResourceLoader.h
+
+1337639354 source:/home/brock/code/c/BallGame/Timer.cpp
+	"Timer.h"
+
+1401891100 source:/home/brock/code/c/BallGame/VisualEntity.cpp
+	"VisualEntity.h"
+	<SDL/SDL_image.h>
+	<iostream>
+	<algorithm>
+	<cmath>
+	<limits>
+
+1401894161 source:/home/brock_old/code/c/BallGame/BallGame.cpp
+	"BallGame.h"
+	"Level.h"
+	"VisualEntity.h"
+	"Timer.h"
+	<typeinfo>
+	<iostream>
+	<string>
+	<sstream>
+	<boost/foreach.hpp>
+	<math.h>
+	<algorithm>
+
+1401891448 /home/brock_old/code/c/BallGame/BallGame.h
+	<SDL/SDL.h>
+	<SDL/SDL_opengl.h>
+	"Entity.h"
+	"CollisionHandle.h"
+	"bgCommon.h"
+	"VisualEntity.h"
+
+1337639354 /home/brock_old/code/c/BallGame/Entity.h
+	<string>
+	<SDL/SDL.h>
+	"bgCommon.h"
+	<list>
+
+1337722276 /home/brock_old/code/c/BallGame/bgCommon.h
+
+1401886964 /home/brock_old/code/c/BallGame/CollisionHandle.h
+
+1401889852 /home/brock_old/code/c/BallGame/VisualEntity.h
+	"Entity.h"
+	<SDL/SDL_opengl.h>
+	<vector>
+
+1337639354 /home/brock_old/code/c/BallGame/Level.h
+	"Block.h"
+	"Player.h"
+
+1337639354 /home/brock_old/code/c/BallGame/Block.h
+	"VisualEntity.h"
+
+1401892684 /home/brock_old/code/c/BallGame/Player.h
+	"VisualEntity.h"
+
+1337639354 /home/brock_old/code/c/BallGame/Timer.h
+	"SDL/SDL.h"
+
+1337723012 source:/home/brock_old/code/c/BallGame/Block.cpp
+	"Block.h"
+
+1337639354 source:/home/brock_old/code/c/BallGame/EngineManager.cpp
+	"EngineManager.h"
+
+1337639354 /home/brock_old/code/c/BallGame/EngineManager.h
+
+1337639354 source:/home/brock_old/code/c/BallGame/Entity.cpp
+	"Entity.h"
+	"BallGame.h"
+
+1401894950 source:/home/brock_old/code/c/BallGame/Level.cpp
+	"Level.h"
+
+1337639354 source:/home/brock_old/code/c/BallGame/Main.cpp
+	"BallGame.h"
+	<SDL/SDL.h>
+
+1401893112 source:/home/brock_old/code/c/BallGame/Player.cpp
+	"Player.h"
+	<SDL/SDL.h>
+	"BallGame.h"
+
+1337639354 source:/home/brock_old/code/c/BallGame/ResourceLoader.cpp
+	"ResourceLoader.h"
+
+1337639354 /home/brock_old/code/c/BallGame/ResourceLoader.h
+
+1337639354 source:/home/brock_old/code/c/BallGame/Timer.cpp
+	"Timer.h"
+
+1401891100 source:/home/brock_old/code/c/BallGame/VisualEntity.cpp
+	"VisualEntity.h"
+	<SDL/SDL_image.h>
+	<iostream>
+	<algorithm>
+	<cmath>
+	<limits>
+
+1404475583 source:/home/brock/code/cpp/BallGame/BallGame.cpp
+	"BallGame.h"
+	"Level.h"
+	"VisualEntity.h"
+	"Timer.h"
+	<typeinfo>
+	<iostream>
+	<string>
+	<sstream>
+	<boost/foreach.hpp>
+	<math.h>
+	<algorithm>
+
+1404396878 /home/brock/code/cpp/BallGame/BallGame.h
+	<SDL/SDL.h>
+	<SDL/SDL_opengl.h>
+	"Entity.h"
+	"CollisionHandle.h"
+	"bgCommon.h"
+	"VisualEntity.h"
+
+1337639354 /home/brock/code/cpp/BallGame/Entity.h
+	<string>
+	<SDL/SDL.h>
+	"bgCommon.h"
+	<list>
+
+1337722276 /home/brock/code/cpp/BallGame/bgCommon.h
+
+1401886964 /home/brock/code/cpp/BallGame/CollisionHandle.h
+
+1401889852 /home/brock/code/cpp/BallGame/VisualEntity.h
+	"Entity.h"
+	<SDL/SDL_opengl.h>
+	<vector>
+
+1337639354 /home/brock/code/cpp/BallGame/Level.h
+	"Block.h"
+	"Player.h"
+
+1337639354 /home/brock/code/cpp/BallGame/Block.h
+	"VisualEntity.h"
+
+1404461266 /home/brock/code/cpp/BallGame/Player.h
+	"VisualEntity.h"
+
+1337639354 /home/brock/code/cpp/BallGame/Timer.h
+	"SDL/SDL.h"
+
+1404382440 source:/home/brock/code/cpp/BallGame/Block.cpp
+	"Block.h"
+
+1337639354 source:/home/brock/code/cpp/BallGame/EngineManager.cpp
+	"EngineManager.h"
+
+1337639354 /home/brock/code/cpp/BallGame/EngineManager.h
+
+1337639354 source:/home/brock/code/cpp/BallGame/Entity.cpp
+	"Entity.h"
+	"BallGame.h"
+
+1404475042 source:/home/brock/code/cpp/BallGame/Level.cpp
+	"Level.h"
+
+1337639354 source:/home/brock/code/cpp/BallGame/Main.cpp
+	"BallGame.h"
+	<SDL/SDL.h>
+
+1404461234 source:/home/brock/code/cpp/BallGame/Player.cpp
+	"Player.h"
+	<SDL/SDL.h>
+	"BallGame.h"
+
+1337639354 source:/home/brock/code/cpp/BallGame/ResourceLoader.cpp
+	"ResourceLoader.h"
+
+1337639354 /home/brock/code/cpp/BallGame/ResourceLoader.h
+
+1337639354 source:/home/brock/code/cpp/BallGame/Timer.cpp
+	"Timer.h"
+
+1404458529 source:/home/brock/code/cpp/BallGame/VisualEntity.cpp
+	"VisualEntity.h"
+	<SDL/SDL_image.h>
+	<iostream>
+	<algorithm>
+	<cmath>
+	<limits>
+

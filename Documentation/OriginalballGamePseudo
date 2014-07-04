@@ -1,0 +1,19 @@
+checkUserInput
+	if up pressed
+		if ball is on ground/object
+			velocity = -10
+		end
+        end
+
+checkCollisions
+if ball colliding
+	get ball position and velocity
+	go back to start position trace along
+	until collision happens revert back one
+	pass detected position to balls collision method
+	pass collision to other object
+end
+
+ball Collision
+if collision object = block
+ set position detected by engine		

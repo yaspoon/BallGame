@@ -1,0 +1,11 @@
+Implement collision handling between visualgame objects
+Implement time based gameplay between frames not based on capped fps
+Implement BallGame functions that are currently stubs
+Allow the player ball object to jump
+implement screen scrolling
+
+Fix memory leaks
+	There is no object clean up the remove object functions are place holders atm
+	BallGame::processRemovedObjects
+	BallGame::removeEntity
+

@@ -1,0 +1,36 @@
+<html>
+<head>
+<title>BallGame build log</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
+<body>
+<tt>
+Build started on: <u>04-06-2014 at 23:15.50</u><br />
+Build ended on: <u>04-06-2014 at 23:15.51</u><p />
+<b>-------------- Build: Debug in BallGame (compiler: GNU GCC Compiler)---------------</b><br />
+g++ -Wall -pedantic -Wextra -Wall -g  -c /home/brock/code/c/BallGame/Level.cpp -o obj/Debug/Level.o<br />
+In file included from /home/brock/code/c/BallGame/VisualEntity.h:9:0,<br />
+                 from /home/brock/code/c/BallGame/Block.h:4,<br />
+                 from /home/brock/code/c/BallGame/Level.h:4,<br />
+                 from /home/brock/code/c/BallGame/Level.cpp:1:<br />
+<font color="#0000ff">/home/brock/code/c/BallGame/Entity.h:27:36: warning: unused parameter ‘dt’ [-Wunused-parameter]</font><br />
+         virtual void update( float dt ) {}<br />
+                                    ^<br />
+<font color="#0000ff">/home/brock/code/c/BallGame/Entity.h:29:47: warning: unused parameter ‘mainSurface’ [-Wunused-parameter]</font><br />
+         virtual void draw( SDL_Surface* const mainSurface ) {}<br />
+                                               ^<br />
+<font color="#0000ff">/home/brock/code/c/BallGame/Entity.h:31:47: warning: unused parameter ‘event’ [-Wunused-parameter]</font><br />
+         virtual void handleEvents( SDL_Event&amp; event ) {}<br />
+                                               ^<br />
+In file included from /home/brock/code/c/BallGame/Block.h:4:0,<br />
+                 from /home/brock/code/c/BallGame/Level.h:4,<br />
+                 from /home/brock/code/c/BallGame/Level.cpp:1:<br />
+<font color="#0000ff">/home/brock/code/c/BallGame/VisualEntity.h:22:47: warning: unused parameter ‘collider’ [-Wunused-parameter]</font><br />
+         virtual void collision( VisualEntity&amp; collider ) {};<br />
+                                               ^<br />
+g++  -o bin/Debug/BallGame obj/Debug/BallGame.o obj/Debug/Block.o obj/Debug/EngineManager.o obj/Debug/Entity.o obj/Debug/Level.o obj/Debug/Main.o obj/Debug/Player.o obj/Debug/ResourceLoader.o obj/Debug/Timer.o obj/Debug/VisualEntity.o   -lGL -lSDL -lSDL_image<br />
+Output file is bin/Debug/BallGame with size 335.81 KB<br />
+<font color="#0000ff">Process terminated with status 0 (0 minute(s), 0 second(s))</font><br />
+<font color="#0000ff">0 error(s), 4 warning(s) (0 minute(s), 0 second(s))</font><br />
+</tt>
+</body>
+</html>
