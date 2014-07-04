@@ -368,7 +368,10 @@ using namespace std;
 
                                 collidee->setPos(position.x, position.y);
                                 Player *tmp = dynamic_cast<Player*>(collidee);
-                                tmp->setYvel(0.0f);
+                                if(ret.axes.y > 0)
+                                {
+                                    tmp->setYvel(0.0f);
+                                }
                             }
                             else if(collidee->getCtype() == C_IMMOVABLE && collider->getCtype() == C_MOVEABLE)
                             {
@@ -448,7 +451,7 @@ bool overlap(float minCollidee, float maxCollidee, float minCollider, float maxC
     if(checkContainment(aminCollidee, amaxCollidee, aminCollider, amaxCollider))
     {
         overlap = true;
-        if((aminCollidee - aminCollider) < (amaxCollider - amaxCollidee))
+        if(fabs(aminCollidee - aminCollider) < fabs(amaxCollider - amaxCollidee))
         {
             *amountOverlap = aminCollider - amaxCollidee;//aminCollider - (aminCollidee + (amaxCollidee - aminCollidee));
         }
@@ -520,9 +523,9 @@ bool BallGame::collide( VisualEntity* collidee, VisualEntity* collider, Collisio
 
         if(overlap(proj1Min, proj1Max, proj2Min, proj2Max, &amountOverlap) == true)
         {
-            if((int)amountOverlap < minOverlap)
+            if(fabs(amountOverlap) < fabs(minOverlap))
             {
-                minOverlap = (int)amountOverlap;
+                minOverlap = amountOverlap;
                 minAxis = axis;
             }
         }
