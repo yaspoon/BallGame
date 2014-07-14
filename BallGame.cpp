@@ -15,7 +15,7 @@ using namespace std;
 //--------------------------------------Private methods/
     bool BallGame::initSDL()
     {
-        if( SDL_Init( SDL_INIT_EVERYTHING ) == -1 )
+        if( SDL_Init( SDL_INIT_EVERYTHING ) != 0 )
         {
            printf( "Could not initialise SDL exiting! error:%s\n", SDL_GetError() ) ;
         }
