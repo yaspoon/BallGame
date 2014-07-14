@@ -272,6 +272,7 @@ using namespace std;
         //SDL_FillRect( mainWindow, &mainWindow->clip_rect, SDL_MapRGB( mainWindow->format, 0x00, 0x00, 0x00 ) );
 
         //glClear( GL_COLOR_BUFFER_BIT );
+        SDL_RenderClear(renderer);
 
         BOOST_FOREACH( Entity* object, entities )
         {
