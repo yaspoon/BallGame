@@ -16,7 +16,7 @@
 
         for(i = 0; i < 6; i++)
         {
-            tmpBlock = new Block( SDL_SWSURFACE, 20, 20, 32, 260 + i * 20, 460 - (20 * i));
+            tmpBlock = new Block( NULL, 20, 20, 32, 260 + i * 20, 460 - (20 * i));
             m_levelObjects[m_numLevelObjects] = dynamic_cast<Entity*>(tmpBlock);
             m_numLevelObjects += 1;
         }
@@ -41,7 +41,7 @@
     {
         for(int i = 0; i < m_numLevelObjects; i++)
         {
-            delete[] m_levelObjects[i];
+            delete m_levelObjects[i];
         }
 
         delete m_player;
