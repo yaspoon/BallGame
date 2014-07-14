@@ -29,6 +29,7 @@ VisualEntity::VisualEntity( std::string filename, float x_i, float y_i, float wi
     if( temp != NULL )
     {
         sprite = SDL_CreateTextureFromSurface(BallGame::instance().renderer, temp);
+        SDL_FreeSurface(temp);
 
     }
     else
