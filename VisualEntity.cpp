@@ -4,6 +4,7 @@ Author: Brock
 */
 
 #include "VisualEntity.h"
+#include "BallGame.h"
 #include <SDL2/SDL_image.h>
 #include <iostream>
 #include <algorithm>
@@ -27,60 +28,7 @@ VisualEntity::VisualEntity( std::string filename, float x_i, float y_i, float wi
 
     if( temp != NULL )
     {
-        cout<<"Loaded "<<filename<<"\n";
-
-        sprite = temp;//SDL_DisplayFormatAlpha( temp );
-
-        if( sprite == NULL )
-        {
-            printf( "%s could not be loaded", filename.c_str() );
-        }
-
-//        SDL_SetAlpha( sprite, 0, 0 );
-
-        //SDL_FreeSurface( temp );
-
-        if( ( sprite->w & ( sprite->w - 1 ) ) !=0 )
-        {
-            printf( "Warning: sprite width is not a power of 2\n");
-        }
-
-        if( ( sprite->h & ( sprite->h - 1 ) ) !=0 )
-        {
-            printf( "Warning: sprite height is not a power of 2\n");
-        }
-
-        nOfColors = sprite->format->BytesPerPixel;
-        if( nOfColors == 4 )
-        {
-            if( sprite->format->Rmask == 0x000000ff)
-                texture_format=GL_RGBA;
-            else
-                texture_format=GL_BGRA;
-        }
-        else if( nOfColors == 3 )
-        {
-            if( sprite->format->Rmask == 0x000000ff)
-                texture_format=GL_RGB;
-            else
-                texture_format=GL_BGR;
-        }
-        else
-        {
-            printf( "Warning: the image is not true color this will break\n");
-        }
-
-        glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
-        glEnable(GL_BLEND );
-
-        glGenTextures( 1, &texture );
-
-        glBindTexture( GL_TEXTURE_2D, texture );
-
-        glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
-        glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
-
-        glTexImage2D( GL_TEXTURE_2D, 0, nOfColors, sprite->w, sprite->h, 0, texture_format, GL_UNSIGNED_BYTE, sprite->pixels );
+        sprite = SDL_CreateTextureFromSurface(BallGame::instance().renderer, temp);
 
     }
     else
@@ -88,15 +36,15 @@ VisualEntity::VisualEntity( std::string filename, float x_i, float y_i, float wi
         cout<<"Couldn't load "<<filename<<"\n";
     }
 
-    if( sprite )
-    {
-        SDL_FreeSurface( sprite );
-    }
 }
 
 VisualEntity::~VisualEntity()
 {
-    glDeleteTextures( 1, &texture );
+    //glDeleteTextures( 1, &texture );
+    if( sprite )
+    {
+        SDL_DestroyTexture( sprite );
+    }
 }
 
 void VisualEntity::draw( SDL_Window* const mainSurface )
@@ -107,9 +55,11 @@ void VisualEntity::draw( SDL_Window* const mainSurface )
     dest.w = (int)posDim.w;
     dest.h = (int)posDim.h;
 
+    SDL_RenderCopy(BallGame::instance().renderer, sprite, NULL, &dest);
+
     //SDL_BlitSurface( sprite, NULL, mainSurface, &dest);
 
-    glBindTexture( GL_TEXTURE_2D, texture );
+    /*glBindTexture( GL_TEXTURE_2D, texture );
 
     glBegin( GL_QUADS );
         glTexCoord2i( 0, 0 );
@@ -123,7 +73,7 @@ void VisualEntity::draw( SDL_Window* const mainSurface )
 
         glTexCoord2i( 0, 1 );
         glVertex3f( dest.x, dest.y, 0.0f);
-    glEnd();
+    glEnd();*/
 
 }
 

@@ -45,7 +45,7 @@ class VisualEntity: public Entity
 
     private:
 
-    SDL_Surface* sprite;
+    SDL_Texture *sprite;
 
     Rect posDim;
 

@@ -30,9 +30,9 @@ using namespace std;
 
             //mainWindow = SDL_SetVideoMode( m_width, m_height, m_bpp, windowFlags );
             mainWindow = SDL_CreateWindow("BallGame", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, screenWidth, screenHeight, windowFlags );
-            //renderer = SDL_CreateRenderer(mainWindow, -1, 0);
+            renderer = SDL_CreateRenderer(mainWindow, -1, 0);
 
-            setupOpengl( screenWidth, screenHeight );
+            //setupOpengl( screenWidth, screenHeight );
         }
 
 
@@ -48,7 +48,7 @@ using namespace std;
 
     void BallGame::setupOpengl( int screenWidth_i, int screenHeight_i )
     {
-        glContext = SDL_GL_CreateContext(mainWindow);
+        //glContext = SDL_GL_CreateContext(mainWindow);
         glEnable( GL_TEXTURE_2D );
 
         glClearColor( 0.0f, 0.0f, 0.0f, 0.0f );
@@ -229,7 +229,7 @@ using namespace std;
 
             delete currentLevel;
 
-            SDL_GL_DeleteContext(glContext);
+            SDL_DestroyRenderer(renderer);
             SDL_DestroyWindow(mainWindow);
             SDL_Quit();
         }
@@ -271,16 +271,15 @@ using namespace std;
         //Clear the display seting it all to black
         //SDL_FillRect( mainWindow, &mainWindow->clip_rect, SDL_MapRGB( mainWindow->format, 0x00, 0x00, 0x00 ) );
 
-        glClear( GL_COLOR_BUFFER_BIT );
+        //glClear( GL_COLOR_BUFFER_BIT );
 
         BOOST_FOREACH( Entity* object, entities )
         {
             object->draw( this->mainWindow );
         }
 
-
-
-        SDL_GL_SwapWindow(mainWindow);
+        SDL_RenderPresent(renderer);
+        //SDL_GL_SwapWindow(mainWindow);
     }
 
     void BallGame::updateFrame()

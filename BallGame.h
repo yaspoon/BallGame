@@ -17,7 +17,6 @@ private:
 
 //--------------------------------------Data
     SDL_Window *mainWindow;
-    SDL_GLContext glContext;
 
     int screenWidth;
     int screenHeight;
@@ -70,6 +69,7 @@ private:
 
 public:
 
+    SDL_Renderer *renderer; //Yes this is terrible that it's public but ballgame has enough useless methods as it is...
 //--------------------------------------Constructors/
     static BallGame& instance()
     {
