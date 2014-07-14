@@ -16,7 +16,8 @@ class BallGame
 private:
 
 //--------------------------------------Data
-    SDL_Window* mainWindow;
+    SDL_Window *mainWindow;
+    SDL_GLContext glContext;
 
     int screenWidth;
     int screenHeight;

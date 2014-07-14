@@ -10,24 +10,19 @@
         Block* tmpBlock;
 
         m_player = new Player();
-
-        /*for( i=0; i < comp; i++ )
-        {
-            tmpBlock = new Block( SDL_SWSURFACE, 20, 20, 32, (float)260 + 20*i, (float)460-(20*i) );
-            //tmpBlock = new Block( SDL_SWSURFACE, 20, 20, 32, (float)20*i, (float)460 );
-            m_levelObjects[i] = (Entity*)tmpBlock;
-        }*/
+        m_numLevelObjects = 0;
 
         //tmpBlock = new Block( SDL_SWSURFACE, 200, 200, 32, 260, 260);
 
         for(i = 0; i < 6; i++)
         {
             tmpBlock = new Block( SDL_SWSURFACE, 20, 20, 32, 260 + i * 20, 460 - (20 * i));
+            m_levelObjects[m_numLevelObjects] = dynamic_cast<Entity*>(tmpBlock);
+            m_numLevelObjects += 1;
         }
 
 
         m_nextLevel = "none";
-        m_numLevelObjects = 1;
 
         m_startPosition.x = 140;
         m_startPosition.y = 180;
@@ -44,7 +39,10 @@
 //--------------------------------------Destructors/
     Level::~Level()
     {
-        int i = 0;
+        for(int i = 0; i < m_numLevelObjects; i++)
+        {
+            delete[] m_levelObjects[i];
+        }
 
         delete m_player;
     }

@@ -30,6 +30,7 @@ using namespace std;
 
             //mainWindow = SDL_SetVideoMode( m_width, m_height, m_bpp, windowFlags );
             mainWindow = SDL_CreateWindow("BallGame", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, screenWidth, screenHeight, windowFlags );
+            //renderer = SDL_CreateRenderer(mainWindow, -1, 0);
 
             setupOpengl( screenWidth, screenHeight );
         }
@@ -47,6 +48,7 @@ using namespace std;
 
     void BallGame::setupOpengl( int screenWidth_i, int screenHeight_i )
     {
+        glContext = SDL_GL_CreateContext(mainWindow);
         glEnable( GL_TEXTURE_2D );
 
         glClearColor( 0.0f, 0.0f, 0.0f, 0.0f );
@@ -84,9 +86,9 @@ using namespace std;
                 /*SDL_WM_ToggleFullScreen( mainWindow ); Not guaranteed to work on windows
                 so have to use this was instead*/
 
-                windowFlags ^= SDL_WINDOW_FULLSCREEN;
+                windowFlags ^= SDL_WINDOW_FULLSCREEN_DESKTOP;
                 //mainWindow = SDL_SetVideoMode( m_width, m_height, m_bpp, windowFlags );
-                mainWindow = SDL_CreateWindow("BallGame", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 1366, 768, windowFlags );
+                mainWindow = SDL_CreateWindow("BallGame", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 0, 0, windowFlags );
                 setupOpengl( 1360, 768 );
                 drawFrame();
 
@@ -227,6 +229,7 @@ using namespace std;
 
             delete currentLevel;
 
+            SDL_GL_DeleteContext(glContext);
             SDL_DestroyWindow(mainWindow);
             SDL_Quit();
         }
