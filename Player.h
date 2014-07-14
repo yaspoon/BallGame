@@ -11,6 +11,7 @@ Author: Brock
 class Player: public VisualEntity
 {
     public:
+        bool onGround;
         Player();
 
         virtual ~Player();
@@ -22,6 +23,8 @@ class Player: public VisualEntity
         void collision( VisualEntity& collider );
 
         void setYvel(float yvel);
+
+        float getYvel();
 
     private:
         float xvel;

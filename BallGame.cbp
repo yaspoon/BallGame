@@ -22,8 +22,8 @@
 				</Compiler>
 				<Linker>
 					<Add library="GL" />
-					<Add library="SDL" />
-					<Add library="SDL_image" />
+					<Add library="SDL2" />
+					<Add library="SDL2_image" />
 				</Linker>
 			</Target>
 		</Build>

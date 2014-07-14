@@ -25,11 +25,11 @@ using namespace std;
             //windowFlags ^= SDL_DOUBLEBUF;
             SDL_GL_SetAttribute( SDL_GL_DOUBLEBUFFER, 1 );
 
-            windowFlags ^= SDL_OPENGL;
-            windowFlags ^= SDL_HWACCEL;
+            windowFlags ^= SDL_WINDOW_OPENGL;
+            //windowFlags ^= SDL_HWACCEL;
 
             //mainWindow = SDL_SetVideoMode( m_width, m_height, m_bpp, windowFlags );
-            mainWindow = SDL_SetVideoMode( screenWidth, screenHeight, screenBpp, windowFlags );
+            mainWindow = SDL_CreateWindow("BallGame", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, screenWidth, screenHeight, windowFlags );
 
             setupOpengl( screenWidth, screenHeight );
         }
@@ -37,7 +37,6 @@ using namespace std;
 
         if( mainWindow != NULL)
         {
-            SDL_WM_SetCaption( m_gameName.c_str(), NULL );
             return true;
         }
         else
@@ -85,9 +84,9 @@ using namespace std;
                 /*SDL_WM_ToggleFullScreen( mainWindow ); Not guaranteed to work on windows
                 so have to use this was instead*/
 
-                windowFlags ^= SDL_FULLSCREEN;
+                windowFlags ^= SDL_WINDOW_FULLSCREEN;
                 //mainWindow = SDL_SetVideoMode( m_width, m_height, m_bpp, windowFlags );
-                mainWindow = SDL_SetVideoMode( 1360, 768, screenBpp, windowFlags );
+                mainWindow = SDL_CreateWindow("BallGame", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 1366, 768, windowFlags );
                 setupOpengl( 1360, 768 );
                 drawFrame();
 
@@ -210,7 +209,7 @@ using namespace std;
 
                     caption << "Average FPS " << frame / ( update.getTicks() / 1000.f );
 
-                    SDL_WM_SetCaption( caption.str().c_str() , NULL );
+                    SDL_SetWindowTitle(mainWindow, caption.str().c_str());
 
                     update.start();
 
@@ -228,6 +227,7 @@ using namespace std;
 
             delete currentLevel;
 
+            SDL_DestroyWindow(mainWindow);
             SDL_Quit();
         }
 
@@ -277,7 +277,7 @@ using namespace std;
 
 
 
-        SDL_GL_SwapBuffers();
+        SDL_GL_SwapWindow(mainWindow);
     }
 
     void BallGame::updateFrame()
@@ -370,7 +370,16 @@ using namespace std;
                                 Player *tmp = dynamic_cast<Player*>(collidee);
                                 if(ret.axes.y > 0)
                                 {
-                                    tmp->setYvel(0.0f);
+                                    if(ret.overlap < 0)
+                                    {
+                                        tmp->setYvel(0.0f);
+                                        tmp->onGround = true;
+                                    }
+                                    else if( ret.overlap > 0)
+                                    {
+                                        float yvel = tmp->getYvel();
+                                        tmp->setYvel((-yvel)/2);
+                                    }
                                 }
                             }
                             else if(collidee->getCtype() == C_IMMOVABLE && collider->getCtype() == C_MOVEABLE)
@@ -387,8 +396,8 @@ using namespace std;
 
     SDL_Rect& BallGame::getScreenDim()
     {
-        screenDim.w = mainWindow->w;
-        screenDim.h = mainWindow->h;
+        //screenDim.w = mainWindow->w
+        //screenDim.h = mainWindow->h;
 
         return screenDim;
     }
@@ -563,6 +572,8 @@ void BallGame::checkBounds( VisualEntity* entity )
     else if( posDim.y + posDim.h > screenHeight )
     {
         posDim.y = screenHeight - posDim.h;
+        Player *tmp = dynamic_cast<Player*>(entity);
+        tmp->onGround = true;
     }
 
     entity->setPos( posDim.x, posDim.y );

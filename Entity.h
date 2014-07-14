@@ -2,7 +2,7 @@
 #define ENTITY_H
 
 #include <string>
-#include <SDL/SDL.h>
+#include <SDL2/SDL.h>
 #include "bgCommon.h"
 #include <list>
 
@@ -26,7 +26,7 @@ class Entity
     //------------------------------Mutators
         virtual void update( float dt ) {}
 
-        virtual void draw( SDL_Surface* const mainSurface ) {}
+        virtual void draw( SDL_Window* const mainSurface ) {}
 
         virtual void handleEvents( SDL_Event& event ) {}
 

@@ -1,8 +1,8 @@
 #ifndef _BALLGAME_H__
 #define _BALLGAME_H__
 
-#include <SDL/SDL.h>
-#include <SDL/SDL_opengl.h>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_opengl.h>
 #include "Entity.h"
 #include "CollisionHandle.h"
 #include "bgCommon.h"
@@ -16,7 +16,7 @@ class BallGame
 private:
 
 //--------------------------------------Data
-    SDL_Surface* mainWindow;
+    SDL_Window* mainWindow;
 
     int screenWidth;
     int screenHeight;

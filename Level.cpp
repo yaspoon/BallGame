@@ -18,12 +18,12 @@
             m_levelObjects[i] = (Entity*)tmpBlock;
         }*/
 
-        tmpBlock = new Block( SDL_SWSURFACE, 200, 200, 32, 260, 460);
+        //tmpBlock = new Block( SDL_SWSURFACE, 200, 200, 32, 260, 260);
 
-        /*for(i = 0; i < 6; i++)
+        for(i = 0; i < 6; i++)
         {
-            tmpBlock = new Block( SDL_SWSURFACE, 20, 20, 32, 260 + i * 20, 460);
-        }*/
+            tmpBlock = new Block( SDL_SWSURFACE, 20, 20, 32, 260 + i * 20, 460 - (20 * i));
+        }
 
 
         m_nextLevel = "none";

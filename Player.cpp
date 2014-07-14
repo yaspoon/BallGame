@@ -4,15 +4,16 @@ Author: Brock
 */
 
 #include "Player.h"
-#include <SDL/SDL.h>
+#include <SDL2/SDL.h>
 #include "BallGame.h"
 
 Player::Player()
-:VisualEntity( "./images/ball2.png", 0, 440, 40, 40 )
+:VisualEntity( "./images/ball.png", 0, 440, 40, 40 )
 {
     xvel = 0;
     yvel = 0;
     moveSpeed = 250;
+    onGround = false;
     VisualEntity::setCtype( C_MOVEABLE );
 }
 
@@ -72,7 +73,11 @@ void Player::handleEvents( SDL_Event& event )
                 xvel = xvel + moveSpeed;
                 break;
             case SDLK_UP:
-                yvel = -160;
+                if(onGround)
+                {
+                    yvel = -180;
+                    onGround = false;
+                }
                 //VisualEntity::setPos( VisualEntity::getPosDim().x, VisualEntity::getPosDim().y - 1 );
                 break;
             default:
@@ -103,5 +108,10 @@ void Player::collision( VisualEntity& collider )
 void Player::setYvel(float yvel)
 {
     this->yvel = yvel;
+}
+
+float Player::getYvel()
+{
+    return yvel;
 }
 

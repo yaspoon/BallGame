@@ -4,7 +4,7 @@ Author: Brock
 */
 
 #include "VisualEntity.h"
-#include <SDL/SDL_image.h>
+#include <SDL2/SDL_image.h>
 #include <iostream>
 #include <algorithm>
 #include <cmath>
@@ -29,14 +29,14 @@ VisualEntity::VisualEntity( std::string filename, float x_i, float y_i, float wi
     {
         cout<<"Loaded "<<filename<<"\n";
 
-        sprite = SDL_DisplayFormatAlpha( temp );
+        sprite = temp;//SDL_DisplayFormatAlpha( temp );
 
         if( sprite == NULL )
         {
             printf( "%s could not be loaded", filename.c_str() );
         }
 
-        SDL_SetAlpha( sprite, 0, 0 );
+//        SDL_SetAlpha( sprite, 0, 0 );
 
         SDL_FreeSurface( temp );
 
@@ -99,7 +99,7 @@ VisualEntity::~VisualEntity()
     glDeleteTextures( 1, &texture );
 }
 
-void VisualEntity::draw( SDL_Surface* const mainSurface )
+void VisualEntity::draw( SDL_Window* const mainSurface )
 {
     SDL_Rect dest;
     dest.x = (int)posDim.x;
