@@ -38,7 +38,7 @@ VisualEntity::VisualEntity( std::string filename, float x_i, float y_i, float wi
 
 //        SDL_SetAlpha( sprite, 0, 0 );
 
-        SDL_FreeSurface( temp );
+        //SDL_FreeSurface( temp );
 
         if( ( sprite->w & ( sprite->w - 1 ) ) !=0 )
         {
