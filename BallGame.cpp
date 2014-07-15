@@ -15,6 +15,8 @@ using namespace std;
 //--------------------------------------Private methods/
     bool BallGame::initSDL()
     {
+        bool retVal = false;
+
         if( SDL_Init( SDL_INIT_EVERYTHING ) != 0 )
         {
            printf( "Could not initialise SDL exiting! error:%s\n", SDL_GetError() ) ;
@@ -28,18 +30,14 @@ using namespace std;
             mainWindow = SDL_CreateWindow("BallGame", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, screenWidth, screenHeight, windowFlags );
             renderer = SDL_CreateRenderer(mainWindow, -1, 0);
 
-            //setupOpengl( screenWidth, screenHeight );
+            if( mainWindow != NULL && renderer != NULL)
+            {
+                retVal = true;
+            }
+
         }
 
-
-        if( mainWindow != NULL)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return retVal;
     }
 
     void BallGame::setupOpengl( int screenWidth_i, int screenHeight_i )
