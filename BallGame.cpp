@@ -21,14 +21,10 @@ using namespace std;
         }
         else
         {
-            //windowFlags ^= SDL_HWSURFACE;
-            //windowFlags ^= SDL_DOUBLEBUF;
             SDL_GL_SetAttribute( SDL_GL_DOUBLEBUFFER, 1 );
 
             windowFlags ^= SDL_WINDOW_OPENGL;
-            //windowFlags ^= SDL_HWACCEL;
 
-            //mainWindow = SDL_SetVideoMode( m_width, m_height, m_bpp, windowFlags );
             mainWindow = SDL_CreateWindow("BallGame", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, screenWidth, screenHeight, windowFlags );
             renderer = SDL_CreateRenderer(mainWindow, -1, 0);
 
@@ -87,9 +83,9 @@ using namespace std;
                 so have to use this was instead*/
 
                 windowFlags ^= SDL_WINDOW_FULLSCREEN_DESKTOP;
-                //mainWindow = SDL_SetVideoMode( m_width, m_height, m_bpp, windowFlags );
                 mainWindow = SDL_CreateWindow("BallGame", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 0, 0, windowFlags );
-                setupOpengl( 1360, 768 );
+                renderer = SDL_CreateRenderer(mainWindow, -1, 0);
+
                 drawFrame();
 
                 printf( "Toggled fullscreen\n" );
