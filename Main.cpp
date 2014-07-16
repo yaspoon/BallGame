@@ -1,6 +1,5 @@
 #include "BallGame.h"
 #include <SDL2/SDL.h>
-//#include <windows.h>
 
 //--------------------------------Data/
 BallGame* theBallGame;

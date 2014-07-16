@@ -49,8 +49,6 @@ private:
 
     bool initSDL();
 
-    void setupOpengl( int screenWidth_i, int screenHeight_i );
-
     void handleKeyPress( SDL_Event );
 
     void applySurface( const float& x, const float& y, SDL_Surface* source, SDL_Surface* destination, SDL_Rect* );
