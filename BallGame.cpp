@@ -77,6 +77,7 @@ using namespace std;
                 quit = true;
                 break;
             case SDLK_F1:
+                std::cout << "NOT IMPLETMENTED" << std::endl;
                 break;
             default:
                 break;
