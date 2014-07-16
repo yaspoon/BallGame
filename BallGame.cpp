@@ -93,17 +93,6 @@ using namespace std;
         }
     }
 
-    void BallGame::applySurface( const float& x, const float& y, SDL_Surface* source, SDL_Surface* destination, SDL_Rect* clip = NULL )
-    {
-        SDL_Rect offset;
-
-        offset.x = x;
-        offset.y = y;
-
-        SDL_BlitSurface( source, clip, destination, &offset );
-
-    }
-
 //--------------------------------------Constructors/
     BallGame::BallGame()
     {
@@ -213,10 +202,10 @@ using namespace std;
 
                 }
 
-                if( fps.getTicks() < (1000 / FRAMES_PER_SECOND) )
+                /*if( fps.getTicks() < (1000 / FRAMES_PER_SECOND) )
                 {
-                    //SDL_Delay( ( 1000 / FRAMES_PER_SECOND ) - fps.getTicks() );
-                }
+                    SDL_Delay( ( 1000 / FRAMES_PER_SECOND ) - fps.getTicks() );
+                }*/
 
 
             }//End Main Game loop
