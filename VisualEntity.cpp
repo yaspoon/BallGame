@@ -56,25 +56,6 @@ void VisualEntity::draw( SDL_Window* const mainSurface )
     dest.h = (int)posDim.h;
 
     SDL_RenderCopy(BallGame::instance().renderer, sprite, NULL, &dest);
-
-    //SDL_BlitSurface( sprite, NULL, mainSurface, &dest);
-
-    /*glBindTexture( GL_TEXTURE_2D, texture );
-
-    glBegin( GL_QUADS );
-        glTexCoord2i( 0, 0 );
-        glVertex3f( dest.x, dest.y + dest.h, 0.0f);
-
-        glTexCoord2i( 1, 0 );
-        glVertex3f( dest.x + dest.w, dest.y + dest.h, 0.0f );
-
-        glTexCoord2i( 1, 1 );
-        glVertex3f( dest.x + dest.w, dest.y, 0.0f );
-
-        glTexCoord2i( 0, 1 );
-        glVertex3f( dest.x, dest.y, 0.0f);
-    glEnd();*/
-
 }
 
 Rect& VisualEntity::getPosDim()
