@@ -77,16 +77,6 @@ using namespace std;
                 quit = true;
                 break;
             case SDLK_F1:
-                /*SDL_WM_ToggleFullScreen( mainWindow ); Not guaranteed to work on windows
-                so have to use this was instead*/
-
-                windowFlags ^= SDL_WINDOW_FULLSCREEN_DESKTOP;
-                mainWindow = SDL_CreateWindow("BallGame", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 0, 0, windowFlags );
-                renderer = SDL_CreateRenderer(mainWindow, -1, 0);
-
-                drawFrame();
-
-                printf( "Toggled fullscreen\n" );
                 break;
             default:
                 break;
