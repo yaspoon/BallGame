@@ -262,10 +262,6 @@ using namespace std;
 
     void BallGame::drawFrame()
     {
-        //Clear the display seting it all to black
-        //SDL_FillRect( mainWindow, &mainWindow->clip_rect, SDL_MapRGB( mainWindow->format, 0x00, 0x00, 0x00 ) );
-
-        //glClear( GL_COLOR_BUFFER_BIT );
         SDL_RenderClear(renderer);
 
         BOOST_FOREACH( Entity* object, entities )
@@ -274,7 +270,6 @@ using namespace std;
         }
 
         SDL_RenderPresent(renderer);
-        //SDL_GL_SwapWindow(mainWindow);
     }
 
     void BallGame::updateFrame()
