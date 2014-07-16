@@ -41,7 +41,6 @@ VisualEntity::VisualEntity( std::string filename, float x_i, float y_i, float wi
 
 VisualEntity::~VisualEntity()
 {
-    //glDeleteTextures( 1, &texture );
     if( sprite )
     {
         SDL_DestroyTexture( sprite );
