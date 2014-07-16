@@ -40,28 +40,6 @@ using namespace std;
         return retVal;
     }
 
-    void BallGame::setupOpengl( int screenWidth_i, int screenHeight_i )
-    {
-        //glContext = SDL_GL_CreateContext(mainWindow);
-        glEnable( GL_TEXTURE_2D );
-
-        glClearColor( 0.0f, 0.0f, 0.0f, 0.0f );
-
-        glViewport( 0, 0, screenWidth_i, screenHeight_i );
-
-        glClear( GL_COLOR_BUFFER_BIT );
-
-        glMatrixMode( GL_PROJECTION );
-
-        glLoadIdentity();
-
-        glOrtho( 0.0f, screenWidth_i, screenHeight_i, 0.0f, -1.0f, 1.0f );
-
-        glMatrixMode( GL_MODELVIEW );
-
-        glLoadIdentity();
-    }
-
     void BallGame::handleKeyPress( SDL_Event keyEvents )
     {
         switch( keyEvents.key.keysym.sym )
