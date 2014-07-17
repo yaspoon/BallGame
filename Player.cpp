@@ -68,7 +68,6 @@ void Player::handleEvents( SDL_Event& event )
                     yvel = -180;
                     onGround = false;
                 }
-                //VisualEntity::setPos( VisualEntity::getPosDim().x, VisualEntity::getPosDim().y - 1 );
                 break;
             default:
                 break;
