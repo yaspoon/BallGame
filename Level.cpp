@@ -6,19 +6,15 @@
     Level::Level()
     {
         int i;
-        comp = 32;
-        Block* tmpBlock;
 
-        m_player = new Player();
-        m_numLevelObjects = 0;
+        m_player = Player();
 
         //tmpBlock = new Block( SDL_SWSURFACE, 200, 200, 32, 260, 260);
 
         for(i = 0; i < 6; i++)
         {
-            tmpBlock = new Block( NULL, 20, 20, 32, 260 + i * 20, 460 - (20 * i));
-            m_levelObjects[m_numLevelObjects] = dynamic_cast<Entity*>(tmpBlock);
-            m_numLevelObjects += 1;
+            Block tmpBlock = Block( NULL, 20, 20, 32, 260 + i * 20, 460 - (20 * i));
+            levelObjects.push_back(tmpBlock);
         }
 
 
@@ -39,12 +35,6 @@
 //--------------------------------------Destructors/
     Level::~Level()
     {
-        for(int i = 0; i < m_numLevelObjects; i++)
-        {
-            delete m_levelObjects[i];
-        }
-
-        delete m_player;
     }
 
 //--------------------------------------Methods/
@@ -59,19 +49,19 @@
         return m_endPosition;
     }
 
-    Entity** Level::getLevelObjects()
+    std::vector<Entity> Level::getLevelObjects()
     {
-        return m_levelObjects;
+        return levelObjects;
     }
 
     int Level::getNumObjects()
     {
-        return m_numLevelObjects;
+        return levelObjects.size();
     }
 
-    std::string* Level::getNextLevel()
+    std::string Level::getNextLevel()
     {
-        return &m_nextLevel;
+        return m_nextLevel;
     }
 
 

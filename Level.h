@@ -10,13 +10,11 @@ class Level
     private:
 //--------------------------------------Data/
     const static int m_maxNumObjects = 64;
-    Entity* m_levelObjects[m_maxNumObjects];
-    int m_numLevelObjects;
+    std::vector<Entity> levelObjects;
     SDL_Rect m_startPosition;
     SDL_Rect m_endPosition;
     std::string m_nextLevel;
-    Player* m_player;
-    int comp;
+    Player m_player;
 
     public:
 //--------------------------------------Constructors/
@@ -34,11 +32,11 @@ class Level
 
     SDL_Rect getEndPosition();
 
-    Entity** getLevelObjects();
+    std::vector<Entity> getLevelObjects();
 
     int getNumObjects();
 
-    std::string* getNextLevel();
+    std::string getNextLevel();
 
     //------------------------------Mutators
 
