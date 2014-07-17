@@ -120,16 +120,16 @@ using namespace std;
                             break;
                         case SDL_KEYDOWN:
                             handleKeyPress( events );
-                            BOOST_FOREACH( Entity* object, entities )
+                            BOOST_FOREACH( Entity object, entities )
                             {
-                                object->handleEvents( events );
+                                object.handleEvents(events);
                             }
                             break;
                         case SDL_KEYUP:
                             handleKeyPress( events );
-                            BOOST_FOREACH( Entity* object, entities )
+                            BOOST_FOREACH( Entity object, entities )
                             {
-                                object->handleEvents( events );
+                                object.handleEvents( events );
                             }
                             break;
                         default:
@@ -192,7 +192,7 @@ using namespace std;
 
     void BallGame::proccessAddedObjects()
     {
-        BOOST_FOREACH( Entity* object, addedEntities )
+        BOOST_FOREACH(Entity object, addedEntities)
         {
             entities.push_back( object );
         }
@@ -202,18 +202,18 @@ using namespace std;
 
     void BallGame::proccessRemovedObjects()
     {
-        BOOST_FOREACH( Entity* entity, removedEntities )
+        BOOST_FOREACH(Entity entity, removedEntities )
         {
-            entities.remove( entity );
+            entities.erase(std::find(entities.begin(), entities.end(), entity));
         }
     }
 
-    void BallGame::addEntity( Entity* entity_i)
+    void BallGame::addEntity(Entity entity_i)
     {
         addedEntities.push_back( entity_i );
     }
 
-    void BallGame::removeEntity( Entity* entity_i )
+    void BallGame::removeEntity(Entity entity_i)
     {
         removedEntities.push_back( entity_i );
     }
@@ -222,9 +222,9 @@ using namespace std;
     {
         SDL_RenderClear(renderer);
 
-        BOOST_FOREACH( Entity* object, entities )
+        BOOST_FOREACH(Entity object, entities)
         {
-            object->draw( this->mainWindow );
+            object.draw(this->mainWindow);
         }
 
         SDL_RenderPresent(renderer);
@@ -236,9 +236,9 @@ using namespace std;
         float dt = (float)( thisframe - lastframe ) / 1000.f;
         lastframe = thisframe;
 
-        BOOST_FOREACH( Entity* object, entities )
+        BOOST_FOREACH( Entity object, entities )
         {
-            object->update( dt );
+            object.update( dt );
         }
     }
 
@@ -290,13 +290,13 @@ using namespace std;
 
     void BallGame::checkCollisions()
     {
-        BOOST_FOREACH( Entity* entity, entities )
+        BOOST_FOREACH( Entity entity, entities )
         {
-            VisualEntity* collidee = dynamic_cast<VisualEntity*>(entity);
+            VisualEntity collidee = dynamic_cast<VisualEntity>(entity);
 
             BOOST_FOREACH( Entity* colliders, entities )
             {
-                VisualEntity* collider = dynamic_cast<VisualEntity*>(colliders);
+                VisualEntity collider = dynamic_cast<VisualEntity>(colliders);
                 if( collidee != collider && collidee->getCtype() != C_IMMOVABLE)
                 {
                     //if(isColliding(collidee->getPosDim(), collider->getPosDim())) // No point in doing collision detection if they're not even colliding...

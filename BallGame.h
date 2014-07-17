@@ -8,8 +8,6 @@
 #include "bgCommon.h"
 #include "VisualEntity.h"
 
-typedef std::list<Entity*> EntityList;
-
 class BallGame
 {
 
@@ -36,9 +34,9 @@ private:
     Uint32 lastframe;
 
 
-    EntityList entities;
-    EntityList addedEntities;
-    EntityList removedEntities;
+    std::vector<Entity> entities;
+    std::vector<Entity> addedEntities;
+    std::vector<Entity> removedEntities;
 
     //Return value when ballgame quits
     int retVal;
@@ -50,8 +48,6 @@ private:
     bool initSDL();
 
     void handleKeyPress( SDL_Event );
-
-    void applySurface( const float& x, const float& y, SDL_Surface* source, SDL_Surface* destination, SDL_Rect* );
 
     void proccessAddedObjects();
 
@@ -83,9 +79,9 @@ public:
     SDL_Rect& getScreenDim();
 
     //------------------------------Mutators
-    void addEntity( Entity* entity_i);
+    void addEntity(Entity entity_i);
 
-    void removeEntity( Entity* entity_i );
+    void removeEntity(Entity entity_i);
 
     //------------------------------Imperita/
     int ballGameMain();
