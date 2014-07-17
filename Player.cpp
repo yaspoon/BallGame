@@ -33,10 +33,6 @@ void Player::update( float dt )
             tempPos.y += yvel * dt;
             tempPos.x += xvel * dt;
 
-            //Collision_t allowedMove = BALLGAME.checkMove( tempPos, yvel, xvel );
-
-            VisualEntity::setPos( tempPos.x, tempPos.y );
-
         }
         else if( yvel < 0 )
         {
@@ -44,20 +40,14 @@ void Player::update( float dt )
 
             tempPos.y += yvel * dt;
             tempPos.x += xvel * dt;
-
-            //Collision_t allowedMove = BALLGAME.checkMove( tempPos, yvel, xvel );
-
-            VisualEntity::setPos( tempPos.x, tempPos.y );
         }
         else
         {
             tempPos.y += yvel * dt;
             tempPos.x += xvel * dt;
-
-            //Collision_t allowedMove = BALLGAME.checkMove( tempPos, yvel, xvel );
-
-            VisualEntity::setPos( tempPos.x, tempPos.y );
         }
+
+        VisualEntity::setPos( tempPos.x, tempPos.y );
 }
 
 void Player::handleEvents( SDL_Event& event )
