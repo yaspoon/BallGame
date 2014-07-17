@@ -55,9 +55,9 @@ private:
 
     Collision_t getCollision(Rect box1, Rect box2);
 
-    bool collide( VisualEntity* collidee, VisualEntity* collider, Collision_t *collision);
+    bool collide( VisualEntity collidee, VisualEntity collider, Collision_t *collision);
 
-    void checkBounds( VisualEntity* entity );
+    void checkBounds( VisualEntity entity );
 
 
 

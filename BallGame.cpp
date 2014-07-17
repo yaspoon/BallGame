@@ -292,12 +292,12 @@ using namespace std;
     {
         BOOST_FOREACH( Entity entity, entities )
         {
-            VisualEntity collidee = dynamic_cast<VisualEntity>(entity);
+            VisualEntity collidee = (VisualEntity)entity;
 
-            BOOST_FOREACH( Entity* colliders, entities )
+            BOOST_FOREACH(Entity colliders, entities )
             {
                 VisualEntity collider = dynamic_cast<VisualEntity>(colliders);
-                if( collidee != collider && collidee->getCtype() != C_IMMOVABLE)
+                if( collidee != collider && collidee.getCtype() != C_IMMOVABLE)
                 {
                     //if(isColliding(collidee->getPosDim(), collider->getPosDim())) // No point in doing collision detection if they're not even colliding...
                     {
@@ -306,11 +306,11 @@ using namespace std;
                         {
                             std::cout << "The objects are colliding" << std::endl;
 
-                            if(collidee->getCtype() == C_MOVEABLE && collider->getCtype() == C_MOVEABLE) //They can both move so push both back half the vector
+                            if(collidee.getCtype() == C_MOVEABLE && collider.getCtype() == C_MOVEABLE) //They can both move so push both back half the vector
                             {
                                 std::cout << "Both can move" << std::endl;
                             }
-                            else if(collidee->getCtype() == C_MOVEABLE && collider->getCtype() == C_IMMOVABLE)
+                            else if(collidee.getCtype() == C_MOVEABLE && collider.getCtype() == C_IMMOVABLE)
                             {
                                 Rect position = collidee->getPosDim();
                                 position.x = (int)(position.x + (ret.axes.x * ret.overlap));
@@ -452,7 +452,7 @@ bool overlap(float minCollidee, float maxCollidee, float minCollider, float maxC
     return overlap;
 }
 
-bool BallGame::collide( VisualEntity* collidee, VisualEntity* collider, Collision_t *collision)
+bool BallGame::collide( VisualEntity collidee, VisualEntity collider, Collision_t *collision)
 {
 
     bool colliding = true;
@@ -501,7 +501,7 @@ bool BallGame::collide( VisualEntity* collidee, VisualEntity* collider, Collisio
     return colliding;
 }
 
-void BallGame::checkBounds( VisualEntity* entity )
+void BallGame::checkBounds(VisualEntity entity)
 {
 
     Rect posDim = entity->getPosDim();
