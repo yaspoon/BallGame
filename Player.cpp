@@ -89,11 +89,6 @@ void Player::handleEvents( SDL_Event& event )
     }
 }
 
-void Player::collision( VisualEntity& collider )
-{
-
-}
-
 void Player::setYvel(float yvel)
 {
     this->yvel = yvel;

@@ -20,8 +20,6 @@ class Player: public VisualEntity
 
         void handleEvents( SDL_Event& event );
 
-        void collision( VisualEntity& collider );
-
         void setYvel(float yvel);
 
         float getYvel();
