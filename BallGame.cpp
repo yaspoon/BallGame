@@ -218,18 +218,6 @@ using namespace std;
         removedEntities.push_back( entity_i );
     }
 
-    void BallGame::drawFrame()
-    {
-        SDL_RenderClear(renderer);
-
-        BOOST_FOREACH(Entity object, entities)
-        {
-            object.draw(this->mainWindow);
-        }
-
-        SDL_RenderPresent(renderer);
-    }
-
     void BallGame::updateFrame()
     {
         Uint32 thisframe = SDL_GetTicks();

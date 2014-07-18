@@ -90,8 +90,6 @@ public:
 
     void updateFrame();
 
-    void drawFrame();
-
     void checkCollisions();
 
 };
