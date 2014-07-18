@@ -204,7 +204,7 @@ using namespace std;
     {
         BOOST_FOREACH(Entity entity, removedEntities )
         {
-            entities.erase(std::find(entities.begin(), entities.end(), entity));
+            //entities.erase(std::find(entities.begin(), entities.end(), entity));
         }
     }
 
@@ -290,13 +290,14 @@ using namespace std;
 
     void BallGame::checkCollisions()
     {
-        BOOST_FOREACH( Entity entity, entities )
+        STUB("So very many pointers to remove...");
+        /*BOOST_FOREACH( Entity entity, entities )
         {
-            VisualEntity collidee = (VisualEntity)entity;
+            VisualEntity collidee = entity;
 
             BOOST_FOREACH(Entity colliders, entities )
             {
-                VisualEntity collider = dynamic_cast<VisualEntity>(colliders);
+                VisualEntity collider = colliders;
                 if( collidee != collider && collidee.getCtype() != C_IMMOVABLE)
                 {
                     //if(isColliding(collidee->getPosDim(), collider->getPosDim())) // No point in doing collision detection if they're not even colliding...
@@ -341,7 +342,7 @@ using namespace std;
                 }
             }
             checkBounds( collidee );
-        }
+        }*/
     }
 
     SDL_Rect& BallGame::getScreenDim()
@@ -454,8 +455,9 @@ bool overlap(float minCollidee, float maxCollidee, float minCollider, float maxC
 
 bool BallGame::collide( VisualEntity collidee, VisualEntity collider, Collision_t *collision)
 {
+    STUB("The collide needs to be rewritten to get rid of all the damn pointers now");
 
-    bool colliding = true;
+    /*bool colliding = true;
     std::vector<vec2> axes = collidee->getNormedAxes();
 
     vec2 minAxis;
@@ -498,13 +500,13 @@ bool BallGame::collide( VisualEntity collidee, VisualEntity collider, Collision_
     collision->axes = minAxis;
     collision->overlap = minOverlap;
 
-    return colliding;
+    return colliding;*/
 }
 
 void BallGame::checkBounds(VisualEntity entity)
 {
-
-    Rect posDim = entity->getPosDim();
+    STUB("Needs all the pointers removing");
+    /*Rect posDim = entity->getPosDim();
 
     if( posDim.x < 0 )
     {
@@ -526,7 +528,7 @@ void BallGame::checkBounds(VisualEntity entity)
         tmp->onGround = true;
     }
 
-    entity->setPos( posDim.x, posDim.y );
+    entity->setPos( posDim.x, posDim.y );*/
 }
 
 
