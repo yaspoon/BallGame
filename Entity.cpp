@@ -5,13 +5,13 @@
 //--------------------------------------Constructors/
         Entity::Entity()
         {
-            BALLGAME.addEntity( this );
+            //BALLGAME.addEntity(*this);
         }
 
 //--------------------------------------Destructors/
         Entity::~Entity()
         {
-            BALLGAME.removeEntity( this );
+            //BALLGAME.removeEntity(*this);
         }
 
 //--------------------------------------Methods/

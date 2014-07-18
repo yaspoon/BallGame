@@ -15,8 +15,6 @@ class Entity
 //--------------------------------------Constructors/
         Entity();
 
-        Entity( float , float );
-
 //--------------------------------------Destructors/
         virtual ~Entity();
 
