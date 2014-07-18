@@ -24,8 +24,6 @@ class Entity
     //------------------------------Mutators
         virtual void update( float dt ) {}
 
-        virtual void draw( SDL_Window* const mainSurface ) {}
-
         virtual void handleEvents( SDL_Event& event ) {}
 
 };
