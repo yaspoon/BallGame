@@ -147,7 +147,7 @@ using namespace std;
             }
             //End Main Game loop
 
-
+            renderEngine.cleanup(); //Clean up SDL WIndow
             SDL_Quit();
         }
         else
