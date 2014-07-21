@@ -1,5 +1,5 @@
 #include "Level.h"
-
+#include <boost/foreach.hpp>
 
 //--------------------------------------Constructors/
     //Default Constructor loads the default level
@@ -62,6 +62,18 @@
     std::string Level::getNextLevel()
     {
         return m_nextLevel;
+    }
+
+    void Level::draw(RenderEngine renderEngine)
+    {
+        renderEngine.clearScreen();//Not sure level should do this
+
+        BOOST_FOREACH(VisualEntity object, drawableObjects)
+        {
+            object.draw(renderEngine);
+        }
+
+        renderEngine.show();
     }
 
 
