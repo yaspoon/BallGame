@@ -7,6 +7,7 @@ Author: Brock
 #define VISUALENTITY_H
 
 #include "Entity.h"
+#include "RenderEngine.h"
 #include <SDL2/SDL_opengl.h>
 #include <vector>
 
@@ -15,9 +16,11 @@ class VisualEntity: public Entity
     public:
         VisualEntity( std::string filename, float x_i, float y_i, float width, float height );
 
+        VisualEntity(const Entity inEntity);
+
         virtual ~VisualEntity();
 
-        virtual void draw( SDL_Window* const mainSurface );
+        virtual void draw(RenderEngine renderEngine);
 
         virtual void collision( VisualEntity& collider ) {};
 

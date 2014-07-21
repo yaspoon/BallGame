@@ -3,6 +3,7 @@
 
 #include "Block.h"
 #include "Player.h"
+#include "RenderEngine.h"
 
 class Level
 {
@@ -11,6 +12,7 @@ class Level
 //--------------------------------------Data/
     const static int m_maxNumObjects = 64;
     std::vector<Entity> levelObjects;
+    std::vector<VisualEntity> drawableObjects;
     SDL_Rect m_startPosition;
     SDL_Rect m_endPosition;
     std::string m_nextLevel;
@@ -39,7 +41,7 @@ class Level
     std::string getNextLevel();
 
     //------------------------------Mutators
-
+    void draw(RenderEngine renderEngine);
 
 };
 
