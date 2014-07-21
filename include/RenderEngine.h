@@ -14,6 +14,7 @@ class RenderEngine
         //void draw(SDL_Texture sprite, SDL_Rect *src, SDL_Rect *dest);
         void show();
         void setWindowTitle(std::string title);
+        bool cleanup();
     protected:
     private:
         SDL_Renderer *renderer;
