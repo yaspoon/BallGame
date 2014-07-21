@@ -39,6 +39,12 @@ VisualEntity::VisualEntity( std::string filename, float x_i, float y_i, float wi
 
 }
 
+VisualEntity::VisualEntity(const Entity inEntity)
+{
+    Entity copyEntity = inEntity;
+    *this = *(dynamic_cast<VisualEntity*>(&copyEntity));
+}
+
 VisualEntity::~VisualEntity()
 {
     if( sprite )
@@ -47,7 +53,7 @@ VisualEntity::~VisualEntity()
     }
 }
 
-void VisualEntity::draw( SDL_Window* const mainSurface )
+void VisualEntity::draw(RenderEngine renderEngine)
 {
     SDL_Rect dest;
     dest.x = (int)posDim.x;
@@ -55,7 +61,8 @@ void VisualEntity::draw( SDL_Window* const mainSurface )
     dest.w = (int)posDim.w;
     dest.h = (int)posDim.h;
 
-    SDL_RenderCopy(BallGame::instance().renderer, sprite, NULL, &dest);
+    //renderEngine.draw
+    STUB("Can't get render engine draw to compile so it's commented out atm");
 }
 
 Rect& VisualEntity::getPosDim()
