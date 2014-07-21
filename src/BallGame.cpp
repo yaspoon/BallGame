@@ -84,17 +84,14 @@ using namespace std;
 //--------------------------------------Methods/
     int BallGame::ballGameMain()
     {
-        if( !initSDL() )
-        {
-            printf( "Could not initialise sdl exiting error: %s\n", SDL_GetError() );
-        }
-        else
+        RenderEngine renderEngine;
+        if(renderEngine.initialise())
         {
             Timer fps;
             Timer update;
 
             /*Load default Level*/
-            Level* currentLevel = new Level();
+            Level currentLevel;
 
             update.start();
             lastframe = SDL_GetTicks();
@@ -152,7 +149,7 @@ using namespace std;
                 *
                 *****************************************************/
                 //Draw all the game objects to the screen
-                drawFrame();
+                currentLevel.draw(renderEngine);
                 /*End of display*/
 
                 frame++;
@@ -177,15 +174,16 @@ using namespace std;
                 }*/
 
 
-            }//End Main Game loop
+            }
+            //End Main Game loop
 
-            delete currentLevel;
 
-            SDL_DestroyRenderer(renderer);
-            SDL_DestroyWindow(mainWindow);
             SDL_Quit();
         }
-
+        else
+        {
+            printf( "Could not initialise sdl exiting error: %s\n", SDL_GetError() );
+        }
         return retVal;
 
     }
