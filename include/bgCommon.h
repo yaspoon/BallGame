@@ -1,5 +1,6 @@
 #ifndef BG_COMMON
 #define BG_COMMON
+#include <iostream>
 
 #define BALLGAME BallGame::instance()
 
@@ -30,5 +31,7 @@ typedef struct {
     float min;
     float max;
 } projection;
+
+#define STUB(message) (std::cout << __FILE__ << ":" << __FUNCTION__ << ":" << "Line-" << __LINE__ << ":" << message << std::endl);
 
 #endif
