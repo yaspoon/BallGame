@@ -13,33 +13,6 @@
 using namespace std;
 
 //--------------------------------------Private methods/
-    bool BallGame::initSDL()
-    {
-        bool retVal = false;
-
-        if( SDL_Init( SDL_INIT_EVERYTHING ) != 0 )
-        {
-           printf( "Could not initialise SDL exiting! error:%s\n", SDL_GetError() ) ;
-        }
-        else
-        {
-            SDL_GL_SetAttribute( SDL_GL_DOUBLEBUFFER, 1 );
-
-            windowFlags ^= SDL_WINDOW_OPENGL;
-
-            mainWindow = SDL_CreateWindow("BallGame", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, screenWidth, screenHeight, windowFlags );
-            renderer = SDL_CreateRenderer(mainWindow, -1, 0);
-
-            if( mainWindow != NULL && renderer != NULL)
-            {
-                retVal = true;
-            }
-
-        }
-
-        return retVal;
-    }
-
     void BallGame::handleKeyPress( SDL_Event keyEvents )
     {
         switch( keyEvents.key.keysym.sym )
@@ -66,9 +39,6 @@ using namespace std;
     BallGame::BallGame()
     {
         quit = false;
-        screenWidth = 640;
-        screenHeight = 480;
-        screenBpp = 32;
         m_gameName = "Simple BallGame";
         frame = 0;
 
@@ -160,7 +130,7 @@ using namespace std;
 
                     caption << "Average FPS " << frame / ( update.getTicks() / 1000.f );
 
-                    SDL_SetWindowTitle(mainWindow, caption.str().c_str());
+                    renderEngine.setWindowTitle(caption.str().c_str());
 
                     update.start();
 
@@ -329,14 +299,6 @@ using namespace std;
             }
             checkBounds( collidee );
         }*/
-    }
-
-    SDL_Rect& BallGame::getScreenDim()
-    {
-        //screenDim.w = mainWindow->w
-        //screenDim.h = mainWindow->h;
-
-        return screenDim;
     }
 
 void minMax(std::vector<float> points, float *min, float *max)
