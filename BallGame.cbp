@@ -19,6 +19,7 @@
 					<Add option="-Wextra" />
 					<Add option="-Wall" />
 					<Add option="-g" />
+					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add library="GL" />
@@ -32,12 +33,18 @@
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Option use_console_runner="0" />
+				<Compiler>
+					<Add directory="include" />
+				</Compiler>
 			</Target>
 			<Target title="LinuxCrossCompile">
 				<Option platforms="Unix;" />
 				<Option output="BallGame" prefix_auto="1" extension_auto="1" />
 				<Option type="0" />
 				<Option compiler="mingw_gnu_gcc_compiler" />
+				<Compiler>
+					<Add directory="include" />
+				</Compiler>
 			</Target>
 		</Build>
 		<Compiler>
@@ -49,34 +56,34 @@
 			<Add library="gdi32" />
 		</Linker>
 		<Unit filename="BallGame.cpp" />
-		<Unit filename="BallGame.h" />
 		<Unit filename="Block.cpp" />
-		<Unit filename="Block.h" />
-		<Unit filename="CollisionHandle.h" />
 		<Unit filename="EngineManager.cpp" />
-		<Unit filename="EngineManager.h" />
 		<Unit filename="Entity.cpp" />
-		<Unit filename="Entity.h" />
 		<Unit filename="Level.cpp" />
-		<Unit filename="Level.h" />
 		<Unit filename="Main.cpp" />
 		<Unit filename="Makefile">
 			<Option target="Linux" />
 		</Unit>
 		<Unit filename="Player.cpp" />
-		<Unit filename="Player.h" />
 		<Unit filename="ResourceLoader.cpp" />
-		<Unit filename="ResourceLoader.h" />
 		<Unit filename="TODO">
 			<Option target="Linux" />
 		</Unit>
 		<Unit filename="Timer.cpp" />
-		<Unit filename="Timer.h" />
 		<Unit filename="VisualEntity.cpp" />
-		<Unit filename="VisualEntity.h" />
-		<Unit filename="bgCommon.h" />
-		<Unit filename="include/CollisionHandling.h" />
+		<Unit filename="include/BallGame.h" />
+		<Unit filename="include/Block.h" />
+		<Unit filename="include/CollisionHandle.h" />
+		<Unit filename="include/EngineManager.h" />
+		<Unit filename="include/Entity.h" />
+		<Unit filename="include/Level.h" />
+		<Unit filename="include/Player.h" />
+		<Unit filename="include/RenderEngine.h" />
+		<Unit filename="include/ResourceLoader.h" />
 		<Unit filename="include/Timer.h" />
+		<Unit filename="include/VisualEntity.h" />
+		<Unit filename="include/bgCommon.h" />
+		<Unit filename="src/RenderEngine.cpp" />
 		<Extensions>
 			<code_completion />
 			<debugger />
