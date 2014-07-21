@@ -12,10 +12,6 @@ RenderEngine::RenderEngine()
 
 RenderEngine::~RenderEngine()
 {
-    SDL_DestroyRenderer(renderer);
-    renderer = NULL;
-    SDL_DestroyWindow(mainWindow);
-    mainWindow = NULL;
 }
 
 bool RenderEngine::initialise()
@@ -35,6 +31,7 @@ bool RenderEngine::initialise()
             renderer = SDL_CreateRenderer(mainWindow, -1, 0);
             if(renderer != NULL)
             {
+                std::cout << "Created window and renderer successfully" << std::endl;
                 retval = true;
             }
             else
@@ -49,6 +46,14 @@ bool RenderEngine::initialise()
 
     }
 
+    return retval;
+}
+
+bool RenderEngine::cleanup()
+{
+    bool retval = false;
+    SDL_DestroyRenderer(renderer);
+    SDL_DestroyWindow(mainWindow);
     return retval;
 }
 
