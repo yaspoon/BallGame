@@ -14,13 +14,6 @@ class BallGame
 private:
 
 //--------------------------------------Data
-    SDL_Window *mainWindow;
-
-    int screenWidth;
-    int screenHeight;
-    int screenBpp;
-    SDL_Rect screenDim;
-
     const static int FRAMES_PER_SECOND = 60;
     std::string m_gameName;
 
