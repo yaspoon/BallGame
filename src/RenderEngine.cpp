@@ -1,6 +1,7 @@
 #include "RenderEngine.h"
 #include <SDL2/SDL.h>
 #include "bgCommon.h"
+#include "BallGame.h"
 
 RenderEngine::RenderEngine()
 {
@@ -62,10 +63,33 @@ void RenderEngine::clearScreen()
     SDL_RenderClear(renderer);
 }
 
-/*void RenderEngine::draw(SDL_Texture sprite, SDL_Rect *src, SDL_Rect *dest)
+void RenderEngine::draw(int sprite, SDL_Rect *src, SDL_Rect *dest)
 {
-    SDL_RenderCopy(renderer, sprite, src, dest);
-}*/
+    std::shared_ptr<ResourceManager> resourceManager = BALLGAME.getResourceManager();
+    Resource spriteResource = resourceManager->getResource(sprite);
+
+    switch(spriteResource.getType())
+    {
+        case RES_SURFACE:
+        {
+            SDL_Texture *tmp = SDL_CreateTextureFromSurface(renderer, spriteResource.getSurface());
+            if(SDL_RenderCopy(renderer, tmp, src, dest) < 0)
+            {
+                std::cout << "Failed to copy texture SDL_Error:" << SDL_GetError() << std::endl;
+            }
+            SDL_DestroyTexture(tmp);
+        }
+        break;
+        case RES_TEXTURE:
+        {
+            if(SDL_RenderCopy(renderer, spriteResource.getTexture(), src, dest) < 0)
+            {
+                std::cout << "Failed to copy texture SDL_Error:" << SDL_GetError() << std::endl;
+            }
+        }
+        break;
+    }
+}
 
 void RenderEngine::show()
 {
@@ -75,4 +99,14 @@ void RenderEngine::show()
 void RenderEngine::setWindowTitle(std::string title)
 {
     SDL_SetWindowTitle(mainWindow, title.c_str());
+}
+
+SDL_Renderer *RenderEngine::getRenderer()
+{
+    return renderer;
+}
+
+std::shared_ptr<SDL_Window*> RenderEngine::getWindow()
+{
+    return std::shared_ptr<SDL_Window*>(&mainWindow);
 }
