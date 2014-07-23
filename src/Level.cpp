@@ -8,13 +8,14 @@
         int i;
 
         m_player = Player();
+        drawableObjects.push_back(m_player);
 
         //tmpBlock = new Block( SDL_SWSURFACE, 200, 200, 32, 260, 260);
 
         for(i = 0; i < 6; i++)
         {
-            Block tmpBlock = Block( NULL, 20, 20, 32, 260 + i * 20, 460 - (20 * i));
-            levelObjects.push_back(tmpBlock);
+            Block tmpBlock( NULL, 20, 20, 32, 260 + i * 20, 460 - (20 * i));
+            drawableObjects.push_back(tmpBlock);
         }
 
 
