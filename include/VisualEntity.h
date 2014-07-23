@@ -16,7 +16,7 @@ class VisualEntity: public Entity
     public:
         VisualEntity( std::string filename, float x_i, float y_i, float width, float height );
 
-        VisualEntity(const Entity inEntity);
+        VisualEntity(const VisualEntity& vEntity); //Copy constructor, needed so that reference counting in resource manager works...
 
         virtual ~VisualEntity();
 
@@ -48,8 +48,7 @@ class VisualEntity: public Entity
 
     private:
 
-    SDL_Texture *sprite;
-
+    int sprite;
     Rect posDim;
 
     COLLIDABLE cType;
