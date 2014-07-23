@@ -39,6 +39,7 @@ using namespace std;
     BallGame::BallGame()
     {
         quit = false;
+        resourceManager = std::unique_ptr<ResourceManager>(new ResourceManager());
         m_gameName = "Simple BallGame";
         frame = 0;
 
@@ -54,9 +55,9 @@ using namespace std;
 //--------------------------------------Methods/
     int BallGame::ballGameMain()
     {
-        RenderEngine renderEngine;
         if(renderEngine.initialise())
         {
+            resourceManager->initialise(renderEngine.getRenderer());
             Timer fps;
             Timer update;
 
@@ -112,7 +113,7 @@ using namespace std;
                 //Make all the game objects update themselves to any changes
                 updateFrame();
 
-                checkCollisions();
+                //checkCollisions();
 
                 /*****************************************************
                 *            Display
@@ -156,6 +157,16 @@ using namespace std;
         }
         return retVal;
 
+    }
+
+    RenderEngine BallGame::getRenderEngine()
+    {
+        return renderEngine;
+    }
+
+    std::shared_ptr<ResourceManager> BallGame::getResourceManager()
+    {
+        return resourceManager;
     }
 
     void BallGame::proccessAddedObjects()
