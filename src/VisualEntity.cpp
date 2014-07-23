@@ -5,13 +5,8 @@ Author: Brock
 
 #include "VisualEntity.h"
 #include "BallGame.h"
-#include <SDL2/SDL_image.h>
-#include <iostream>
-#include <algorithm>
-#include <cmath>
-#include <limits>
-
-using namespace std;
+#include <string>
+#include <vector>
 
 VisualEntity::VisualEntity( std::string filename, float x_i, float y_i, float width, float height )
 :Entity( )
@@ -23,34 +18,28 @@ VisualEntity::VisualEntity( std::string filename, float x_i, float y_i, float wi
     posDim.prevX = x_i;
     posDim.prevY = y_i;
 
-    SDL_Surface* temp = IMG_Load( filename.c_str() );
-    sprite = NULL;
-
-    if( temp != NULL )
-    {
-        sprite = SDL_CreateTextureFromSurface(BallGame::instance().renderer, temp);
-        SDL_FreeSurface(temp);
-
-    }
-    else
-    {
-        cout<<"Couldn't load "<<filename<<"\n";
-    }
+    sprite = BALLGAME.getResourceManager()->loadTexture(filename);
 
 }
 
-VisualEntity::VisualEntity(const Entity inEntity)
+/*
+*Copy constructor
+*This is pretty feral....
+*The copy constructor needs to "load" the texture again
+*So that the reference count gets increased. So that when
+* the other object gets destructed the image won't get cleaned up
+* because we've loaded it here..
+*/
+VisualEntity::VisualEntity(const VisualEntity& vEntity)
 {
-    Entity copyEntity = inEntity;
-    *this = *(dynamic_cast<VisualEntity*>(&copyEntity));
+    *this = vEntity;
+    BALLGAME.getResourceManager()->loadTexture(vEntity.sprite);
 }
 
 VisualEntity::~VisualEntity()
 {
-    if( sprite )
-    {
-        SDL_DestroyTexture( sprite );
-    }
+    //STUB("No cleanup for sprite yet because no resource cleanup functions yet...");
+    BALLGAME.getResourceManager()->unloadResource(sprite);
 }
 
 void VisualEntity::draw(RenderEngine renderEngine)
@@ -61,8 +50,7 @@ void VisualEntity::draw(RenderEngine renderEngine)
     dest.w = (int)posDim.w;
     dest.h = (int)posDim.h;
 
-    //renderEngine.draw
-    STUB("Can't get render engine draw to compile so it's commented out atm");
+    renderEngine.draw(sprite, NULL, &dest);
 }
 
 Rect& VisualEntity::getPosDim()
