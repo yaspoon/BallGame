@@ -3,6 +3,8 @@
 
 #include <SDL2/SDL.h>
 #include <iostream>
+#include <memory>
+#include "ResourceManager.h"
 
 class RenderEngine
 {
@@ -11,10 +13,13 @@ class RenderEngine
         virtual ~RenderEngine();
         bool initialise();
         void clearScreen();
-        //void draw(SDL_Texture sprite, SDL_Rect *src, SDL_Rect *dest);
+        void draw(int sprite, SDL_Rect *src, SDL_Rect *dest);
         void show();
         void setWindowTitle(std::string title);
         bool cleanup();
+        SDL_Renderer *getRenderer();
+        std::shared_ptr<SDL_Window*> getWindow();
+
     protected:
     private:
         SDL_Renderer *renderer;
