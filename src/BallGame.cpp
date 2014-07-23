@@ -57,7 +57,7 @@ using namespace std;
     {
         if(renderEngine.initialise())
         {
-            resourceManager->initialise(renderEngine.getRenderer());
+            resourceManager->initialise();
             Timer fps;
             Timer update;
 
