@@ -7,6 +7,8 @@
 #include "CollisionHandle.h"
 #include "bgCommon.h"
 #include "VisualEntity.h"
+#include "RenderEngine.h"
+#include "ResourceManager.h"
 
 class BallGame
 {
@@ -14,6 +16,8 @@ class BallGame
 private:
 
 //--------------------------------------Data
+    RenderEngine renderEngine;
+    std::shared_ptr<ResourceManager> resourceManager;
     const static int FRAMES_PER_SECOND = 60;
     std::string m_gameName;
 
@@ -56,7 +60,6 @@ private:
 
 public:
 
-    SDL_Renderer *renderer; //Yes this is terrible that it's public but ballgame has enough useless methods as it is...
 //--------------------------------------Constructors/
     static BallGame& instance()
     {
@@ -69,7 +72,8 @@ public:
 
 //--------------------------------------Methods/
     //------------------------------Accessors
-    SDL_Rect& getScreenDim();
+    RenderEngine getRenderEngine();
+    std::shared_ptr<ResourceManager> getResourceManager();
 
     //------------------------------Mutators
     void addEntity(Entity entity_i);
@@ -84,6 +88,7 @@ public:
     void updateFrame();
 
     void checkCollisions();
+
 
 };
 #endif
