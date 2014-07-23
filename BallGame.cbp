@@ -16,6 +16,7 @@
 				<Option projectLinkerOptionsRelation="1" />
 				<Compiler>
 					<Add option="-pedantic" />
+					<Add option="-std=c++11" />
 					<Add option="-Wextra" />
 					<Add option="-Wall" />
 					<Add option="-g" />
@@ -48,6 +49,7 @@
 			</Target>
 		</Build>
 		<Compiler>
+			<Add option="-std=c++11" />
 			<Add option="-Wall" />
 		</Compiler>
 		<Linker>
@@ -55,35 +57,39 @@
 			<Add library="glu32" />
 			<Add library="gdi32" />
 		</Linker>
-		<Unit filename="BallGame.cpp" />
-		<Unit filename="Block.cpp" />
-		<Unit filename="EngineManager.cpp" />
-		<Unit filename="Entity.cpp" />
-		<Unit filename="Level.cpp" />
-		<Unit filename="Main.cpp" />
 		<Unit filename="Makefile">
 			<Option target="Linux" />
 		</Unit>
-		<Unit filename="Player.cpp" />
-		<Unit filename="ResourceLoader.cpp" />
 		<Unit filename="TODO">
 			<Option target="Linux" />
 		</Unit>
-		<Unit filename="Timer.cpp" />
-		<Unit filename="VisualEntity.cpp" />
 		<Unit filename="include/BallGame.h" />
 		<Unit filename="include/Block.h" />
 		<Unit filename="include/CollisionHandle.h" />
 		<Unit filename="include/EngineManager.h" />
 		<Unit filename="include/Entity.h" />
 		<Unit filename="include/Level.h" />
+		<Unit filename="include/Map.h" />
 		<Unit filename="include/Player.h" />
 		<Unit filename="include/RenderEngine.h" />
-		<Unit filename="include/ResourceLoader.h" />
+		<Unit filename="include/Resource.h" />
+		<Unit filename="include/ResourceManager.h" />
 		<Unit filename="include/Timer.h" />
 		<Unit filename="include/VisualEntity.h" />
 		<Unit filename="include/bgCommon.h" />
+		<Unit filename="src/BallGame.cpp" />
+		<Unit filename="src/Block.cpp" />
+		<Unit filename="src/EngineManager.cpp" />
+		<Unit filename="src/Entity.cpp" />
+		<Unit filename="src/Level.cpp" />
+		<Unit filename="src/Main.cpp" />
+		<Unit filename="src/Map.cpp" />
+		<Unit filename="src/Player.cpp" />
 		<Unit filename="src/RenderEngine.cpp" />
+		<Unit filename="src/Resource.cpp" />
+		<Unit filename="src/ResourceManager.cpp" />
+		<Unit filename="src/Timer.cpp" />
+		<Unit filename="src/VisualEntity.cpp" />
 		<Extensions>
 			<code_completion />
 			<debugger />
