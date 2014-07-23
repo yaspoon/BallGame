@@ -17,10 +17,9 @@ class ResourceManager
         int loadTexture(std::string filepath);
         void unloadResource(int resource);
         Resource getResource(int resourceId);
-        void initialise(SDL_Renderer *newRendererPtr); //Not great but it will work I hope...
+        void initialise(); //Not great but it will work I hope...
     protected:
     private:
-        SDL_Renderer *rendererPtr; //Needed for loading shit...
         std::vector<Resource> resources;
         std::map<std::string, int> resourcesMap;
         int resourceCount;
