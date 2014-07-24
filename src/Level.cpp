@@ -8,13 +8,14 @@
         int i;
 
         m_player = Player();
-        drawableObjects.push_back(m_player);
+        drawableObjects.push_back(&m_player);
 
         //tmpBlock = new Block( SDL_SWSURFACE, 200, 200, 32, 260, 260);
 
         for(i = 0; i < 6; i++)
         {
-            Block tmpBlock( NULL, 20, 20, 32, 260 + i * 20, 460 - (20 * i));
+            Block *tmpBlock= new Block( NULL, 20, 20, 32, 260 + i * 20, 460 - (20 * i));
+            levelObjects.push_back(tmpBlock);
             drawableObjects.push_back(tmpBlock);
         }
 
@@ -50,7 +51,7 @@
         return m_endPosition;
     }
 
-    std::vector<Entity> Level::getLevelObjects()
+    std::vector<Entity*> Level::getLevelObjects()
     {
         return levelObjects;
     }
@@ -69,9 +70,9 @@
     {
         renderEngine.clearScreen();//Not sure level should do this
 
-        BOOST_FOREACH(VisualEntity object, drawableObjects)
+        BOOST_FOREACH(VisualEntity* object, drawableObjects)
         {
-            object.draw(renderEngine);
+            object->draw(renderEngine);
         }
 
         renderEngine.show();
