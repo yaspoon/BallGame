@@ -1,5 +1,4 @@
 #include "BallGame.h"
-#include "Level.h"
 #include "VisualEntity.h"
 #include "Timer.h"
 #include <typeinfo>
@@ -58,11 +57,9 @@ using namespace std;
         if(renderEngine.initialise())
         {
             resourceManager->initialise();
+            currentLevel = std::unique_ptr<Level>(new Level());
             Timer fps;
             Timer update;
-
-            /*Load default Level*/
-            Level currentLevel;
 
             update.start();
             lastframe = SDL_GetTicks();
@@ -88,16 +85,16 @@ using namespace std;
                             break;
                         case SDL_KEYDOWN:
                             handleKeyPress( events );
-                            BOOST_FOREACH( Entity object, entities )
+                            BOOST_FOREACH( Entity* object, currentLevel->getLevelObjects())
                             {
-                                object.handleEvents(events);
+                                object->handleEvents(events);
                             }
                             break;
                         case SDL_KEYUP:
                             handleKeyPress( events );
-                            BOOST_FOREACH( Entity object, entities )
+                            BOOST_FOREACH( Entity *object, currentLevel->getLevelObjects())
                             {
-                                object.handleEvents( events );
+                                object->handleEvents( events );
                             }
                             break;
                         default:
@@ -113,6 +110,11 @@ using namespace std;
                 //Make all the game objects update themselves to any changes
                 updateFrame();
 
+                BOOST_FOREACH(VisualEntity *entity, currentLevel->getDrawableObjects())
+                {
+                    checkBounds(entity);
+                }
+
                 //checkCollisions();
 
                 /*****************************************************
@@ -120,7 +122,7 @@ using namespace std;
                 *
                 *****************************************************/
                 //Draw all the game objects to the screen
-                currentLevel.draw(renderEngine);
+                currentLevel->draw(renderEngine);
                 /*End of display*/
 
                 frame++;
@@ -173,7 +175,8 @@ using namespace std;
     {
         BOOST_FOREACH(Entity object, addedEntities)
         {
-            entities.push_back( object );
+            STUB("Can't process add entities as that has been moved into level");
+            //entities.push_back( object );
         }
 
         addedEntities.clear();
@@ -183,6 +186,7 @@ using namespace std;
     {
         BOOST_FOREACH(Entity entity, removedEntities )
         {
+            STUB("Can't remove entities because I commented it out long ago apparently..");
             //entities.erase(std::find(entities.begin(), entities.end(), entity));
         }
     }
@@ -203,9 +207,9 @@ using namespace std;
         float dt = (float)( thisframe - lastframe ) / 1000.f;
         lastframe = thisframe;
 
-        BOOST_FOREACH( Entity object, entities )
+        BOOST_FOREACH( Entity *object, currentLevel->getLevelObjects())
         {
-            object.update( dt );
+            object->update( dt );
         }
     }
 
@@ -462,10 +466,13 @@ bool BallGame::collide( VisualEntity collidee, VisualEntity collider, Collision_
     return colliding;*/
 }
 
-void BallGame::checkBounds(VisualEntity entity)
+void BallGame::checkBounds(VisualEntity *entity)
 {
-    STUB("Needs all the pointers removing");
-    /*Rect posDim = entity->getPosDim();
+    //STUB("Needs all the pointers removing");
+    vec2 tmp = renderEngine.getScreenDimensions();
+    int screenWidth = tmp.x;
+    int screenHeight = tmp.y;
+    Rect posDim = entity->getPosDim();
 
     if( posDim.x < 0 )
     {
@@ -487,7 +494,7 @@ void BallGame::checkBounds(VisualEntity entity)
         tmp->onGround = true;
     }
 
-    entity->setPos( posDim.x, posDim.y );*/
+    entity->setPos( posDim.x, posDim.y );
 }
 
 
