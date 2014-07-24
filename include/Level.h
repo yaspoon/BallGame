@@ -36,6 +36,8 @@ class Level
 
     std::vector<Entity*> getLevelObjects();
 
+    std::vector<VisualEntity*> getDrawableObjects();
+
     int getNumObjects();
 
     std::string getNextLevel();
