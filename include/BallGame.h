@@ -4,6 +4,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_opengl.h>
 #include "Entity.h"
+#include "Level.h"
 #include "CollisionHandle.h"
 #include "bgCommon.h"
 #include "VisualEntity.h"
@@ -30,7 +31,8 @@ private:
     int frame;
     Uint32 lastframe;
 
-
+    /*Load default Level*/
+    std::unique_ptr<Level> currentLevel;
     std::vector<Entity> addedEntities;
     std::vector<Entity> removedEntities;
 
@@ -53,7 +55,7 @@ private:
 
     bool collide( VisualEntity collidee, VisualEntity collider, Collision_t *collision);
 
-    void checkBounds( VisualEntity entity );
+    void checkBounds(VisualEntity *entity);
 
 public:
 
