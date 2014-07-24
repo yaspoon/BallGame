@@ -8,15 +8,16 @@
         int i;
 
         m_player = Player();
+        levelObjects.push_back(&m_player);
         drawableObjects.push_back(&m_player);
 
         //tmpBlock = new Block( SDL_SWSURFACE, 200, 200, 32, 260, 260);
 
         for(i = 0; i < 6; i++)
         {
-            Block *tmpBlock= new Block( NULL, 20, 20, 32, 260 + i * 20, 460 - (20 * i));
-            levelObjects.push_back(tmpBlock);
-            drawableObjects.push_back(tmpBlock);
+            //Block *tmpBlock= new Block( NULL, 20, 20, 32, 260 + i * 20, 460 - (20 * i));
+            //levelObjects.push_back(tmpBlock);
+            //drawableObjects.push_back(tmpBlock);
         }
 
 
@@ -54,6 +55,11 @@
     std::vector<Entity*> Level::getLevelObjects()
     {
         return levelObjects;
+    }
+
+    std::vector<VisualEntity*> Level::getDrawableObjects()
+    {
+        return drawableObjects;
     }
 
     int Level::getNumObjects()
