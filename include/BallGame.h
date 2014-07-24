@@ -55,9 +55,6 @@ private:
 
     void checkBounds( VisualEntity entity );
 
-    void BallGame::updateFrame();
-
-
 public:
 
 //--------------------------------------Constructors/
