@@ -31,7 +31,6 @@ private:
     Uint32 lastframe;
 
 
-    std::vector<Entity> entities;
     std::vector<Entity> addedEntities;
     std::vector<Entity> removedEntities;
 
