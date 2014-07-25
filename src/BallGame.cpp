@@ -76,31 +76,8 @@ using namespace std;
             *           Event Handling
             *
             *****************************************************/
-                while( SDL_PollEvent( &events ) )
-                {
-                    switch( events.type )
-                    {
-                        case SDL_QUIT:
-                            quit = true;
-                            break;
-                        case SDL_KEYDOWN:
-                            handleKeyPress( events );
-                            BOOST_FOREACH( Entity* object, currentLevel->getLevelObjects())
-                            {
-                                object->handleEvents(events);
-                            }
-                            break;
-                        case SDL_KEYUP:
-                            handleKeyPress( events );
-                            BOOST_FOREACH( Entity *object, currentLevel->getLevelObjects())
-                            {
-                                object->handleEvents( events );
-                            }
-                            break;
-                        default:
-                            break;
-                    }//End switch( events.type )
-                }//End event polling loop
+                eventEngine.processEvents();
+
 
                 /*End of Event Handling*/
 
