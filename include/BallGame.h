@@ -10,6 +10,7 @@
 #include "VisualEntity.h"
 #include "RenderEngine.h"
 #include "ResourceManager.h"
+#include "EventEngine.h"
 
 class BallGame
 {
@@ -19,6 +20,7 @@ private:
 //--------------------------------------Data
     RenderEngine renderEngine;
     std::shared_ptr<ResourceManager> resourceManager;
+    EventEngine eventEngine;
     const static int FRAMES_PER_SECOND = 60;
     std::string m_gameName;
 
