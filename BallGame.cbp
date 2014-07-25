@@ -65,11 +65,15 @@
 		</Unit>
 		<Unit filename="include/BallGame.h" />
 		<Unit filename="include/Block.h" />
+		<Unit filename="include/CollisionEntity.h" />
 		<Unit filename="include/CollisionHandle.h" />
 		<Unit filename="include/EngineManager.h" />
 		<Unit filename="include/Entity.h" />
+		<Unit filename="include/Event.h" />
+		<Unit filename="include/EventCollision.h" />
+		<Unit filename="include/EventEngine.h" />
+		<Unit filename="include/EventInput.h" />
 		<Unit filename="include/Level.h" />
-		<Unit filename="include/Map.h" />
 		<Unit filename="include/Player.h" />
 		<Unit filename="include/RenderEngine.h" />
 		<Unit filename="include/Resource.h" />
@@ -79,11 +83,15 @@
 		<Unit filename="include/bgCommon.h" />
 		<Unit filename="src/BallGame.cpp" />
 		<Unit filename="src/Block.cpp" />
+		<Unit filename="src/CollisionEntity.cpp" />
 		<Unit filename="src/EngineManager.cpp" />
 		<Unit filename="src/Entity.cpp" />
+		<Unit filename="src/Event.cpp" />
+		<Unit filename="src/EventCollision.cpp" />
+		<Unit filename="src/EventEngine.cpp" />
+		<Unit filename="src/EventInput.cpp" />
 		<Unit filename="src/Level.cpp" />
 		<Unit filename="src/Main.cpp" />
-		<Unit filename="src/Map.cpp" />
 		<Unit filename="src/Player.cpp" />
 		<Unit filename="src/RenderEngine.cpp" />
 		<Unit filename="src/Resource.cpp" />
