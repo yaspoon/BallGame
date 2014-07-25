@@ -2,6 +2,7 @@
 #define EVENTENGINE_H
 
 #include "Event.h"
+#include <vector>
 
 class EventEngine
 {
@@ -12,6 +13,7 @@ class EventEngine
         void addEvent(Event newEvent);
     protected:
     private:
+        std::vector<Event> events;
 
 };
 
