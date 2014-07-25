@@ -1,6 +1,9 @@
 #ifndef EVENT_H
 #define EVENT_H
 
+#include "EventInput.h"
+#include "EventCollision.h"
+
 enum EventType
 {
     EV_UNKNOWN = 0,
@@ -16,7 +19,11 @@ class Event
     protected:
     private:
         EventType type;
-
+        union
+        {
+            EventInput input;
+            EventCollision collision;
+        };
 
 };
 

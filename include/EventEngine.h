@@ -1,6 +1,7 @@
 #ifndef EVENTENGINE_H
 #define EVENTENGINE_H
 
+#include "Event.h"
 
 class EventEngine
 {
@@ -8,9 +9,10 @@ class EventEngine
         EventEngine();
         virtual ~EventEngine();
         void processEvents();
-        void addEvent();
+        void addEvent(Event newEvent);
     protected:
     private:
+
 };
 
 #endif // EVENTENGINE_H
