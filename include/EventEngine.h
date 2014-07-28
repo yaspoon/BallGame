@@ -1,19 +1,37 @@
 #ifndef EVENTENGINE_H
 #define EVENTENGINE_H
 
-#include "Event.h"
+#include "EventSystem.h"
+#include "EventCollision.h"
+#include "Entity.h"
+#include "CollisionEntity.h"
 #include <vector>
+#include <map>
+#include <SDL2/SDL.h>
 
 class EventEngine
 {
     public:
         EventEngine();
         virtual ~EventEngine();
+        void generateEvents();
         void processEvents();
         void addEvent(Event newEvent);
+        std::vector<EventSystem> getSystemEvents();
+        bool registerForEvents(Entity *entityToReg, EventType typeToReg);
+        bool deregisterForEvents(Entity *entityToDeReg, EventType typeToDeReg);
     protected:
     private:
-        std::vector<Event> events;
+        std::vector<EventSystem> systemEvents;
+        std::vector<EventInput> inputEvents;
+        std::vector<EventCollision> collisionEvents;
+
+        std::vector<Entity*> systemEventEntities;
+        std::vector<Entity*> inputEventEntities;
+        std::vector<CollisionEntity*> collisionEventEntities;
+
+        std::map<InputKey, SDL_Scancode> inputMap;
+        std::map<EventSystemType, SDL_Scancode> systemMap;
 
 };
 
