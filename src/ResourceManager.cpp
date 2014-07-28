@@ -155,7 +155,15 @@ Resource ResourceManager::getResource(int resourceId)
 
 SDL_Surface *ResourceManager::internal_loadSurface(std::string filepath)
 {
-    return IMG_Load(filepath.c_str());
+    SDL_Surface* tmp = IMG_Load(filepath.c_str());
+
+    if(tmp == NULL)
+    {
+        std::cout << "Failed to load image, loading default \"null\" texture SDL_Error:" << SDL_GetError() << std::endl;
+        tmp = IMG_Load("images/null.png");
+    }
+
+    return tmp;
 }
 
 SDL_Texture *ResourceManager::internal_loadTexture(std::string filepath)
