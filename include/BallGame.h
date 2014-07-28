@@ -44,10 +44,6 @@ private:
 
     BallGame();
 
-    bool initSDL();
-
-    void handleKeyPress( SDL_Event );
-
     void proccessAddedObjects();
 
     void proccessRemovedObjects();
