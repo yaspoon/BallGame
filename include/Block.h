@@ -1,9 +1,9 @@
 #ifndef BLOCKDEF
 #define BLOCKDEF
 
-#include "VisualEntity.h"
+#include "CollisionEntity.h"
 
-class Block: public VisualEntity
+class Block: public CollisionEntity
 {
 
 private:
