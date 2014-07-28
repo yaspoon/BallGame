@@ -161,6 +161,11 @@ using namespace std;
         return eventEngine;
     }
 
+    std::shared_ptr<Level> BallGame::getCurrentLevel()
+    {
+        return currentLevel;
+    }
+
     void BallGame::proccessAddedObjects()
     {
         BOOST_FOREACH(Entity object, addedEntities)
