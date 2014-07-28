@@ -20,7 +20,7 @@ class RenderEngine
         bool cleanup();
         SDL_Renderer *getRenderer();
         std::shared_ptr<SDL_Window*> getWindow();
-        vec2 getScreenDimensions();
+        ScreenDimensions getScreenDimensions();
 
     protected:
     private:
