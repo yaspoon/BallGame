@@ -38,7 +38,8 @@ using namespace std;
         if(renderEngine.initialise())
         {
             resourceManager->initialise();
-            currentLevel = std::unique_ptr<Level>(new Level());
+            currentLevel = std::shared_ptr<Level>(new Level());
+            currentLevel->initialise();
             Timer fps;
             Timer update;
 
@@ -68,9 +69,6 @@ using namespace std;
                 }
 
                 /*End of Event Handling*/
-
-                //Get all the objects that have added themselves
-                proccessAddedObjects();
 
                 //Make all the game objects update themselves to any changes
                 updateFrame();
@@ -148,35 +146,6 @@ using namespace std;
         return currentLevel;
     }
 
-    void BallGame::proccessAddedObjects()
-    {
-        BOOST_FOREACH(Entity object, addedEntities)
-        {
-            STUB("Can't process add entities as that has been moved into level");
-            //entities.push_back( object );
-        }
-
-        addedEntities.clear();
-    }
-
-    void BallGame::proccessRemovedObjects()
-    {
-        BOOST_FOREACH(Entity entity, removedEntities )
-        {
-            STUB("Can't remove entities because I commented it out long ago apparently..");
-            //entities.erase(std::find(entities.begin(), entities.end(), entity));
-        }
-    }
-
-    void BallGame::addEntity(Entity entity_i)
-    {
-        addedEntities.push_back( entity_i );
-    }
-
-    void BallGame::removeEntity(Entity entity_i)
-    {
-        removedEntities.push_back( entity_i );
-    }
 
     void BallGame::updateFrame()
     {
