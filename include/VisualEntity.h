@@ -8,12 +8,13 @@ Author: Brock
 
 #include "Entity.h"
 #include "RenderEngine.h"
-#include <SDL2/SDL_opengl.h>
 #include <vector>
 
 class VisualEntity: public Entity
 {
     public:
+        VisualEntity();
+
         VisualEntity( std::string filename, float x_i, float y_i, float width, float height );
 
         VisualEntity(const VisualEntity& vEntity); //Copy constructor, needed so that reference counting in resource manager works...
@@ -52,16 +53,6 @@ class VisualEntity: public Entity
     Rect posDim;
 
     COLLIDABLE cType;
-
-    Uint32 rmask;
-    Uint32 gmask;
-    Uint32 bmask;
-    Uint32 amask;
-
-    GLuint texture;
-    GLenum texture_format;
-    GLint nOfColors;
-
 };
 
 #endif // VISUALENTITY_H
