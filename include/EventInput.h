@@ -16,7 +16,8 @@ enum InputKey
     KEY_LEFT,
     KEY_RIGHT,
     KEY_UP,
-    KEY_DOWN
+    KEY_DOWN,
+    KEY_JUMP
 };
 
 enum InputController
@@ -32,15 +33,16 @@ class EventInput
 {
     public:
         EventInput();
+        EventInput(EventInputType newType, InputKey newKey);
+        EventInput(EventInputType newType, InputController newController);
         virtual ~EventInput();
+        EventInputType getType();
+        InputKey getKey();
     protected:
     private:
         EventInputType inputType;
-        union
-        {
-            InputKey key;
-            InputController controller;
-        };
+        InputKey key;
+        InputController controller;
 
 };
 
