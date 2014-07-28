@@ -18,7 +18,7 @@ class Level
     SDL_Rect m_startPosition;
     SDL_Rect m_endPosition;
     std::string m_nextLevel;
-    Player m_player;
+    std::shared_ptr<Player> m_player;
 
     public:
 //--------------------------------------Constructors/
@@ -31,6 +31,7 @@ class Level
     ~Level();
 
 //--------------------------------------Methods/
+    bool initialise();
     //------------------------------Accessors
     SDL_Rect getStartPosition();
 
@@ -45,6 +46,12 @@ class Level
     int getNumObjects();
 
     std::string getNextLevel();
+
+    void addEntity(Entity* entity);
+    void removeEntity(Entity* entity);
+
+    void addDrawableObject(VisualEntity *drawable);
+    void removeDrawableObject(VisualEntity *drawable);
 
     void addCollidableObject(CollisionEntity *collider);
     void removeCollidableObject(CollisionEntity *collider);
