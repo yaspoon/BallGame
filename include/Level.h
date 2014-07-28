@@ -4,6 +4,7 @@
 #include "Block.h"
 #include "Player.h"
 #include "RenderEngine.h"
+#include "CollisionEntity.h"
 
 class Level
 {
@@ -13,6 +14,7 @@ class Level
     const static int m_maxNumObjects = 64;
     std::vector<Entity*> levelObjects;
     std::vector<VisualEntity*> drawableObjects;
+    std::vector<CollisionEntity*> collidableObjects;
     SDL_Rect m_startPosition;
     SDL_Rect m_endPosition;
     std::string m_nextLevel;
