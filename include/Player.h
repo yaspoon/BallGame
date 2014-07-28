@@ -18,7 +18,7 @@ class Player: public VisualEntity
 
         void update( float dt );
 
-        void handleEvents( SDL_Event& event );
+        void handleInputEvent(EventInput inputEvent);
 
         void setYvel(float yvel);
 
