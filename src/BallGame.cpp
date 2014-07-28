@@ -406,11 +406,12 @@ bool overlap(float minCollidee, float maxCollidee, float minCollider, float maxC
     return overlap;
 }
 
+/*
 bool BallGame::collide( VisualEntity collidee, VisualEntity collider, Collision_t *collision)
 {
     STUB("The collide needs to be rewritten to get rid of all the damn pointers now");
 
-    /*bool colliding = true;
+    bool colliding = true;
     std::vector<vec2> axes = collidee->getNormedAxes();
 
     vec2 minAxis;
@@ -453,8 +454,8 @@ bool BallGame::collide( VisualEntity collidee, VisualEntity collider, Collision_
     collision->axes = minAxis;
     collision->overlap = minOverlap;
 
-    return colliding;*/
-}
+    return colliding;
+}*/
 
 void BallGame::checkBounds(VisualEntity *entity)
 {
