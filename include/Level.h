@@ -44,6 +44,9 @@ class Level
 
     std::string getNextLevel();
 
+    void addCollidableObject(CollisionEntity *collider);
+    void removeCollidableObject(CollisionEntity *collider);
+
     //------------------------------Mutators
     void draw(RenderEngine renderEngine);
 

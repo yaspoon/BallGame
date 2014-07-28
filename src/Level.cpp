@@ -84,5 +84,19 @@
         renderEngine.show();
     }
 
+    void Level::addCollidableObject(CollisionEntity *collider)
+    {
+        collidableObjects.push_back(collider);
+    }
 
+    void Level::removeCollidableObject(CollisionEntity *collider)
+    {
+        for(int i = 0; i < collidableObjects.size(); i++)
+        {
+            if(collidableObjects[i] == collider)
+            {
+                collidableObjects.erase(collidableObjects.begin() + i);
+            }
+        }
+    }
     //------------------------------Mutators
