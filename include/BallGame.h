@@ -45,10 +45,6 @@ private:
 
     BallGame();
 
-    void proccessAddedObjects();
-
-    void proccessRemovedObjects();
-
     /*Collision_t getCollision(Rect box1, Rect box2);
 
     bool collide( VisualEntity collidee, VisualEntity collider, Collision_t *collision);*/
@@ -76,9 +72,6 @@ public:
     CollisionEngine collisionEngine;
 
     //------------------------------Mutators
-    void addEntity(Entity entity_i);
-
-    void removeEntity(Entity entity_i);
 
     //------------------------------Imperita/
     int ballGameMain();
