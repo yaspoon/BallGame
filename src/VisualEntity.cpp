@@ -19,6 +19,7 @@ VisualEntity::VisualEntity()
     posDim.prevY = 0;
 
     sprite = BALLGAME.getResourceManager()->loadTexture("images/null.png");
+    BALLGAME.getCurrentLevel()->addDrawableObject(this);
 }
 
 VisualEntity::VisualEntity( std::string filename, float x_i, float y_i, float width, float height )
@@ -32,7 +33,7 @@ VisualEntity::VisualEntity( std::string filename, float x_i, float y_i, float wi
     posDim.prevY = y_i;
 
     sprite = BALLGAME.getResourceManager()->loadTexture(filename);
-
+    BALLGAME.getCurrentLevel()->addDrawableObject(this);
 }
 
 /*
@@ -47,12 +48,14 @@ VisualEntity::VisualEntity(const VisualEntity& vEntity)
 {
     *this = vEntity;
     BALLGAME.getResourceManager()->loadTexture(vEntity.sprite);
+    BALLGAME.getCurrentLevel()->addDrawableObject(this);
 }
 
 VisualEntity::~VisualEntity()
 {
     //STUB("No cleanup for sprite yet because no resource cleanup functions yet...");
     BALLGAME.getResourceManager()->unloadResource(sprite);
+    BALLGAME.getCurrentLevel()->removeDrawableObject(this);
 }
 
 void VisualEntity::draw(RenderEngine renderEngine)
