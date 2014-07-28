@@ -10,6 +10,7 @@
 #include "RenderEngine.h"
 #include "ResourceManager.h"
 #include "EventEngine.h"
+#include "CollisionEngine.h"
 
 class BallGame
 {
@@ -72,6 +73,7 @@ public:
     std::shared_ptr<ResourceManager> getResourceManager();
     std::shared_ptr<EventEngine> getEventEngine();
     std::shared_ptr<Level> getCurrentLevel();
+    CollisionEngine collisionEngine;
 
     //------------------------------Mutators
     void addEntity(Entity entity_i);
