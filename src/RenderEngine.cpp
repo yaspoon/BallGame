@@ -111,8 +111,8 @@ std::shared_ptr<SDL_Window*> RenderEngine::getWindow()
     return std::shared_ptr<SDL_Window*>(&mainWindow);
 }
 
-vec2 RenderEngine::getScreenDimensions()
+ScreenDimensions RenderEngine::getScreenDimensions()
 {
-    vec2 screenDim = {(int)screenWidth, (int)screenHeight};
+    ScreenDimensions screenDim = {screenWidth, screenHeight};
     return screenDim;
 }
