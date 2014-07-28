@@ -1,10 +1,6 @@
 #ifndef EVENT_H
 #define EVENT_H
 
-#include "EventInput.h"
-#include "EventCollision.h"
-#include "EventSystem.h"
-
 enum EventType
 {
     EV_UNKNOWN = 0,
@@ -17,22 +13,12 @@ class Event
 {
     public:
         Event();
-        Event(EventInput newInput);
-        Event(EventCollision newCollision);
-        Event(EventSystem newSystem);
+        Event(EventType newType);
         virtual ~Event();
         EventType getType();
-        void setType(EventType newType);
-        EventInput getInput();
-        void setInput(EventInput newInput);
-        EventCollision getCollision();
-        void setCollision(EventCollision newCollision);
     protected:
     private:
         EventType type;
-        EventInput input;
-        EventCollision collision;
-        EventSystem system;
 };
 
 #endif // EVENT_H
