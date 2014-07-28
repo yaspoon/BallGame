@@ -62,6 +62,11 @@
         return drawableObjects;
     }
 
+    std::vector<CollisionEntity*> Level::getCollidableObjects()
+    {
+        return collidableObjects;
+    }
+
     int Level::getNumObjects()
     {
         return levelObjects.size();

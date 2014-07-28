@@ -40,6 +40,8 @@ class Level
 
     std::vector<VisualEntity*> getDrawableObjects();
 
+    std::vector<CollisionEntity*> getCollidableObjects();
+
     int getNumObjects();
 
     std::string getNextLevel();
