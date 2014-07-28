@@ -8,6 +8,19 @@ Author: Brock
 #include <string>
 #include <vector>
 
+VisualEntity::VisualEntity()
+:Entity()
+{
+    posDim.w = 100;
+    posDim.h = 40;
+    posDim.x = 0;
+    posDim.y = 0;
+    posDim.prevX = 0;
+    posDim.prevY = 0;
+
+    sprite = BALLGAME.getResourceManager()->loadTexture("images/null.png");
+}
+
 VisualEntity::VisualEntity( std::string filename, float x_i, float y_i, float width, float height )
 :Entity( )
 {
