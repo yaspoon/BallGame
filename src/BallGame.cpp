@@ -12,27 +12,7 @@
 using namespace std;
 
 //--------------------------------------Private methods/
-    void BallGame::handleKeyPress( SDL_Event keyEvents )
-    {
-        switch( keyEvents.key.keysym.sym )
-        {
-            case SDLK_LEFT:
-                //printf( "Left pressed\n" );
-                break;
-            case SDLK_RIGHT:
-                //printf( "Right pressed\n" );
-                break;
-            case SDLK_ESCAPE:
-            case SDLK_q:
-                quit = true;
-                break;
-            case SDLK_F1:
-                std::cout << "NOT IMPLETMENTED" << std::endl;
-                break;
-            default:
-                break;
-        }
-    }
+
 
 //--------------------------------------Constructors/
     BallGame::BallGame()
