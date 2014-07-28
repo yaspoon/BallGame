@@ -32,6 +32,12 @@ typedef struct {
     float max;
 } projection;
 
+struct ScreenDimensions
+{
+    int width;
+    int height;
+};
+
 #define STUB(message) (std::cout << __FILE__ << ":" << __FUNCTION__ << ":" << "Line-" << __LINE__ << ":" << message << std::endl);
 
 #endif
