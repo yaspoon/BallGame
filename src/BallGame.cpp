@@ -39,6 +39,7 @@ using namespace std;
     {
         quit = false;
         resourceManager = std::unique_ptr<ResourceManager>(new ResourceManager());
+        eventEngine = std::unique_ptr<EventEngine>(new EventEngine());
         m_gameName = "Simple BallGame";
         frame = 0;
 
@@ -76,8 +77,15 @@ using namespace std;
             *           Event Handling
             *
             *****************************************************/
-                eventEngine.processEvents();
-
+                eventEngine->processEvents();
+                BOOST_FOREACH(EventSystem sysEv, eventEngine->getSystemEvents())
+                {
+                    switch(sysEv.getSystemType())
+                    {
+                        case EV_SYS_QUIT:
+                            quit = true;
+                    }
+                }
 
                 /*End of Event Handling*/
 
@@ -146,6 +154,11 @@ using namespace std;
     std::shared_ptr<ResourceManager> BallGame::getResourceManager()
     {
         return resourceManager;
+    }
+
+    std::shared_ptr<EventEngine> BallGame::getEventEngine()
+    {
+        return eventEngine;
     }
 
     void BallGame::proccessAddedObjects()
@@ -469,6 +482,7 @@ void BallGame::checkBounds(VisualEntity *entity)
         posDim.y = screenHeight - posDim.h;
         Player *tmp = dynamic_cast<Player*>(entity);
         tmp->onGround = true;
+        tmp->setYvel(0.0f);
     }
 
     entity->setPos( posDim.x, posDim.y );
