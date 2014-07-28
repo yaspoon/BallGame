@@ -20,7 +20,7 @@ private:
 //--------------------------------------Data
     RenderEngine renderEngine;
     std::shared_ptr<ResourceManager> resourceManager;
-    EventEngine eventEngine;
+    std::shared_ptr<EventEngine> eventEngine;
     const static int FRAMES_PER_SECOND = 60;
     std::string m_gameName;
 
@@ -75,6 +75,7 @@ public:
     //------------------------------Accessors
     RenderEngine getRenderEngine();
     std::shared_ptr<ResourceManager> getResourceManager();
+    std::shared_ptr<EventEngine> getEventEngine();
 
     //------------------------------Mutators
     void addEntity(Entity entity_i);
