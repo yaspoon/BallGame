@@ -8,6 +8,7 @@ class EventCollision
     public:
         EventCollision();
         virtual ~EventCollision();
+        CollisionEntity getCollider();
     protected:
     private:
         CollisionEntity collider;

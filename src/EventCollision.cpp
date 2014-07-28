@@ -9,3 +9,8 @@ EventCollision::~EventCollision()
 {
     //dtor
 }
+
+CollisionEntity EventCollision::getCollider()
+{
+    return collider;
+}
