@@ -5,22 +5,6 @@
     //Default Constructor loads the default level
     Level::Level()
     {
-        int i;
-
-        m_player = Player();
-        levelObjects.push_back(&m_player);
-        drawableObjects.push_back(&m_player);
-
-        //tmpBlock = new Block( SDL_SWSURFACE, 200, 200, 32, 260, 260);
-
-        for(i = 0; i < 6; i++)
-        {
-            //Block *tmpBlock= new Block( NULL, 20, 20, 32, 260 + i * 20, 460 - (20 * i));
-            //levelObjects.push_back(tmpBlock);
-            //drawableObjects.push_back(tmpBlock);
-        }
-
-
         m_nextLevel = "none";
 
         m_startPosition.x = 140;
@@ -41,6 +25,19 @@
     }
 
 //--------------------------------------Methods/
+
+    bool Level::initialise()
+    {
+        m_player = std::shared_ptr<Player>(new Player());
+
+        //tmpBlock = new Block( SDL_SWSURFACE, 200, 200, 32, 260, 260);
+
+        for(int i = 0; i < 6; i++)
+        {
+            Block *tmpBlock= new Block( NULL, 20, 20, 32, 260 + i * 20, 460 - (20 * i));
+        }
+    }
+
     //------------------------------Accessors
     SDL_Rect Level::getStartPosition()
     {
@@ -87,6 +84,38 @@
         }
 
         renderEngine.show();
+    }
+
+    void Level::addEntity(Entity* entity)
+    {
+        levelObjects.push_back(entity);
+    }
+
+    void Level::removeEntity(Entity* entity)
+    {
+        for(int i = 0; i < levelObjects.size(); i++)
+        {
+            if(levelObjects[i] == entity)
+            {
+                levelObjects.erase(levelObjects.begin() + i);
+            }
+        }
+    }
+
+    void Level::addDrawableObject(VisualEntity *drawable)
+    {
+        drawableObjects.push_back(drawable);
+    }
+
+    void Level::removeDrawableObject(VisualEntity *drawable)
+    {
+        for(int i = 0; i < drawableObjects.size(); i++)
+        {
+            if(drawableObjects[i] == drawable)
+            {
+                drawableObjects.erase(drawableObjects.begin() + i);
+            }
+        }
     }
 
     void Level::addCollidableObject(CollisionEntity *collider)
