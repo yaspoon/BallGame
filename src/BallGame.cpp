@@ -459,9 +459,9 @@ bool BallGame::collide( VisualEntity collidee, VisualEntity collider, Collision_
 void BallGame::checkBounds(VisualEntity *entity)
 {
     //STUB("Needs all the pointers removing");
-    vec2 tmp = renderEngine.getScreenDimensions();
-    int screenWidth = tmp.x;
-    int screenHeight = tmp.y;
+    ScreenDimensions tmp = renderEngine.getScreenDimensions();
+    int screenWidth = tmp.width;
+    int screenHeight = tmp.height;
     Rect posDim = entity->getPosDim();
 
     if( posDim.x < 0 )
