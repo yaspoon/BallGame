@@ -5,7 +5,6 @@
 #include <SDL2/SDL_opengl.h>
 #include "Entity.h"
 #include "Level.h"
-#include "CollisionHandle.h"
 #include "bgCommon.h"
 #include "VisualEntity.h"
 #include "RenderEngine.h"
@@ -53,9 +52,9 @@ private:
 
     void proccessRemovedObjects();
 
-    Collision_t getCollision(Rect box1, Rect box2);
+    /*Collision_t getCollision(Rect box1, Rect box2);
 
-    bool collide( VisualEntity collidee, VisualEntity collider, Collision_t *collision);
+    bool collide( VisualEntity collidee, VisualEntity collider, Collision_t *collision);*/
 
     void checkBounds(VisualEntity *entity);
 
@@ -85,7 +84,7 @@ public:
     //------------------------------Imperita/
     int ballGameMain();
 
-    Collision_t checkMove( Rect& object, int yvel, int xvel );
+    //Collision_t checkMove( Rect& object, int yvel, int xvel );
 
     void updateFrame();
 
