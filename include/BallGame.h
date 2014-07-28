@@ -33,7 +33,7 @@ private:
     Uint32 lastframe;
 
     /*Load default Level*/
-    std::unique_ptr<Level> currentLevel;
+    std::shared_ptr<Level> currentLevel;
     std::vector<Entity> addedEntities;
     std::vector<Entity> removedEntities;
 
@@ -75,6 +75,7 @@ public:
     RenderEngine getRenderEngine();
     std::shared_ptr<ResourceManager> getResourceManager();
     std::shared_ptr<EventEngine> getEventEngine();
+    std::shared_ptr<Level> getCurrentLevel();
 
     //------------------------------Mutators
     void addEntity(Entity entity_i);
