@@ -12,14 +12,14 @@
 				<Option output="bin/Debug/BallGame" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Debug/" />
 				<Option type="0" />
-				<Option compiler="gcc" />
+				<Option compiler="clang" />
 				<Option projectLinkerOptionsRelation="1" />
 				<Compiler>
 					<Add option="-pedantic" />
-					<Add option="-std=c++11" />
-					<Add option="-Wextra" />
 					<Add option="-Wall" />
+					<Add option="-std=c++11" />
 					<Add option="-g" />
+					<Add option="-Wextra" />
 					<Add directory="include" />
 				</Compiler>
 				<Linker>
@@ -73,6 +73,7 @@
 		<Unit filename="include/EventCollision.h" />
 		<Unit filename="include/EventEngine.h" />
 		<Unit filename="include/EventInput.h" />
+		<Unit filename="include/EventSystem.h" />
 		<Unit filename="include/Level.h" />
 		<Unit filename="include/Player.h" />
 		<Unit filename="include/RenderEngine.h" />
@@ -90,6 +91,7 @@
 		<Unit filename="src/EventCollision.cpp" />
 		<Unit filename="src/EventEngine.cpp" />
 		<Unit filename="src/EventInput.cpp" />
+		<Unit filename="src/EventSystem.cpp" />
 		<Unit filename="src/Level.cpp" />
 		<Unit filename="src/Main.cpp" />
 		<Unit filename="src/Player.cpp" />
