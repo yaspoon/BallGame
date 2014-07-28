@@ -1,10 +1,9 @@
 #ifndef ENTITY_H
 #define ENTITY_H
 
-#include <string>
-#include <SDL2/SDL.h>
 #include "bgCommon.h"
-#include <list>
+#include "EventSystem.h"
+#include "EventInput.h"
 
 class Entity
 {
@@ -24,7 +23,9 @@ class Entity
     //------------------------------Mutators
         virtual void update( float dt ) {}
 
-        virtual void handleEvents( SDL_Event& event ) {}
+        virtual void handleSystemEvent(EventSystem systemEvent) {}
+
+        virtual void handleInputEvent(EventInput inputEvent) {}
 
 };
 
