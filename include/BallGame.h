@@ -49,7 +49,7 @@ private:
 
     bool collide( VisualEntity collidee, VisualEntity collider, Collision_t *collision);*/
 
-    void checkBounds(VisualEntity *entity);
+    void checkBounds(CollisionEntity *entity);
 
 public:
 
