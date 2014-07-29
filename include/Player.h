@@ -5,13 +5,12 @@ Author: Brock
 #ifndef _PLAYER_H__
 #define _PLAYER_H__
 
-#include "VisualEntity.h"
+#include "CollisionEntity.h"
 
 
-class Player: public VisualEntity
+class Player: public CollisionEntity
 {
     public:
-        bool onGround;
         Player();
 
         virtual ~Player();
@@ -20,13 +19,7 @@ class Player: public VisualEntity
 
         void handleInputEvent(EventInput inputEvent);
 
-        void setYvel(float yvel);
-
-        float getYvel();
-
     private:
-        float xvel;
-        float yvel;
         int moveSpeed;
 };
 
