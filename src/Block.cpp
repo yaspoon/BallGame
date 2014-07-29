@@ -4,14 +4,14 @@
     Block::Block()
     :CollisionEntity( "./images/block.bmp", 20.0f, 20.0f, 20.0f, 20.0f )
     {
-        VisualEntity::setCtype( C_IMMOVABLE);
+        CollisionEntity::setCtype( C_IMMOVABLE);
 
     }
 
     Block::Block( int flags, int width, int height, int bpp, float x, float y )
     :CollisionEntity( "./images/block.bmp", x, y, width, height )
     {
-        VisualEntity::setCtype( C_IMMOVABLE );
+        CollisionEntity::setCtype( C_IMMOVABLE );
     }
 
 //--------------------------------------Destructors/
