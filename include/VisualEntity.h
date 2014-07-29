@@ -43,16 +43,10 @@ class VisualEntity: public Entity
 
         std::vector<vec2> getNormedAxes();
 
-        COLLIDABLE getCtype();
-
-        void setCtype( COLLIDABLE type );
-
     private:
 
     int sprite;
     Rect posDim;
-
-    COLLIDABLE cType;
 };
 
 #endif // VISUALENTITY_H
