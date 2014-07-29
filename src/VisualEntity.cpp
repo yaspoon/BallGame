@@ -216,13 +216,3 @@ float VisualEntity::dotProduct( vec2 one, vec2 two )
 {
     return (one.x * two.x) + (one.y * two.y );
 }
-
-COLLIDABLE VisualEntity::getCtype()
-{
-    return cType;
-}
-
-void VisualEntity::setCtype( COLLIDABLE type )
-{
-    cType = type;
-}
