@@ -75,7 +75,7 @@ using namespace std;
 
                 collisionEngine.handleCollisions(currentLevel->getCollidableObjects(), eventEngine);
 
-                BOOST_FOREACH(VisualEntity *entity, currentLevel->getDrawableObjects())
+                BOOST_FOREACH(CollisionEntity *entity, currentLevel->getCollidableObjects())
                 {
                     checkBounds(entity);
                 }
@@ -413,7 +413,7 @@ bool BallGame::collide( VisualEntity collidee, VisualEntity collider, Collision_
     return colliding;
 }*/
 
-void BallGame::checkBounds(VisualEntity *entity)
+void BallGame::checkBounds(CollisionEntity *entity)
 {
     //STUB("Needs all the pointers removing");
     ScreenDimensions tmp = renderEngine.getScreenDimensions();
@@ -437,9 +437,8 @@ void BallGame::checkBounds(VisualEntity *entity)
     else if( posDim.y + posDim.h > screenHeight )
     {
         posDim.y = screenHeight - posDim.h;
-        Player *tmp = dynamic_cast<Player*>(entity);
-        tmp->onGround = true;
-        tmp->setYvel(0.0f);
+        entity->setOnGround(true);
+        entity->setYvel(0.0f);
     }
 
     entity->setPos( posDim.x, posDim.y );
