@@ -7,6 +7,7 @@ CollisionEntity::CollisionEntity()
         BALLGAME.getCurrentLevel()->addCollidableObject(this);
         xvel = 0;
         yvel = 0;
+        onGround = false;
 }
 
 CollisionEntity::CollisionEntity(std::string filename, float x, float y, float width, float height)
@@ -15,6 +16,7 @@ CollisionEntity::CollisionEntity(std::string filename, float x, float y, float w
     BALLGAME.getCurrentLevel()->addCollidableObject(this);
     xvel = 0;
     yvel = 0;
+    onGround = false;
 }
 
 CollisionEntity::~CollisionEntity()
@@ -32,6 +34,16 @@ float CollisionEntity::getYvel()
     return yvel;
 }
 
+bool CollisionEntity::getOnGround()
+{
+    return onGround;
+}
+
+COLLIDABLE CollisionEntity::getCtype()
+{
+    return cType;
+}
+
 void CollisionEntity::setXvel(float newVel)
 {
     xvel = newVel;
@@ -40,4 +52,14 @@ void CollisionEntity::setXvel(float newVel)
 void CollisionEntity::setYvel(float newVel)
 {
     yvel = newVel;
+}
+
+void CollisionEntity::setOnGround(bool isOnGround)
+{
+    onGround = isOnGround;
+}
+
+void CollisionEntity::setCtype( COLLIDABLE type )
+{
+    cType = type;
 }
