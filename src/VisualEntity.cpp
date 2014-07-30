@@ -188,11 +188,13 @@ std::vector<vec2> VisualEntity::getNormedAxes()
 
         *it = axis;
     }*/
+    STUB("Changed vec2 to class need to update this to use it as a class");
     std::vector<vec2> axes;
+    /*
     vec2 xaxis = {1, 0};
     vec2 yaxis = {0, 1};
     axes.push_back(xaxis);
-    axes.push_back(yaxis);
+    axes.push_back(yaxis);*/
 
     return axes;
 }
