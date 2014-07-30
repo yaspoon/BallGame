@@ -176,7 +176,8 @@ using namespace std;
 
     bool isColliding(Rect collider1, Rect collider2)
     {
-        bool retval = false;
+        STUB("Vec2 is changing so this won't work no more");
+       /* bool retval = false;
 
         vec2 topLeft = {collider1.x, collider1.y};
         if(isInside(topLeft, collider2) == true)
@@ -202,7 +203,7 @@ using namespace std;
             retval = true;
         }
 
-        return retval;
+        return retval;*/
     }
 
     void BallGame::checkCollisions()
