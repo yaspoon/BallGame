@@ -19,6 +19,10 @@ class Player: public CollisionEntity
 
         void handleInputEvent(EventInput inputEvent);
 
+        void handleSystemEvent(EventSystem systemEvent);
+        void handleCollisionEvent(CollisionEntity *collisionEntity);
+        CollisionEntity *clone();
+
     private:
         int moveSpeed;
 };

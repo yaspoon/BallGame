@@ -50,6 +50,10 @@ void Player::handleInputEvent(EventInput inputEvent)
                     CollisionEntity::setOnGround(false);
                 }
             break;
+            case KEY_UNKNOWN:
+                break;
+            default:
+                break;
 
         }
     }
@@ -63,6 +67,38 @@ void Player::handleInputEvent(EventInput inputEvent)
             case KEY_LEFT:
                 CollisionEntity::setXvel(CollisionEntity::getXvel() + moveSpeed);
             break;
+            case KEY_UP:
+            break;
+            case KEY_DOWN:
+            break;
+            case KEY_JUMP:
+            break;
+            case KEY_UNKNOWN:
+            break;
+            default:
+            break;
         }
     }
+}
+
+void Player::handleSystemEvent(EventSystem system)
+{
+    switch(system.getType())
+    {
+        case EV_SYS_QUIT:
+        case EV_SYS_UNKNOWN:
+        default:
+            break;
+    }
+}
+
+void Player::handleCollisionEvent(CollisionEntity *collisionEntity)
+{
+    collisionEntity = NULL;
+}
+
+CollisionEntity *Player::clone()
+{
+    Player *tmp = new Player(*this);
+    return (CollisionEntity*)tmp;
 }
