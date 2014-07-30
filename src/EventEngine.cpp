@@ -143,7 +143,7 @@ std::vector<EventSystem> EventEngine::getSystemEvents()
 
 bool EventEngine::registerForEvents(Entity *entityToReg, EventType typeToReg)
 {
-    bool retval = false;
+    bool retval = true;
     switch(typeToReg)
     {
         case EV_SYSTEM:
@@ -164,13 +164,14 @@ bool EventEngine::registerForEvents(Entity *entityToReg, EventType typeToReg)
 
  bool EventEngine::deregisterForEvents(Entity *entityToDeReg, EventType typeToDeReg)
  {
+     bool retval = true;
      switch(typeToDeReg)
      {
         case EV_SYSTEM:
         break;
         case EV_INPUT:
         {
-            for(int i = 0; i < inputEventEntities.size(); i++)
+            for(std::vector<EventInput>::size_type i = 0; i < inputEventEntities.size(); i++)
             {
                 if(inputEventEntities[i] == entityToDeReg)
                 {
@@ -181,5 +182,16 @@ bool EventEngine::registerForEvents(Entity *entityToReg, EventType typeToReg)
         break;
         case EV_COLLISION:
         break;
+        case EV_UNKNOWN:
+            break;
+        default:
+            break;
      }
+
+     return retval;
  }
+
+void EventEngine::addCollisionEvent(EventCollision collision)
+{
+    collisionEvents.push_back(collision);
+}
