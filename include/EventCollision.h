@@ -7,11 +7,12 @@ class EventCollision
 {
     public:
         EventCollision();
+        EventCollision(CollisionEntity *collider);
         virtual ~EventCollision();
-        CollisionEntity getCollider();
+        CollisionEntity *getCollider();
     protected:
     private:
-        CollisionEntity collider;
+        CollisionEntity *collider;
 
 };
 
