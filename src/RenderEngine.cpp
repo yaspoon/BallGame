@@ -88,6 +88,13 @@ void RenderEngine::draw(int sprite, SDL_Rect *src, SDL_Rect *dest)
             }
         }
         break;
+        case RES_AUDIO:
+        break;
+        case RES_UNKNOWN:
+            std::cout << "ERROR:Resource type is unknown" << std::endl;
+        break;
+        default:
+        break;
     }
 }
 
