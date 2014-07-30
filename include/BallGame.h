@@ -24,10 +24,6 @@ private:
     const static int FRAMES_PER_SECOND = 60;
     std::string m_gameName;
 
-    SDL_Event events;
-
-    int windowFlags;
-
     bool quit;
 
     int frame;
@@ -44,10 +40,6 @@ private:
 //--------------------------------------Private methods/
 
     BallGame();
-
-    /*Collision_t getCollision(Rect box1, Rect box2);
-
-    bool collide( VisualEntity collidee, VisualEntity collider, Collision_t *collision);*/
 
     void checkBounds(CollisionEntity *entity);
 
@@ -76,12 +68,6 @@ public:
     //------------------------------Imperita/
     int ballGameMain();
 
-    //Collision_t checkMove( Rect& object, int yvel, int xvel );
-
     void updateFrame();
-
-    void checkCollisions();
-
-
 };
 #endif
