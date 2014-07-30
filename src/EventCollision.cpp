@@ -2,15 +2,20 @@
 
 EventCollision::EventCollision()
 {
-    //ctor
+    collider = NULL;
+}
+
+EventCollision::EventCollision(CollisionEntity *collider)
+{
+    this->collider = collider->clone();
 }
 
 EventCollision::~EventCollision()
 {
-    //dtor
+    delete collider;
 }
 
-CollisionEntity EventCollision::getCollider()
+CollisionEntity *EventCollision::getCollider()
 {
     return collider;
 }
