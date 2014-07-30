@@ -23,8 +23,6 @@ class VisualEntity: public Entity
 
         virtual void draw(RenderEngine renderEngine);
 
-        virtual void collision( VisualEntity& collider ) {};
-
         Rect& getPosDim();
 
         void setPos( float x, float y );
@@ -34,6 +32,8 @@ class VisualEntity: public Entity
         float dotProduct( vec2 one, vec2 two );
 
         std::vector<float> projectOnto( vec2 axis );
+
+        std::vector<float> minMaxProjectOnto(vec2 axis);
 
         std::vector<vec2> getVertices();
 

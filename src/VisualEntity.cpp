@@ -207,11 +207,33 @@ std::vector<float> VisualEntity::projectOnto( vec2 axis )
     for(std::vector<vec2>::iterator it = vertices.begin(); it != vertices.end(); ++it) //project each vertex onto the given axis
     {
         vec2 vertex = *it;
-        float dp = (vertex.x * axis.x) + (vertex.y * axis.y); //Calc dot product of vertex and axis to project it onto the axis
+        float dp = dotProduct(vertex, axis);//vertex.x * axis.x) + (vertex.y * axis.y); //Calc dot product of vertex and axis to project it onto the axis
         projections.push_back(dp);
     }
 
     return projections;
+}
+
+std::vector<float> VisualEntity::minMaxProjectOnto(vec2 axis)
+{
+    std::vector<float> projectedPoints = projectOnto(axis);
+    float min = projectedPoints[0];
+    float max = projectedPoints[0];
+    for(std::vector<float>::iterator it = projectedPoints.begin(); it != projectedPoints.end(); ++it)
+    {
+        if(*it < min)
+        {
+            min = *it;
+        }
+        if(*it > max)
+        {
+            max = *it;
+        }
+    }
+    std::vector<float> retval;
+    retval.push_back(min);
+    retval.push_back(max);
+    return retval;
 }
 
 float VisualEntity::dotProduct( vec2 one, vec2 two )
