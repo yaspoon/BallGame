@@ -16,21 +16,16 @@ public:
 
     Block();
 
-    Block( int flags, int width, int height, int bpp, float x, float y );
+    Block(int width, int height, float x, float y);
 
 //--------------------------------------Destructors/
     virtual ~Block();
 
-//--------------------------------------Methods/
-    //------------------------------Accessors
-
-
-    //------------------------------Mutators
-
-    //------------------------------Imperita
-    virtual void update( float dt );
-
-    void collision( VisualEntity& collider );
+    void update(float dt) {dt=0;}
+    void handleInputEvent(EventInput input);
+    void handleSystemEvent(EventSystem system);
+    void handleCollisionEvent(CollisionEntity *collision);
+    CollisionEntity *clone();
 
 };
 
