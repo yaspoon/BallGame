@@ -34,8 +34,11 @@
 
         for(int i = 0; i < 6; i++)
         {
-            Block *tmpBlock= new Block( NULL, 20, 20, 32, 260 + i * 20, 460 - (20 * i));
+            new Block(20, 20, 260 + i * 20, 460 - (20 * i));
         }
+
+        STUB("Returning true by default for now");
+        return true;
     }
 
     //------------------------------Accessors
@@ -93,7 +96,7 @@
 
     void Level::removeEntity(Entity* entity)
     {
-        for(int i = 0; i < levelObjects.size(); i++)
+        for(std::vector<Entity*>::size_type i = 0; i < levelObjects.size(); i++)
         {
             if(levelObjects[i] == entity)
             {
@@ -109,7 +112,7 @@
 
     void Level::removeDrawableObject(VisualEntity *drawable)
     {
-        for(int i = 0; i < drawableObjects.size(); i++)
+        for(std::vector<VisualEntity*>::size_type i = 0; i < drawableObjects.size(); i++)
         {
             if(drawableObjects[i] == drawable)
             {
@@ -125,7 +128,7 @@
 
     void Level::removeCollidableObject(CollisionEntity *collider)
     {
-        for(int i = 0; i < collidableObjects.size(); i++)
+        for(std::vector<CollisionEntity*>::size_type i = 0; i < collidableObjects.size(); i++)
         {
             if(collidableObjects[i] == collider)
             {
