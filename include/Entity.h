@@ -21,11 +21,11 @@ class Entity
     //------------------------------Accessors
 
     //------------------------------Mutators
-        virtual void update( float dt ) {}
+        virtual void update( float dt ) =0;
 
-        virtual void handleSystemEvent(EventSystem systemEvent) {}
+        virtual void handleSystemEvent(EventSystem systemEvent) =0;
 
-        virtual void handleInputEvent(EventInput inputEvent) {}
+        virtual void handleInputEvent(EventInput inputEvent) =0;
 
 };
 
