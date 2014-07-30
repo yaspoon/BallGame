@@ -17,7 +17,8 @@ class CollisionEntity: public VisualEntity
         void setYvel(float newVel);
         void setOnGround(bool isOnGround);
         void setCtype(COLLIDABLE type);
-        virtual void handleCollisionEvent(CollisionEntity CollisionEntity) {}
+        virtual void handleCollisionEvent(CollisionEntity *CollisionEntity) =0;
+        virtual CollisionEntity *clone() =0;
     protected:
     private:
         float xvel;
