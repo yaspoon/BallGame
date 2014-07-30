@@ -20,6 +20,7 @@ class CollisionEngine
         virtual ~CollisionEngine();
         void handleCollisions(std::vector<CollisionEntity*> collidables, std::shared_ptr<EventEngine> eventEngine);
         CollisionResult testForCollision(CollisionEntity* collider1, CollisionEntity *collider2);
+        CollisionResult checkForOverlap(std::vector<float> collider1Points, std::vector<float> collider2Points);
     protected:
     private:
 };
