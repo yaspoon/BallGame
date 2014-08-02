@@ -30,7 +30,8 @@
     {
         m_player = std::shared_ptr<Player>(new Player());
 
-        //tmpBlock = new Block( SDL_SWSURFACE, 200, 200, 32, 260, 260);
+        new Block(200, 40, 0, 460);
+        new Block(20, 20, 200, 420);
 
         for(int i = 0; i < 6; i++)
         {
