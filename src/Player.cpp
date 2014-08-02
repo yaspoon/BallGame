@@ -8,7 +8,7 @@ Author: Brock
 #include "BallGame.h"
 
 Player::Player()
-:CollisionEntity( "./images/ball.png", 0, 0, 40, 40 )
+:CollisionEntity( "./images/ball.png", 400, 420, 40, 40 )
 {
     BALLGAME.getEventEngine()->registerForEvents(this, EV_INPUT);
     moveSpeed = 250;
@@ -26,7 +26,7 @@ void Player::update( float dt )
     tempPos.y += CollisionEntity::getYvel() * dt;
     tempPos.x += CollisionEntity::getXvel() * dt;
 
-    CollisionEntity::setYvel(CollisionEntity::getYvel() + 1000.0 * dt); /*Gravity*/
+    CollisionEntity::setYvel(CollisionEntity::getYvel() + (1000.0 * dt)); /*Gravity*/
 
     VisualEntity::setPos( tempPos.x, tempPos.y );
 }
