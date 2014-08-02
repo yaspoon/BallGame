@@ -42,6 +42,20 @@ void CollisionEngine::handleCollisions(std::vector<CollisionEntity*> collidables
                             posDim.x = posDim.x + (collisionResult.minAxis.x * collisionResult.minDistance);
                             posDim.y = posDim.y + (collisionResult.minAxis.y * collisionResult.minDistance);
                             collider1->setPos(posDim.x, posDim.y);
+
+                            if(collisionResult.minAxis.y > 0) //Collison happened on y axis
+                            {
+                                if(collisionResult.minDistance <= 0.0f)
+                                {
+                                    collider1->setOnGround(true);
+                                    collider1->setYvel(0.0f);
+                                }
+                                else
+                                {
+                                   collider1->setYvel(-collider1->getYvel());
+                                }
+
+                            }
                         }
                     }
                     else if(collider2->getCtype() == C_MOVEABLE) //Well I hope this object can move else we can't do fuck all about them colliding
@@ -50,6 +64,19 @@ void CollisionEngine::handleCollisions(std::vector<CollisionEntity*> collidables
                         posDim.x = posDim.x + (collisionResult.minAxis.x * collisionResult.minDistance);
                         posDim.y = posDim.y + (collisionResult.minAxis.y * collisionResult.minDistance);
                         collider2->setPos(posDim.x, posDim.y);
+                        if(collisionResult.minAxis.y > 0) //Collison happened on y axis
+                        {
+                            if(collisionResult.minDistance < 0.0f)
+                            {
+                                collider2->setOnGround(true);
+                                collider2->setYvel(0.0f);
+                            }
+                            else
+                            {
+                               collider1->setYvel(-collider1->getYvel());
+                            }
+
+                        }
                     }
                 }
             }
@@ -68,8 +95,8 @@ CollisionResult CollisionEngine::testForCollision(CollisionEntity* collider1, Co
     {
         /*Project each vertex of the two colliders onto the axis and then
          *check them for overlap*/
-        std::vector<float> collider1Points = collider1->minMaxProjectOnto(*it);
-        std::vector<float> collider2Points = collider2->minMaxProjectOnto(*it);
+        std::pair<float,float> collider1Points = collider1->minMaxProjectOnto(*it);
+        std::pair<float,float> collider2Points = collider2->minMaxProjectOnto(*it);
         CollisionResult overlaping = checkForOverlap(collider1Points, collider2Points);
         if(!overlaping.isColliding) //If there is no overlap then stop
         {
@@ -97,8 +124,8 @@ CollisionResult CollisionEngine::testForCollision(CollisionEntity* collider1, Co
         {
             /*Project each of the colliders vertices onto the axes
              *of collider2*/
-             std::vector<float> collider1Points = collider1->minMaxProjectOnto(*it);
-             std::vector<float> collider2Points = collider2->minMaxProjectOnto(*it);
+             std::pair<float,float> collider1Points = collider1->minMaxProjectOnto(*it);
+             std::pair<float,float> collider2Points = collider2->minMaxProjectOnto(*it);
             CollisionResult overlaping = checkForOverlap(collider1Points, collider2Points);
             if(!overlaping.isColliding) //if not overlaping then stop
             {
@@ -120,60 +147,147 @@ CollisionResult CollisionEngine::testForCollision(CollisionEntity* collider1, Co
     return retval;
 }
 
-CollisionResult CollisionEngine::checkForOverlap(std::vector<float> collider1Points, std::vector<float> collider2Points)
+CollisionResult CollisionEngine::checkForOverlap(std::pair<float,float> collider1Points, std::pair<float,float> collider2Points)
 {
     CollisionResult retval = {false, {0,0}, 0};
+
+    if(isContained(collider1Points, collider2Points)) //Collider1 is completely contained by collider2
+    {
+        if(distanceBetween(collider1Points.first,collider2Points.first) < distanceBetween(collider1Points.second, collider2Points.second))
+        {
+            retval.minDistance = (collider1Points.first - collider2Points.first) + (collider1Points.second - collider1Points.first);
+            retval.isColliding = true;
+        }
+        else
+        {
+            retval.minDistance = (collider2Points.second - collider1Points.second) + (collider1Points.second - collider1Points.first);
+            retval.isColliding = true;
+        }
+    }
+    else if(isContained(collider2Points, collider1Points)) //Collider2 is completely contained by collider1
+    {
+        if(distanceBetween(collider2Points.first, collider1Points.first) < distanceBetween(collider2Points.second, collider1Points.second))
+        {
+            retval.minDistance = (collider2Points.first - collider1Points.first) + (collider1Points.second - collider1Points.first);
+            retval.isColliding = true;
+        }
+        else
+        {
+            retval.minDistance = (collider1Points.second - collider2Points.second) + (collider1Points.second - collider1Points.first);
+            retval.isColliding = true;
+        }
+    }
+    else if(isInside(collider1Points.first, collider2Points)) //Collider1s min point is inside collider2 so it's on the right
+    {
+        retval.minDistance = collider2Points.second - collider1Points.first;
+        retval.isColliding = true;
+    }
+    else if(isInside(collider1Points.second, collider2Points)) //Collider1s max point is inside collider2 so it's on the left
+    {
+        retval.minDistance = collider2Points.first - collider1Points.second;
+        retval.isColliding = true;
+    }
+    /*else they are not overlaping at all*/
 
     return retval;
 }
 
 /*
-    bool isInside(vec2 point, Rect rectangle) //See if point is inside the rectangles boundary
+ *Tests if point is between (inside) the other two points
+ */
+bool CollisionEngine::isInside(float point, std::pair<float,float> points)
+{
+    bool retval = false;
+
+    if(points.first <= point && point <= points.second)
     {
-        bool retval = false;
-
-        if(point.x >= rectangle.x && point.x <= (rectangle.x + rectangle.w))
-        {
-                if(point.y >= rectangle.y && point.y <= (rectangle.y + rectangle.h))
-                {
-                    retval = true;
-                }
-        }
-
-        return retval;
+        retval = true;
+    }
+    else if(points.second <= point && point <= points.first) //Incase they're all negative
+    {
+        retval = true;
     }
 
-    bool isColliding(Rect collider1, Rect collider2)
+    return retval;
+}
+
+bool CollisionEngine::isContained(std::pair<float,float> collider1Points, std::pair<float,float> collider2Points)
+{
+    bool retval = false;
+
+    if(isInside(collider1Points.first, collider2Points) && isInside(collider1Points.second, collider2Points))
     {
-        STUB("Vec2 is changing so this won't work no more");
-        bool retval = false;
-
-        vec2 topLeft = {collider1.x, collider1.y};
-        if(isInside(topLeft, collider2) == true)
-        {
-            retval = true;
-        }
-
-        vec2 topRight = {collider1.x + collider1.w, collider1.y};
-        if(isInside(topRight, collider2))
-        {
-            retval = true;
-        }
-
-        vec2 bottomLeft = {collider1.x, collider1.y + collider1.h};
-        if(isInside(bottomLeft, collider2))
-        {
-            retval = true;
-        }
-
-        vec2 bottomRight = {collider1.x + collider1.w, collider1.y + collider1.h};
-        if(isInside(bottomRight, collider2))
-        {
-            retval = true;
-        }
-
-        return retval;
+        retval = true;
     }
+
+    return retval;
+}
+
+float CollisionEngine::distanceBetween(float firstPoint, float secondPoint)
+{
+    float retval = 0.0f;
+
+    if(firstPoint < secondPoint)
+    {
+        retval = secondPoint - firstPoint;
+    }
+    else
+    {
+        retval = firstPoint - secondPoint;
+    }
+
+    return retval;
+}
+
+bool CollisionEngine::isColliding(Rect collider1, Rect collider2)
+{
+    STUB("Vec2 is changing so this won't work no more");
+    bool retval = false;
+
+    vec2 topLeft = {collider1.x, collider1.y};
+    if(isInside2(topLeft, collider2) == true)
+    {
+        retval = true;
+    }
+
+    vec2 topRight = {collider1.x + collider1.w, collider1.y};
+    if(isInside2(topRight, collider2))
+    {
+        retval = true;
+    }
+
+    vec2 bottomLeft = {collider1.x, collider1.y + collider1.h};
+    if(isInside2(bottomLeft, collider2))
+    {
+        retval = true;
+    }
+
+    vec2 bottomRight = {collider1.x + collider1.w, collider1.y + collider1.h};
+    if(isInside2(bottomRight, collider2))
+    {
+        retval = true;
+    }
+
+    return retval;
+}
+
+bool CollisionEngine::isInside2(vec2 point, Rect rectangle) //See if point is inside the rectangles boundary
+{
+    bool retval = false;
+
+    if(point.x >= rectangle.x && point.x <= (rectangle.x + rectangle.w))
+    {
+            if(point.y >= rectangle.y && point.y <= (rectangle.y + rectangle.h))
+            {
+                retval = true;
+            }
+    }
+
+    return retval;
+}
+
+/*
+
 
     void BallGame::checkCollisions()
     {
