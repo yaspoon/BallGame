@@ -33,7 +33,7 @@ class VisualEntity: public Entity
 
         std::vector<float> projectOnto( vec2 axis );
 
-        std::vector<float> minMaxProjectOnto(vec2 axis);
+        std::pair<float,float> minMaxProjectOnto(vec2 axis);
 
         std::vector<vec2> getVertices();
 

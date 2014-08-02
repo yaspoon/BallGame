@@ -188,13 +188,12 @@ std::vector<vec2> VisualEntity::getNormedAxes()
 
         *it = axis;
     }*/
-    STUB("Changed vec2 to class need to update this to use it as a class");
+
     std::vector<vec2> axes;
-    /*
     vec2 xaxis = {1, 0};
     vec2 yaxis = {0, 1};
     axes.push_back(xaxis);
-    axes.push_back(yaxis);*/
+    axes.push_back(yaxis);
 
     return axes;
 }
@@ -214,7 +213,7 @@ std::vector<float> VisualEntity::projectOnto( vec2 axis )
     return projections;
 }
 
-std::vector<float> VisualEntity::minMaxProjectOnto(vec2 axis)
+std::pair<float,float> VisualEntity::minMaxProjectOnto(vec2 axis)
 {
     std::vector<float> projectedPoints = projectOnto(axis);
     float min = projectedPoints[0];
@@ -230,9 +229,9 @@ std::vector<float> VisualEntity::minMaxProjectOnto(vec2 axis)
             max = *it;
         }
     }
-    std::vector<float> retval;
-    retval.push_back(min);
-    retval.push_back(max);
+    std::pair<float,float> retval;
+    retval.first = min;
+    retval.second = max;
     return retval;
 }
 
