@@ -16,7 +16,7 @@ EventCollision::EventCollision(const EventCollision& other)
 {
     this->sendTo = other.sendTo;
     this->collider = other.collider->clone();
-    this->result = result;
+    this->result = other.result;
 }
 
 EventCollision::~EventCollision()
