@@ -92,7 +92,7 @@ void Player::handleSystemEvent(EventSystem system)
     }
 }
 
-void Player::handleCollisionEvent(CollisionEntity *collisionEntity)
+void Player::handleCollisionEvent(CollisionEntity *collisionEntity, CollisionResult result)
 {
     collisionEntity = NULL;
 }

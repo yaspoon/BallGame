@@ -44,7 +44,7 @@ void Block::handleSystemEvent(EventSystem system)
     }
 }
 
-void Block::handleCollisionEvent(CollisionEntity *collision)
+void Block::handleCollisionEvent(CollisionEntity *collision, CollisionResult result)
 {
     collision = NULL;
 }
