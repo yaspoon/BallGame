@@ -31,11 +31,15 @@ void CollisionEngine::handleCollisions(std::vector<CollisionEntity*> collidables
                             collider1pos.x = collider1pos.x + (collisionResult.minAxis.x * (collisionResult.minDistance / 2));
                             collider1pos.y = collider1pos.y + (collisionResult.minAxis.y * (collisionResult.minDistance / 2));
                             collider1->setPos(collider1pos.x, collider1pos.y);
+                            EventCollision collider1Event(collider1, collider2, collisionResult);
+                            eventEngine->addCollisionEvent(collider1Event);
 
                             Rect collider2pos = collider2->getPosDim();
                             collider2pos.x = collider2pos.x - (collisionResult.minAxis.x * (collisionResult.minDistance / 2));
                             collider2pos.y = collider2pos.y - (collisionResult.minAxis.y * (collisionResult.minDistance / 2));
                             collider2->setPos(collider2pos.x, collider2pos.y);
+                            EventCollision collider2Event(collider2, collider1, collisionResult);
+                            eventEngine->addCollisionEvent(collider2Event);
 
                             if(collisionResult.minAxis.y > 0) //Collison happened on y axis
                             {
@@ -67,6 +71,11 @@ void CollisionEngine::handleCollisions(std::vector<CollisionEntity*> collidables
                             posDim.y = posDim.y + (collisionResult.minAxis.y * collisionResult.minDistance);
                             collider1->setPos(posDim.x, posDim.y);
 
+                            EventCollision collider1Event(collider1, collider2, collisionResult);
+                            eventEngine->addCollisionEvent(collider1Event);
+                            EventCollision collider2Event(collider2, collider1, collisionResult);
+                            eventEngine->addCollisionEvent(collider2Event);
+
                             if(collisionResult.minAxis.y > 0) //Collison happened on y axis
                             {
                                 if(collisionResult.minDistance <= 0.0f)
@@ -96,6 +105,12 @@ void CollisionEngine::handleCollisions(std::vector<CollisionEntity*> collidables
                         posDim.x = posDim.x + (collisionResult.minAxis.x * collisionResult.minDistance);
                         posDim.y = posDim.y + (collisionResult.minAxis.y * collisionResult.minDistance);
                         collider2->setPos(posDim.x, posDim.y);
+
+                        EventCollision collider1Event(collider1, collider2, collisionResult);
+                        eventEngine->addCollisionEvent(collider1Event);
+                        EventCollision collider2Event(collider2, collider1, collisionResult);
+                        eventEngine->addCollisionEvent(collider2Event);
+
                         if(collisionResult.minAxis.y > 0) //Collison happened on y axis
                         {
                             if(collisionResult.minDistance < 0.0f)
