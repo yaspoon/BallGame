@@ -38,6 +38,13 @@ struct ScreenDimensions
     int height;
 };
 
+struct CollisionResult
+{
+    bool isColliding;
+    vec2 minAxis;
+    float minDistance;
+};
+
 #define STUB(message) (std::cout << __FILE__ << ":" << __FUNCTION__ << ":" << "Line-" << __LINE__ << ":" << message << std::endl);
 
 #endif

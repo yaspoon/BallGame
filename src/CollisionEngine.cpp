@@ -13,18 +13,19 @@ CollisionEngine::~CollisionEngine()
 
 void CollisionEngine::handleCollisions(std::vector<CollisionEntity*> collidables, std::shared_ptr<EventEngine> eventEngine)
 {
+    std::vector<CollisionEntity*> collidersLeft = collidables;
     BOOST_FOREACH(CollisionEntity *collider1, collidables)
     {
-        BOOST_FOREACH(CollisionEntity *collider2, collidables)
+        BOOST_FOREACH(CollisionEntity *collider2, collidersLeft)
         {
             if(collider1 != collider2) //Not the same object
             {
-                CollisionResult collisionResult = testForCollision(collider1, collider2);
-                if(collisionResult.isColliding) //If they're colliding
+                if(collider1->getCtype() == C_MOVEABLE) //If this thing is allowed to move we can push it out
                 {
-                    if(collider1->getCtype() == C_MOVEABLE) //If this thing is allowed to move we can push it out
+                    if(collider2->getCtype() == C_MOVEABLE) //If they both can move maybe we can push both of them out of colliding
                     {
-                        if(collider2->getCtype() == C_MOVEABLE) //If they both can move maybe we can push both of them out of colliding
+                        CollisionResult collisionResult = testForCollision(collider1, collider2);
+                        if(collisionResult.isColliding) //If they're colliding
                         {
                             Rect collider1pos = collider1->getPosDim();
                             collider1pos.x = collider1pos.x + (collisionResult.minAxis.x * (collisionResult.minDistance / 2));
@@ -35,8 +36,31 @@ void CollisionEngine::handleCollisions(std::vector<CollisionEntity*> collidables
                             collider2pos.x = collider2pos.x - (collisionResult.minAxis.x * (collisionResult.minDistance / 2));
                             collider2pos.y = collider2pos.y - (collisionResult.minAxis.y * (collisionResult.minDistance / 2));
                             collider2->setPos(collider2pos.x, collider2pos.y);
-                         }
-                        else //Nope just move collider1 out then
+
+                            if(collisionResult.minAxis.y > 0) //Collison happened on y axis
+                            {
+                                if(collisionResult.minDistance <= 0.0f)
+                                {
+                                    collider1->setOnGround(true);
+                                    collider1->setYvel(0.0f);
+                                }
+                                else
+                                {
+                                    collider1->setYvel(-collider1->getYvel());
+                                }
+
+                            }
+                        }
+                        else
+                        {
+                            //collider1->setOnGround(false);
+                            //collider2->setOnGround(false);
+                        }
+                     }
+                    else //Nope just move collider1 out then
+                    {
+                        CollisionResult collisionResult = testForCollision(collider1, collider2);
+                        if(collisionResult.isColliding) //If they're colliding
                         {
                             Rect posDim = collider1->getPosDim();
                             posDim.x = posDim.x + (collisionResult.minAxis.x * collisionResult.minDistance);
@@ -57,8 +81,16 @@ void CollisionEngine::handleCollisions(std::vector<CollisionEntity*> collidables
 
                             }
                         }
+                        else
+                        {
+                            //collider1->setOnGround(false);
+                        }
                     }
-                    else if(collider2->getCtype() == C_MOVEABLE) //Well I hope this object can move else we can't do fuck all about them colliding
+                }
+                else if(collider2->getCtype() == C_MOVEABLE) //Well I hope this object can move else we can't do fuck all about them colliding
+                {
+                    CollisionResult collisionResult = testForCollision(collider1, collider2);
+                    if(collisionResult.isColliding) //If they're colliding
                     {
                         Rect posDim = collider2->getPosDim();
                         posDim.x = posDim.x + (collisionResult.minAxis.x * collisionResult.minDistance);
@@ -78,8 +110,24 @@ void CollisionEngine::handleCollisions(std::vector<CollisionEntity*> collidables
 
                         }
                     }
+                    else
+                    {
+                        //collider2->setOnGround(false);
+                    }
                 }
+
             }
+        }
+        std::vector<CollisionEntity*>::size_type i = 0;
+        bool notFound = true;
+        while(i < collidersLeft.size() && notFound)
+        {
+            if(collidersLeft[i] == collider1)
+            {
+                collidersLeft.erase(collidersLeft.begin() + i);
+                notFound = false;
+            }
+            i++;
         }
     }
 }
