@@ -6,13 +6,6 @@
 #include "bgCommon.h"
 #include <vector>
 
-struct CollisionResult
-{
-    bool isColliding;
-    vec2 minAxis;
-    float minDistance;
-};
-
 class CollisionEngine
 {
     public:
