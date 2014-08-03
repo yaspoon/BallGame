@@ -125,10 +125,7 @@ void EventEngine::processEvents()
 
     BOOST_FOREACH(EventCollision collEv, collisionEvents)
     {
-        BOOST_FOREACH(CollisionEntity *entity, collisionEventEntities)
-        {
-            entity->handleCollisionEvent(collEv.getCollider());
-        }
+        collEv.sendToObject();
     }
 
     inputEvents.clear();
