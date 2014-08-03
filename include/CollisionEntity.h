@@ -2,6 +2,7 @@
 #define COLLISIONENTITY_H
 
 #include "VisualEntity.h"
+#include "bgCommon.h"
 
 class CollisionEntity: public VisualEntity
 {
@@ -17,7 +18,7 @@ class CollisionEntity: public VisualEntity
         void setYvel(float newVel);
         void setOnGround(bool isOnGround);
         void setCtype(COLLIDABLE type);
-        virtual void handleCollisionEvent(CollisionEntity *CollisionEntity) =0;
+        virtual void handleCollisionEvent(CollisionEntity *CollisionEntity, CollisionResult result) =0;
         virtual CollisionEntity *clone() =0;
     protected:
     private:

@@ -20,7 +20,7 @@ class Player: public CollisionEntity
         void handleInputEvent(EventInput inputEvent);
 
         void handleSystemEvent(EventSystem systemEvent);
-        void handleCollisionEvent(CollisionEntity *collisionEntity);
+        void handleCollisionEvent(CollisionEntity *collisionEntity, CollisionResult result);
         CollisionEntity *clone();
 
     private:

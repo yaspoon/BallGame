@@ -24,7 +24,7 @@ public:
     void update(float dt) {dt=0;}
     void handleInputEvent(EventInput input);
     void handleSystemEvent(EventSystem system);
-    void handleCollisionEvent(CollisionEntity *collision);
+    void handleCollisionEvent(CollisionEntity *collision, CollisionResult result);
     CollisionEntity *clone();
 
 };
