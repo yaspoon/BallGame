@@ -28,6 +28,7 @@ class CollisionEngine
         float distanceBetween(float firstPoint, float secondPoint);
         bool isColliding(Rect collider1, Rect collider2);
         bool isInside2(vec2 point, Rect rectangle);
+        float calculatePushOut(std::pair<float,float> collider1Points, std::pair<float,float> collider2Points);
 };
 
 #endif // COLLISIONENGINE_H
