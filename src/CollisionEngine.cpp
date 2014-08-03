@@ -52,7 +52,7 @@ void CollisionEngine::handleCollisions(std::vector<CollisionEntity*> collidables
                                 }
                                 else
                                 {
-                                   collider1->setYvel(-collider1->getYvel());
+                                    collider1->setYvel(-collider1->getYvel());
                                 }
 
                             }
@@ -73,7 +73,7 @@ void CollisionEngine::handleCollisions(std::vector<CollisionEntity*> collidables
                             }
                             else
                             {
-                               collider1->setYvel(-collider1->getYvel());
+                                collider2->setYvel(-collider2->getYvel());
                             }
 
                         }
@@ -153,32 +153,17 @@ CollisionResult CollisionEngine::checkForOverlap(std::pair<float,float> collider
 
     if(isContained(collider1Points, collider2Points)) //Collider1 is completely contained by collider2
     {
-        if(distanceBetween(collider1Points.first,collider2Points.first) < distanceBetween(collider1Points.second, collider2Points.second))
-        {
-            retval.minDistance = (collider1Points.first - collider2Points.first) + (collider1Points.second - collider1Points.first);
-            retval.isColliding = true;
-        }
-        else
-        {
-            retval.minDistance = (collider2Points.second - collider1Points.second) + (collider1Points.second - collider1Points.first);
-            retval.isColliding = true;
-        }
+        retval.minDistance = calculatePushOut(collider1Points, collider2Points);
+        retval.isColliding = true;
     }
     else if(isContained(collider2Points, collider1Points)) //Collider2 is completely contained by collider1
     {
-        if(distanceBetween(collider2Points.first, collider1Points.first) < distanceBetween(collider2Points.second, collider1Points.second))
-        {
-            retval.minDistance = (collider2Points.first - collider1Points.first) + (collider1Points.second - collider1Points.first);
-            retval.isColliding = true;
-        }
-        else
-        {
-            retval.minDistance = (collider1Points.second - collider2Points.second) + (collider1Points.second - collider1Points.first);
-            retval.isColliding = true;
-        }
+        retval.minDistance = calculatePushOut(collider2Points, collider1Points);
+        retval.isColliding = true;
     }
     else if(isInside(collider1Points.first, collider2Points)) //Collider1s min point is inside collider2 so it's on the right
     {
+
         retval.minDistance = collider2Points.second - collider1Points.first;
         retval.isColliding = true;
     }
@@ -199,11 +184,11 @@ bool CollisionEngine::isInside(float point, std::pair<float,float> points)
 {
     bool retval = false;
 
-    if(points.first <= point && point <= points.second)
+    if(points.first < point && point < points.second)
     {
         retval = true;
     }
-    else if(points.second <= point && point <= points.first) //Incase they're all negative
+    else if(points.second < point && point < points.first) //Incase they're all negative
     {
         retval = true;
     }
@@ -215,7 +200,7 @@ bool CollisionEngine::isContained(std::pair<float,float> collider1Points, std::p
 {
     bool retval = false;
 
-    if(isInside(collider1Points.first, collider2Points) && isInside(collider1Points.second, collider2Points))
+    if((isInside(collider1Points.first, collider2Points) || collider1Points.first == collider2Points.first) && (isInside(collider1Points.second, collider2Points) || collider1Points.second == collider2Points.second))
     {
         retval = true;
     }
@@ -281,6 +266,22 @@ bool CollisionEngine::isInside2(vec2 point, Rect rectangle) //See if point is in
             {
                 retval = true;
             }
+    }
+
+    return retval;
+}
+
+/*When one object is contained within the other, this calculates how far they must move to push out*/
+float CollisionEngine::calculatePushOut(std::pair<float,float> contained, std::pair<float,float> container)
+{
+    float retval = 0.0f;
+    if(distanceBetween(contained.first, container.first) < distanceBetween(contained.second, container.second))
+    {
+        retval = (container.first - contained.first) - (contained.second - contained.first);
+    }
+    else
+    {
+        retval = (container.second - contained.second) + (contained.second - contained.first);
     }
 
     return retval;
