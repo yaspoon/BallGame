@@ -8,7 +8,7 @@ Author: Brock
 #include "BallGame.h"
 
 Player::Player()
-:CollisionEntity( "./images/ball.png", 400, 420, 40, 40 )
+:CollisionEntity( "./images/ball.png", 400, 20, 40, 40 )
 {
     BALLGAME.getEventEngine()->registerForEvents(this, EV_INPUT);
     moveSpeed = 250;
