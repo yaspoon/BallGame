@@ -30,13 +30,21 @@
     {
         m_player = std::shared_ptr<Player>(new Player());
 
-        new Block(200, 40, 0, 460);
-        new Block(20, 20, 200, 420);
+        //new Block(200, 40, 0, 460);
+        //new Block(20, 20, 200, 420);
+
+        /*for(int i = 0; i < 6; i++)
+        {
+            new Block(20, 20, 150 +(i * 20), 460);
+            new Block(20, 20, 150 +(i * 20), 400);
+        }*/
 
         for(int i = 0; i < 6; i++)
         {
             new Block(20, 20, 260 + i * 20, 460 - (20 * i));
         }
+
+        new Block(20, 20, 400, 360);
 
         STUB("Returning true by default for now");
         return true;
