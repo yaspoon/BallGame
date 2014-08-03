@@ -67,7 +67,6 @@
 		<Unit filename="include/Block.h" />
 		<Unit filename="include/CollisionEngine.h" />
 		<Unit filename="include/CollisionEntity.h" />
-		<Unit filename="include/EngineManager.h" />
 		<Unit filename="include/Entity.h" />
 		<Unit filename="include/Event.h" />
 		<Unit filename="include/EventCollision.h" />
@@ -86,7 +85,6 @@
 		<Unit filename="src/Block.cpp" />
 		<Unit filename="src/CollisionEngine.cpp" />
 		<Unit filename="src/CollisionEntity.cpp" />
-		<Unit filename="src/EngineManager.cpp" />
 		<Unit filename="src/Entity.cpp" />
 		<Unit filename="src/Event.cpp" />
 		<Unit filename="src/EventCollision.cpp" />
