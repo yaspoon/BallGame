@@ -224,53 +224,6 @@ float CollisionEngine::distanceBetween(float firstPoint, float secondPoint)
     return retval;
 }
 
-bool CollisionEngine::isColliding(Rect collider1, Rect collider2)
-{
-    STUB("Vec2 is changing so this won't work no more");
-    bool retval = false;
-
-    vec2 topLeft = {collider1.x, collider1.y};
-    if(isInside2(topLeft, collider2) == true)
-    {
-        retval = true;
-    }
-
-    vec2 topRight = {collider1.x + collider1.w, collider1.y};
-    if(isInside2(topRight, collider2))
-    {
-        retval = true;
-    }
-
-    vec2 bottomLeft = {collider1.x, collider1.y + collider1.h};
-    if(isInside2(bottomLeft, collider2))
-    {
-        retval = true;
-    }
-
-    vec2 bottomRight = {collider1.x + collider1.w, collider1.y + collider1.h};
-    if(isInside2(bottomRight, collider2))
-    {
-        retval = true;
-    }
-
-    return retval;
-}
-
-bool CollisionEngine::isInside2(vec2 point, Rect rectangle) //See if point is inside the rectangles boundary
-{
-    bool retval = false;
-
-    if(point.x >= rectangle.x && point.x <= (rectangle.x + rectangle.w))
-    {
-            if(point.y >= rectangle.y && point.y <= (rectangle.y + rectangle.h))
-            {
-                retval = true;
-            }
-    }
-
-    return retval;
-}
-
 /*When one object is contained within the other, this calculates how far they must move to push out*/
 float CollisionEngine::calculatePushOut(std::pair<float,float> contained, std::pair<float,float> container)
 {
