@@ -40,20 +40,6 @@ void CollisionEngine::handleCollisions(std::vector<CollisionEntity*> collidables
                             collider2->setPos(collider2pos.x, collider2pos.y);
                             EventCollision collider2Event(collider2, collider1, collisionResult);
                             eventEngine->addCollisionEvent(collider2Event);
-
-                            if(collisionResult.minAxis.y > 0) //Collison happened on y axis
-                            {
-                                if(collisionResult.minDistance <= 0.0f)
-                                {
-                                    collider1->setOnGround(true);
-                                    collider1->setYvel(0.0f);
-                                }
-                                else
-                                {
-                                    collider1->setYvel(-collider1->getYvel());
-                                }
-
-                            }
                         }
                         else
                         {
@@ -75,20 +61,6 @@ void CollisionEngine::handleCollisions(std::vector<CollisionEntity*> collidables
                             eventEngine->addCollisionEvent(collider1Event);
                             EventCollision collider2Event(collider2, collider1, collisionResult);
                             eventEngine->addCollisionEvent(collider2Event);
-
-                            if(collisionResult.minAxis.y > 0) //Collison happened on y axis
-                            {
-                                if(collisionResult.minDistance <= 0.0f)
-                                {
-                                    collider1->setOnGround(true);
-                                    collider1->setYvel(0.0f);
-                                }
-                                else
-                                {
-                                    collider1->setYvel(-collider1->getYvel());
-                                }
-
-                            }
                         }
                         else
                         {
@@ -110,20 +82,6 @@ void CollisionEngine::handleCollisions(std::vector<CollisionEntity*> collidables
                         eventEngine->addCollisionEvent(collider1Event);
                         EventCollision collider2Event(collider2, collider1, collisionResult);
                         eventEngine->addCollisionEvent(collider2Event);
-
-                        if(collisionResult.minAxis.y > 0) //Collison happened on y axis
-                        {
-                            if(collisionResult.minDistance < 0.0f)
-                            {
-                                collider2->setOnGround(true);
-                                collider2->setYvel(0.0f);
-                            }
-                            else
-                            {
-                                collider2->setYvel(-collider2->getYvel());
-                            }
-
-                        }
                     }
                     else
                     {
