@@ -8,6 +8,7 @@ class EventCollision
     public:
         EventCollision();
         EventCollision(CollisionEntity *sendTo, CollisionEntity *collider, CollisionResult result);
+        EventCollision(const EventCollision& other);
         virtual ~EventCollision();
         CollisionEntity *getCollider();
         void sendToObject();
