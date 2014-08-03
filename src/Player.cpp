@@ -94,7 +94,19 @@ void Player::handleSystemEvent(EventSystem system)
 
 void Player::handleCollisionEvent(CollisionEntity *collisionEntity, CollisionResult result)
 {
-    collisionEntity = NULL;
+    if(result.minAxis.y > 0) //Collison happened on y axis
+    {
+        if(result.minDistance < 0.0f)
+        {
+            setOnGround(true);
+            setYvel(0.0f);
+        }
+        else
+        {
+            setYvel(-getYvel());
+        }
+
+    }
 }
 
 CollisionEntity *Player::clone()
