@@ -41,17 +41,15 @@
         //new Block(1280, 20, 0, 460);
         for(int i = 0; i < (levelDimensions.w / 20); i++)
         {
-            new Block(20, 20, i * 20, 460);
+            new Block(20, 20, i * 20, 460, L_DEFAULT);
         }
-        new Block(20, 20, 960, 400);
+        new Block(20, 20, 960, 400, L_DEFAULT);
 
 
         for(int i = 0; i < 6; i++)
         {
-            new Block(20, 20, 260 + i * 20, 440 - (20 * i));
+            new Block(20, 20, 260 + i * 20, 440 - (20 * i), L_BACKGROUND0);
         }
-
-        new Block(20, 20, 300, 360);
 
         STUB("Returning true by default for now");
         return true;
@@ -112,9 +110,27 @@
             offset.y = 0;
         }
 
+        //Draw objects that are furtherest in the background first
+        BOOST_FOREACH(VisualEntity* backgroundObject, backgroundObjects1)
+        {
+            backgroundObject->draw(renderEngine, offset);
+        }
+
+        //Draw closest background objects next
+        BOOST_FOREACH(VisualEntity* backgroundObject, backgroundObjects0)
+        {
+            backgroundObject->draw(renderEngine, offset);
+        }
+
+        //Draw objects in main layer
         BOOST_FOREACH(VisualEntity* object, drawableObjects)
         {
             object->draw(renderEngine, offset);
+        }
+
+        BOOST_FOREACH(VisualEntity* foregroundObject, foregroundObjects)
+        {
+            foregroundObject->draw(renderEngine, offset);
         }
 
         renderEngine.show();
@@ -136,9 +152,24 @@
         }
     }
 
-    void Level::addDrawableObject(VisualEntity *drawable)
+    void Level::addDrawableObject(VisualEntity *drawable, LAYER drawingLayer)
     {
-        drawableObjects.push_back(drawable);
+        switch(drawingLayer)
+        {
+            case L_DEFAULT:
+                drawableObjects.push_back(drawable);
+                break;
+            case L_BACKGROUND1:
+                backgroundObjects1.push_back(drawable);
+                break;
+            case L_BACKGROUND0:
+                backgroundObjects0.push_back(drawable);
+                break;
+            case L_FOREGROUND:
+                foregroundObjects.push_back(drawable);
+                break;
+
+        }
     }
 
     void Level::removeDrawableObject(VisualEntity *drawable)
