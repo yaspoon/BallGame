@@ -10,10 +10,13 @@ CollisionEntity::CollisionEntity()
         onGround = false;
 }
 
-CollisionEntity::CollisionEntity(std::string filename, float x, float y, float width, float height)
-:VisualEntity(filename, x, y, width, height)
+CollisionEntity::CollisionEntity(std::string filename, float x, float y, float width, float height, LAYER drawingLayer)
+:VisualEntity(filename, x, y, width, height, drawingLayer)
 {
-    BALLGAME.getCurrentLevel()->addCollidableObject(this);
+    if(drawingLayer == L_DEFAULT)
+    {
+        BALLGAME.getCurrentLevel()->addCollidableObject(this);
+    }
     xvel = 0;
     yvel = 0;
     onGround = false;

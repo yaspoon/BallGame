@@ -8,7 +8,7 @@ class CollisionEntity: public VisualEntity
 {
     public:
         CollisionEntity();
-        CollisionEntity(std::string filename, float x, float y, float width, float height);
+        CollisionEntity(std::string filename, float x, float y, float width, float height, LAYER drawingLayer);
         virtual ~CollisionEntity();
         float getXvel();
         float getYvel();
