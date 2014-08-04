@@ -11,6 +11,7 @@ Author: Brock
 VisualEntity::VisualEntity()
 :Entity()
 {
+    this->drawingLayer = L_DEFAULT;
     posDim.w = 100;
     posDim.h = 40;
     posDim.x = 0;
@@ -19,12 +20,13 @@ VisualEntity::VisualEntity()
     posDim.prevY = 0;
 
     sprite = BALLGAME.getResourceManager()->loadTexture("images/null.png");
-    BALLGAME.getCurrentLevel()->addDrawableObject(this);
+    BALLGAME.getCurrentLevel()->addDrawableObject(this, L_DEFAULT);
 }
 
-VisualEntity::VisualEntity( std::string filename, float x_i, float y_i, float width, float height )
+VisualEntity::VisualEntity( std::string filename, float x_i, float y_i, float width, float height, LAYER drawingLayer)
 :Entity( )
 {
+    this->drawingLayer = drawingLayer;
     posDim.w = width;
     posDim.h = height;
     posDim.x = x_i;
@@ -33,7 +35,7 @@ VisualEntity::VisualEntity( std::string filename, float x_i, float y_i, float wi
     posDim.prevY = y_i;
 
     sprite = BALLGAME.getResourceManager()->loadTexture(filename);
-    BALLGAME.getCurrentLevel()->addDrawableObject(this);
+    BALLGAME.getCurrentLevel()->addDrawableObject(this, drawingLayer);
 }
 
 /*
@@ -48,7 +50,7 @@ VisualEntity::VisualEntity(const VisualEntity& vEntity)
 {
     *this = vEntity;
     BALLGAME.getResourceManager()->loadTexture(vEntity.sprite);
-    BALLGAME.getCurrentLevel()->addDrawableObject(this);
+    BALLGAME.getCurrentLevel()->addDrawableObject(this, vEntity.drawingLayer);
 }
 
 VisualEntity::~VisualEntity()
