@@ -14,6 +14,9 @@ class Level
     const static int m_maxNumObjects = 64;
     std::vector<Entity*> levelObjects;
     std::vector<VisualEntity*> drawableObjects;
+    std::vector<VisualEntity*> backgroundObjects0;
+    std::vector<VisualEntity*> backgroundObjects1;
+    std::vector<VisualEntity*> foregroundObjects;
     std::vector<CollisionEntity*> collidableObjects;
     SDL_Rect levelDimensions;
     std::string m_nextLevel;
@@ -47,7 +50,7 @@ class Level
     void addEntity(Entity* entity);
     void removeEntity(Entity* entity);
 
-    void addDrawableObject(VisualEntity *drawable);
+    void addDrawableObject(VisualEntity *drawable, LAYER drawingLayer);
     void removeDrawableObject(VisualEntity *drawable);
 
     void addCollidableObject(CollisionEntity *collider);
