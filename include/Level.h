@@ -21,6 +21,7 @@ class Level
     SDL_Rect levelDimensions;
     std::string m_nextLevel;
     std::shared_ptr<Player> m_player;
+    SDL_Color backgroundColour;
 
     public:
 //--------------------------------------Constructors/

@@ -1,5 +1,6 @@
 #include "Level.h"
 #include <boost/foreach.hpp>
+#include "BallGame.h"
 
 //--------------------------------------Constructors/
     //Default Constructor loads the default level
@@ -28,6 +29,8 @@
     bool Level::initialise()
     {
         m_player = std::shared_ptr<Player>(new Player());
+        backgroundColour = {74, 182, 217, 0};
+        BALLGAME.getRenderEngine().setBackgroundColour(backgroundColour);
 
         //new Block(200, 40, 0, 460);
         //new Block(20, 20, 200, 420);
@@ -38,18 +41,27 @@
             new Block(20, 20, 150 +(i * 20), 400);
         }*/
 
-        //new Block(1280, 20, 0, 460);
-        for(int i = 0; i < (levelDimensions.w / 20); i++)
+        new Block("images/Proj/edge_left.png", 20, 20, 0, 460, L_DEFAULT);
+        for(int i = 1; i < ((levelDimensions.w / 20) - 1); i++)
         {
-            new Block(20, 20, i * 20, 460, L_DEFAULT);
+            new Block("images/Proj/grass_top.png", 20, 20, i * 20, 460, L_DEFAULT);
         }
+        new Block("images/Proj/edge_right.png", 20, 20, levelDimensions.w - 20, 460, L_DEFAULT);
         new Block(20, 20, 960, 400, L_DEFAULT);
 
 
         for(int i = 0; i < 6; i++)
         {
-            new Block(20, 20, 260 + i * 20, 440 - (20 * i), L_BACKGROUND0);
+            new Block(20, 20, 260 + i * 20, 440 - (20 * i), L_DEFAULT);
         }
+
+        for(int i = 0; i < (levelDimensions.w / 48); i++)
+        {
+            new Block("images/tree-1.png", 48, 76, i * (48 * 2), 432, L_BACKGROUND0);
+            new Block("images/tree-2.png", 48, 76, 48 + i * (48 * 2), 384, L_BACKGROUND1);
+        }
+
+        new Block("images/sun.png", 200, 200, 320, 0, L_BACKGROUND1);
 
         STUB("Returning true by default for now");
         return true;
