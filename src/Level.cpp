@@ -38,13 +38,17 @@
             new Block(20, 20, 150 +(i * 20), 400);
         }*/
 
-        new Block(1280, 20, 0, 460);
+        //new Block(1280, 20, 0, 460);
+        for(int i = 0; i < (levelDimensions.w / 20); i++)
+        {
+            new Block(20, 20, i * 20, 460);
+        }
         new Block(20, 20, 960, 400);
 
 
         for(int i = 0; i < 6; i++)
         {
-            new Block(20, 20, 260 + i * 20, 460 - (20 * i));
+            new Block(20, 20, 260 + i * 20, 440 - (20 * i));
         }
 
         new Block(20, 20, 300, 360);
