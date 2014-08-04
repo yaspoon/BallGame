@@ -271,14 +271,14 @@
 	<cmath>
 	<limits>
 
-1406553383 /home/brock/code/cpp/BallGame/include/RenderEngine.h
+1407152901 /home/brock/code/cpp/BallGame/include/RenderEngine.h
 	<SDL2/SDL.h>
 	<iostream>
 	<memory>
 	"ResourceManager.h"
 	"bgCommon.h"
 
-1407065634 source:/home/brock/code/cpp/BallGame/src/BallGame.cpp
+1407147387 source:/home/brock/code/cpp/BallGame/src/BallGame.cpp
 	"BallGame.h"
 	"VisualEntity.h"
 	"Timer.h"
@@ -290,7 +290,7 @@
 	<math.h>
 	<algorithm>
 
-1406715681 /home/brock/code/cpp/BallGame/include/BallGame.h
+1407147387 /home/brock/code/cpp/BallGame/include/BallGame.h
 	<SDL2/SDL.h>
 	<SDL2/SDL_opengl.h>
 	"Entity.h"
@@ -302,37 +302,37 @@
 	"EventEngine.h"
 	"CollisionEngine.h"
 
-1406714633 /home/brock/code/cpp/BallGame/include/Entity.h
+1407147387 /home/brock/code/cpp/BallGame/include/Entity.h
 	"bgCommon.h"
 	"EventSystem.h"
 	"EventInput.h"
 
-1407070743 /home/brock/code/cpp/BallGame/include/bgCommon.h
+1407147387 /home/brock/code/cpp/BallGame/include/bgCommon.h
 	<iostream>
 
 1401886964 /home/brock/code/cpp/BallGame/include/CollisionHandle.h
 
-1407076985 /home/brock/code/cpp/BallGame/include/VisualEntity.h
+1407155395 /home/brock/code/cpp/BallGame/include/VisualEntity.h
 	"Entity.h"
 	"RenderEngine.h"
 	<vector>
 
-1406556776 /home/brock/code/cpp/BallGame/include/Level.h
+1407152857 /home/brock/code/cpp/BallGame/include/Level.h
 	"Block.h"
 	"Player.h"
 	"RenderEngine.h"
 	"CollisionEntity.h"
 
-1407070679 /home/brock/code/cpp/BallGame/include/Block.h
+1407154954 /home/brock/code/cpp/BallGame/include/Block.h
 	"CollisionEntity.h"
 
-1407076136 /home/brock/code/cpp/BallGame/include/Player.h
+1407147387 /home/brock/code/cpp/BallGame/include/Player.h
 	"CollisionEntity.h"
 
 1406553383 /home/brock/code/cpp/BallGame/include/Timer.h
 	"SDL2/SDL.h"
 
-1407070691 source:/home/brock/code/cpp/BallGame/src/Block.cpp
+1407154980 source:/home/brock/code/cpp/BallGame/src/Block.cpp
 	"Block.h"
 
 1406553383 source:/home/brock/code/cpp/BallGame/src/EngineManager.cpp
@@ -340,24 +340,25 @@
 
 1406553383 /home/brock/code/cpp/BallGame/include/EngineManager.h
 
-1406556749 source:/home/brock/code/cpp/BallGame/src/Entity.cpp
+1407147387 source:/home/brock/code/cpp/BallGame/src/Entity.cpp
 	"Entity.h"
 	"BallGame.h"
 
-1407076345 source:/home/brock/code/cpp/BallGame/src/Level.cpp
+1407160192 source:/home/brock/code/cpp/BallGame/src/Level.cpp
 	"Level.h"
 	<boost/foreach.hpp>
+	"BallGame.h"
 
-1406714492 source:/home/brock/code/cpp/BallGame/src/Main.cpp
+1407147387 source:/home/brock/code/cpp/BallGame/src/Main.cpp
 	"BallGame.h"
 	<SDL2/SDL.h>
 
-1407077056 source:/home/brock/code/cpp/BallGame/src/Player.cpp
+1407160187 source:/home/brock/code/cpp/BallGame/src/Player.cpp
 	"Player.h"
 	<SDL2/SDL.h>
 	"BallGame.h"
 
-1406717974 source:/home/brock/code/cpp/BallGame/src/RenderEngine.cpp
+1407153005 source:/home/brock/code/cpp/BallGame/src/RenderEngine.cpp
 	"RenderEngine.h"
 	<SDL2/SDL.h>
 	"bgCommon.h"
@@ -371,7 +372,7 @@
 1406553383 source:/home/brock/code/cpp/BallGame/src/Timer.cpp
 	"Timer.h"
 
-1407076420 source:/home/brock/code/cpp/BallGame/src/VisualEntity.cpp
+1407156879 source:/home/brock/code/cpp/BallGame/src/VisualEntity.cpp
 	"VisualEntity.h"
 	"BallGame.h"
 	<string>
@@ -418,12 +419,12 @@
 
 1406553383 /home/brock/code/cpp/BallGame/include/Event.h
 
-1407070853 source:/home/brock/code/cpp/BallGame/src/EventEngine.cpp
+1407147387 source:/home/brock/code/cpp/BallGame/src/EventEngine.cpp
 	"EventEngine.h"
 	"SDL2/SDL.h"
 	"boost/foreach.hpp"
 
-1406721266 /home/brock/code/cpp/BallGame/include/EventEngine.h
+1407147387 /home/brock/code/cpp/BallGame/include/EventEngine.h
 	"EventSystem.h"
 	"EventCollision.h"
 	"Entity.h"
@@ -437,18 +438,18 @@
 
 1406553383 /home/brock/code/cpp/BallGame/include/EventInput.h
 
-1407073439 /home/brock/code/cpp/BallGame/include/EventCollision.h
+1407147387 /home/brock/code/cpp/BallGame/include/EventCollision.h
 	"CollisionEntity.h"
 
-1407070709 /home/brock/code/cpp/BallGame/include/CollisionEntity.h
+1407147387 /home/brock/code/cpp/BallGame/include/CollisionEntity.h
 	"VisualEntity.h"
 	"bgCommon.h"
 
-1406641685 source:/home/brock/code/cpp/BallGame/src/CollisionEntity.cpp
+1407147387 source:/home/brock/code/cpp/BallGame/src/CollisionEntity.cpp
 	"BallGame.h"
 	"CollisionEntity.h"
 
-1407074584 source:/home/brock/code/cpp/BallGame/src/EventCollision.cpp
+1407147387 source:/home/brock/code/cpp/BallGame/src/EventCollision.cpp
 	"EventCollision.h"
 
 1406553383 /home/brock/code/cpp/BallGame/include/EventSystem.h
@@ -457,11 +458,11 @@
 1406553383 source:/home/brock/code/cpp/BallGame/src/EventSystem.cpp
 	"EventSystem.h"
 
-1407074673 source:/home/brock/code/cpp/BallGame/src/CollisionEngine.cpp
+1407147387 source:/home/brock/code/cpp/BallGame/src/CollisionEngine.cpp
 	"CollisionEngine.h"
 	<boost/foreach.hpp>
 
-1407070732 /home/brock/code/cpp/BallGame/include/CollisionEngine.h
+1407147387 /home/brock/code/cpp/BallGame/include/CollisionEngine.h
 	"CollisionEntity.h"
 	"EventEngine.h"
 	"bgCommon.h"
