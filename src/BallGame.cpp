@@ -167,9 +167,9 @@ using namespace std;
 void BallGame::checkBounds(CollisionEntity *entity)
 {
     //STUB("Needs all the pointers removing");
-    ScreenDimensions tmp = renderEngine.getScreenDimensions();
-    int screenWidth = tmp.width;
-    int screenHeight = tmp.height;
+    SDL_Rect tmp = currentLevel->getLevelDimensions();
+    int screenWidth = tmp.w;
+    int screenHeight = tmp.h;
     Rect posDim = entity->getPosDim();
 
     if( posDim.x < 0 )
