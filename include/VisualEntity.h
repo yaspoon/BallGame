@@ -21,7 +21,7 @@ class VisualEntity: public Entity
 
         virtual ~VisualEntity();
 
-        virtual void draw(RenderEngine renderEngine);
+        virtual void draw(RenderEngine renderEngine, vec2 offset);
 
         Rect& getPosDim();
 
@@ -42,6 +42,8 @@ class VisualEntity: public Entity
         std::vector<vec2> getPerpAxes();
 
         std::vector<vec2> getNormedAxes();
+
+        int getSprite() {return sprite;}
 
     private:
 

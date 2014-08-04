@@ -58,11 +58,11 @@ VisualEntity::~VisualEntity()
     BALLGAME.getCurrentLevel()->removeDrawableObject(this);
 }
 
-void VisualEntity::draw(RenderEngine renderEngine)
+void VisualEntity::draw(RenderEngine renderEngine, vec2 offset)
 {
     SDL_Rect dest;
-    dest.x = (int)posDim.x;
-    dest.y = (int)posDim.y;
+    dest.x = (int)(posDim.x + offset.x);
+    dest.y = (int)(posDim.y + offset.y);
     dest.w = (int)posDim.w;
     dest.h = (int)posDim.h;
 
