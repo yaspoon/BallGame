@@ -22,6 +22,7 @@ class Player: public CollisionEntity
         void handleSystemEvent(EventSystem systemEvent);
         void handleCollisionEvent(CollisionEntity *collisionEntity, CollisionResult result);
         CollisionEntity *clone();
+        void draw(RenderEngine renderEngine, vec2 offset);
 
     private:
         int moveSpeed;

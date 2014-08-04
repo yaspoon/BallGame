@@ -8,7 +8,7 @@ Author: Brock
 #include "BallGame.h"
 
 Player::Player()
-:CollisionEntity( "./images/ball.png", 400, 20, 40, 40 )
+:CollisionEntity( "./images/ball.png", 301, 20, 40, 40 )
 {
     BALLGAME.getEventEngine()->registerForEvents(this, EV_INPUT);
     moveSpeed = 250;
@@ -113,4 +113,36 @@ CollisionEntity *Player::clone()
 {
     Player *tmp = new Player(*this);
     return (CollisionEntity*)tmp;
+}
+
+void Player::draw(RenderEngine renderEngine, vec2 offset)
+{
+    Rect posDim = getPosDim();
+    SDL_Rect dest;
+    ScreenDimensions screenDims = renderEngine.getScreenDimensions();
+    SDL_Rect levelDimensions = BALLGAME.getCurrentLevel()->getLevelDimensions();
+
+    if((posDim.x + (posDim.w / 2)) <= (screenDims.width / 2))
+    {
+        dest.x = (int)posDim.x;
+        dest.y = (int)posDim.y;
+        dest.w = (int)posDim.w;
+        dest.h = (int)posDim.h;
+    }
+    else if((posDim.x + (posDim.w / 2)) >= levelDimensions.w - (screenDims.width / 2))
+    {
+        dest.x = (int)posDim.x - (levelDimensions.w - screenDims.width );
+        dest.y = (int)posDim.y;
+        dest.w = (int)posDim.w;
+        dest.h = (int)posDim.h;
+    }
+    else
+    {
+        dest.x = (int)((screenDims.width / 2) - (posDim.w / 2));
+        dest.y = (int)posDim.y;
+        dest.w = (int)posDim.w;
+        dest.h = (int)posDim.h;
+    }
+
+    renderEngine.draw(getSprite(), NULL, &dest);
 }
