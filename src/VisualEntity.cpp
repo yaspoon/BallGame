@@ -63,6 +63,23 @@ VisualEntity::~VisualEntity()
 void VisualEntity::draw(RenderEngine renderEngine, vec2 offset)
 {
     SDL_Rect dest;
+
+    switch(drawingLayer)
+    {
+        case L_DEFAULT: //Do nothing we want default scrolling speed
+            break;
+        case L_BACKGROUND1: //Furtherest away so slowest scrolling speed
+            offset.x = offset.x * 0.5;
+            offset.y = offset.y * 0.5;
+            break;
+        case L_BACKGROUND0:
+            offset.x = offset.x * 0.8;
+            offset.y = offset.y * 0.8;
+            break;
+        case L_FOREGROUND:
+            break;
+    }
+
     dest.x = (int)(posDim.x + offset.x);
     dest.y = (int)(posDim.y + offset.y);
     dest.w = (int)posDim.w;
