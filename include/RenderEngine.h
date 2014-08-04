@@ -21,7 +21,7 @@ class RenderEngine
         SDL_Renderer *getRenderer();
         std::shared_ptr<SDL_Window*> getWindow();
         ScreenDimensions getScreenDimensions();
-
+        void setBackgroundColour(SDL_Color color);
     protected:
     private:
         SDL_Renderer *renderer;

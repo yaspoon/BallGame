@@ -123,3 +123,11 @@ ScreenDimensions RenderEngine::getScreenDimensions()
     ScreenDimensions screenDim = {screenWidth, screenHeight};
     return screenDim;
 }
+
+void RenderEngine::setBackgroundColour(SDL_Color color)
+{
+    if(SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a) != 0)
+    {
+        std::cout << "ERROR:Failed to set draw color SDL_Error:" << SDL_GetError() << std::endl;
+    }
+}
