@@ -16,7 +16,7 @@ public:
 
     Block();
 
-    Block(int width, int height, float x, float y);
+    Block(int width, int height, float x, float y, LAYER drawingLayer);
 
 //--------------------------------------Destructors/
     virtual ~Block();

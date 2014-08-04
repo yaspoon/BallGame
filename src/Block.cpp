@@ -2,14 +2,14 @@
 
 //--------------------------------------Constructors/
 Block::Block()
-:CollisionEntity("./images/block.bmp", 20.0f, 20.0f, 20.0f, 20.0f )
+:CollisionEntity("./images/block.bmp", 20.0f, 20.0f, 20.0f, 20.0f, L_DEFAULT)
 {
     CollisionEntity::setCtype( C_IMMOVABLE);
 
 }
 
-Block::Block(int width, int height, float x, float y )
-:CollisionEntity( "./images/block.bmp", x, y, width, height )
+Block::Block(int width, int height, float x, float y, LAYER drawingLayer)
+:CollisionEntity( "./images/block.bmp", x, y, width, height, drawingLayer)
 {
     CollisionEntity::setCtype( C_IMMOVABLE );
 }
