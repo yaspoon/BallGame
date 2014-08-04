@@ -14,6 +14,11 @@ Block::Block(int width, int height, float x, float y, LAYER drawingLayer)
     CollisionEntity::setCtype( C_IMMOVABLE );
 }
 
+Block::Block(std::string filePath, int width, int height, float x, float y, LAYER drawingLayer)
+:CollisionEntity( filePath, x, y, width, height, drawingLayer)
+{
+    CollisionEntity::setCtype( C_IMMOVABLE );
+}
 //--------------------------------------Destructors/
 Block::~Block()
 {
