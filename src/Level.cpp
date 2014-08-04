@@ -7,11 +7,10 @@
     {
         m_nextLevel = "none";
 
-        m_startPosition.x = 140;
-        m_startPosition.y = 180;
-
-        m_endPosition.x = 240;
-        m_endPosition.y = 240;
+        levelDimensions.x = 0;
+        levelDimensions.y = 0;
+        levelDimensions.w = 1280;
+        levelDimensions.h = 480;
     }
 
     Level::Level( std::string )
@@ -39,29 +38,25 @@
             new Block(20, 20, 150 +(i * 20), 400);
         }*/
 
-        new Block(640, 20, 0, 460);
+        new Block(1280, 20, 0, 460);
+        new Block(20, 20, 960, 400);
 
 
-        /*for(int i = 0; i < 6; i++)
+        for(int i = 0; i < 6; i++)
         {
             new Block(20, 20, 260 + i * 20, 460 - (20 * i));
-        }*/
+        }
 
-        new Block(20, 20, 400, 360);
+        new Block(20, 20, 300, 360);
 
         STUB("Returning true by default for now");
         return true;
     }
 
     //------------------------------Accessors
-    SDL_Rect Level::getStartPosition()
+    SDL_Rect Level::getLevelDimensions()
     {
-        return m_startPosition;
-    }
-
-    SDL_Rect Level::getEndPosition()
-    {
-        return m_endPosition;
+        return levelDimensions;
     }
 
     std::vector<Entity*> Level::getLevelObjects()
@@ -92,10 +87,30 @@
     void Level::draw(RenderEngine renderEngine)
     {
         renderEngine.clearScreen();//Not sure level should do this
+        vec2 offset;
+        Rect posDim = m_player->getPosDim();
+        ScreenDimensions screenDims = renderEngine.getScreenDimensions();
+
+
+        if((posDim.x + (posDim.w / 2)) <= (screenDims.width / 2))
+        {
+            offset.x = 0;
+            offset.y = 0;
+        }
+        else if((posDim.x + (posDim.w / 2)) >= (levelDimensions.w - (screenDims.width / 2)))
+        {
+            offset.x = (screenDims.width / 2) - (levelDimensions.w - (screenDims.width / 2));
+            offset.y = 0;
+        }
+        else
+        {
+            offset.x = (screenDims.width / 2) - (posDim.x + (posDim.w / 2));
+            offset.y = 0;
+        }
 
         BOOST_FOREACH(VisualEntity* object, drawableObjects)
         {
-            object->draw(renderEngine);
+            object->draw(renderEngine, offset);
         }
 
         renderEngine.show();

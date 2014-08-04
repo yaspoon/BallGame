@@ -15,8 +15,7 @@ class Level
     std::vector<Entity*> levelObjects;
     std::vector<VisualEntity*> drawableObjects;
     std::vector<CollisionEntity*> collidableObjects;
-    SDL_Rect m_startPosition;
-    SDL_Rect m_endPosition;
+    SDL_Rect levelDimensions;
     std::string m_nextLevel;
     std::shared_ptr<Player> m_player;
 
@@ -33,9 +32,7 @@ class Level
 //--------------------------------------Methods/
     bool initialise();
     //------------------------------Accessors
-    SDL_Rect getStartPosition();
-
-    SDL_Rect getEndPosition();
+    SDL_Rect getLevelDimensions();
 
     std::vector<Entity*> getLevelObjects();
 
