@@ -14,7 +14,7 @@ Player::Player()
     moveSpeed = 250;
     CollisionEntity::setCtype( C_MOVEABLE );
     CollisionShape shape;
-
+    shape.radius = 20.0f;
     CollisionEntity::setCollisionShape(shape);
 }
 
