@@ -8,11 +8,14 @@ Author: Brock
 #include "BallGame.h"
 
 Player::Player()
-:CollisionEntity( "./images/ball.png", 0, 20, 40, 40, L_DEFAULT)
+:CollisionEntity( "./images/ball.png", 0, 20, 40, 40, L_DEFAULT, CS_CIRCLE)
 {
     BALLGAME.getEventEngine()->registerForEvents(this, EV_INPUT);
     moveSpeed = 250;
     CollisionEntity::setCtype( C_MOVEABLE );
+    CollisionShape shape;
+
+    CollisionEntity::setCollisionShape(shape);
 }
 
 Player::~Player()
