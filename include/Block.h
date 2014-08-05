@@ -17,7 +17,9 @@ public:
     Block();
 
     Block(int width, int height, float x, float y, LAYER drawingLayer);
+    Block(int width, int height, float x, float y, LAYER drawingLayer, CollisionShape shape);
     Block(std::string imagePath, int width, int height, float x, float y, LAYER drawingLayer);
+    Block(std::string imagePath, int width, int height, float x, float y, LAYER drawingLayer, CollisionShape shape);
 
 //--------------------------------------Destructors/
     virtual ~Block();
