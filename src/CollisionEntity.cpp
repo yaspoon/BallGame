@@ -113,25 +113,15 @@ std::vector<vec2> CollisionEntity::getVertices()
     std::vector<vec2> vertices;
     Rect posDim = getPosDim();
 
-    vec2 topLeft;
-    topLeft.x = posDim.x;
-    topLeft.y = posDim.y;
-    vertices.push_back(topLeft);
+    for(std::vector<vec2>::iterator it = shape.points.begin(); it != shape.points.end(); ++it)
+    {
+        vec2 point = *it;
+        vec2 vertex;
+        vertex.x = posDim.x + point.x;
+        vertex.y = posDim.y + point.y;
+        vertices.push_back(vertex);
+    }
 
-    vec2 topRight;
-    topRight.x = posDim.x + posDim.w;
-    topRight.y = posDim.y;
-    vertices.push_back(topRight);
-
-    vec2 bottomRight;
-    bottomRight.x = posDim.x + posDim.w;
-    bottomRight.y = posDim.y + posDim.h;
-    vertices.push_back(bottomRight);
-
-    vec2 bottomLeft;
-    bottomLeft.x = posDim.x;
-    bottomLeft.y = posDim.y + posDim.h;
-    vertices.push_back(bottomLeft);
 
     return vertices;
 }
