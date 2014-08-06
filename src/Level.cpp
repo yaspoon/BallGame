@@ -33,9 +33,9 @@
         BALLGAME.getRenderEngine().setBackgroundColour(backgroundColour);
 
         CollisionShape blockShape;
-        for(float i = -10; i <= 10; i += 20)
+        for(float i = 0; i <= 20; i += 20)
         {
-            for(float j = -10; i <= 10; i += 20)
+            for(float j = 0; j <= 20; j += 20)
             {
                 blockShape.points.push_back((vec2){i, j});
             }
