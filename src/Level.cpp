@@ -33,13 +33,10 @@
         BALLGAME.getRenderEngine().setBackgroundColour(backgroundColour);
 
         CollisionShape blockShape;
-        for(float i = 0; i <= 20; i += 20)
-        {
-            for(float j = 0; j <= 20; j += 20)
-            {
-                blockShape.points.push_back((vec2){i, j});
-            }
-        }
+        blockShape.points.push_back((vec2){0, 0});
+        blockShape.points.push_back((vec2){20, 0});
+        blockShape.points.push_back((vec2){20, 20});
+        blockShape.points.push_back((vec2){0, 20});
 
         //new Block(200, 40, 0, 460);
         //new Block(20, 20, 200, 420);
@@ -71,6 +68,12 @@
         }
 
         new Block("images/sun.png", 200, 200, 320, 0, L_BACKGROUND1);
+
+        CollisionShape triangleShape;
+        triangleShape.points.push_back((vec2){0, 100});
+        triangleShape.points.push_back((vec2){200, 0});
+        triangleShape.points.push_back((vec2){200, 100});
+        new Block("images/triangle.png", 200, 100, 700, 360, L_DEFAULT, triangleShape);
 
         STUB("Returning true by default for now");
         return true;

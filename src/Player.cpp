@@ -15,13 +15,10 @@ Player::Player()
     CollisionEntity::setCtype( C_MOVEABLE );
     CollisionShape shape;
     //shape.radius = 20.0f;
-    for(float i = 0; i <= 40; i += 40)
-    {
-        for(float j = 0; j <= 40; j += 40)
-        {
-            shape.points.push_back((vec2){i, j});
-        }
-    }
+    shape.points.push_back((vec2){0, 0});
+    shape.points.push_back((vec2){40, 0});
+    shape.points.push_back((vec2){40, 40});
+    shape.points.push_back((vec2){0, 40});
     CollisionEntity::setCollisionShape(shape);
 }
 
