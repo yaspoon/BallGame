@@ -15,10 +15,14 @@ Player::Player()
     CollisionEntity::setCtype( C_MOVEABLE );
     CollisionShape shape;
     //shape.radius = 20.0f;
-    shape.points.push_back((vec2){0, 0});
-    shape.points.push_back((vec2){40, 0});
-    shape.points.push_back((vec2){40, 40});
-    shape.points.push_back((vec2){0, 40});
+    shape.points.push_back((vec2){20, 0});
+    shape.points.push_back((vec2){34.14, 5.85});
+    shape.points.push_back((vec2){40, 20});
+    shape.points.push_back((vec2){34.14, 34.14});
+    shape.points.push_back((vec2){20, 40});
+    shape.points.push_back((vec2){5.85, 34.14});
+    shape.points.push_back((vec2){0, 20});
+    shape.points.push_back((vec2){5.85, 5.85});
     CollisionEntity::setCollisionShape(shape);
 }
 
@@ -110,7 +114,9 @@ void Player::handleCollisionEvent(CollisionEntity *collisionEntity, CollisionRes
         }
         else
         {
-            setYvel(-getYvel());
+            float newYvel = getYvel();
+            newYvel = (newYvel > 0.0f) ? newYvel : -newYvel;
+            setYvel(newYvel);
         }
 
     }
