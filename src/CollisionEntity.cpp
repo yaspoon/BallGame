@@ -178,7 +178,7 @@ std::vector<vec2> CollisionEntity::getPerpAxes()
 
 std::vector<vec2> CollisionEntity::getNormedAxes()
 {
-    /*std::vector<vec2> axes = getPerpAxes();
+    std::vector<vec2> axes = getPerpAxes();
 
     for(std::vector<vec2>::iterator it = axes.begin(); it != axes.end(); ++it)
     {
@@ -190,13 +190,13 @@ std::vector<vec2> CollisionEntity::getNormedAxes()
         axis.y = axis.y / length;
 
         *it = axis;
-    }*/
+    }
 
-    std::vector<vec2> axes;
+    /*std::vector<vec2> axes;
     vec2 xaxis = {1, 0};
     vec2 yaxis = {0, 1};
     axes.push_back(xaxis);
-    axes.push_back(yaxis);
+    axes.push_back(yaxis);*/
 
     return axes;
 }
