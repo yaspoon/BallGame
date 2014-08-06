@@ -38,15 +38,6 @@
         blockShape.points.push_back((vec2){20, 20});
         blockShape.points.push_back((vec2){0, 20});
 
-        //new Block(200, 40, 0, 460);
-        //new Block(20, 20, 200, 420);
-
-        /*for(int i = 0; i < 6; i++)
-        {
-            new Block(20, 20, 150 +(i * 20), 460);
-            new Block(20, 20, 150 +(i * 20), 400);
-        }*/
-
         new Block("images/Proj/edge_left.png", 20, 20, 0, 460, L_DEFAULT, blockShape);
         for(int i = 1; i < ((levelDimensions.w / 20) - 1); i++)
         {
