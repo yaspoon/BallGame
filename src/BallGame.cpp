@@ -38,7 +38,7 @@ using namespace std;
         if(renderEngine.initialise())
         {
             resourceManager->initialise();
-            currentLevel = std::shared_ptr<Level>(new Level());
+            currentLevel = new Level();
             currentLevel->initialise();
             Timer fps;
             Timer update;
@@ -146,7 +146,7 @@ using namespace std;
         return eventEngine;
     }
 
-    std::shared_ptr<Level> BallGame::getCurrentLevel()
+    Level *BallGame::getCurrentLevel()
     {
         return currentLevel;
     }
