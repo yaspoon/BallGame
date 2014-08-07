@@ -1,6 +1,7 @@
 #include "Level.h"
 #include <boost/foreach.hpp>
 #include "BallGame.h"
+#include "MoveableBlock.h"
 
 //--------------------------------------Constructors/
     //Default Constructor loads the default level
@@ -64,7 +65,7 @@
         triangleShape.points.push_back((vec2){0, 100});
         triangleShape.points.push_back((vec2){200, 0});
         triangleShape.points.push_back((vec2){200, 100});
-        new Block("images/triangle.png", 200, 100, 700, 360, L_DEFAULT, triangleShape);
+        new MoveableBlock("images/triangle.png", 200, 100, 0, 360, L_DEFAULT, triangleShape, (vec2){1,0}, 20);
 
         STUB("Returning true by default for now");
         return true;
