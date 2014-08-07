@@ -15,6 +15,7 @@ class ResourceManager
         int loadSurface(std::string filepath);
         int loadTexture(int resourceId);
         int loadTexture(std::string filepath);
+        int loadText(std::string text);
         void unloadResource(int resource);
         Resource getResource(int resourceId);
         void initialise(); //Not great but it will work I hope...
@@ -25,6 +26,7 @@ class ResourceManager
         int resourceCount;
         SDL_Surface *internal_loadSurface(std::string filepath);
         SDL_Texture *internal_loadTexture(std::string filepath);
+        SDL_Texture *internal_loadText(std::string text);
 };
 
 #endif // RESOURCEMANAGER_H
