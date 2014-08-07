@@ -10,9 +10,6 @@ typedef struct Rect_s {
   float x;
   float y;
 
-  float prevX;
-  float prevY;
-
   int w;
   int h;
 } Rect;

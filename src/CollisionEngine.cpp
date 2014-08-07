@@ -1,5 +1,6 @@
 #include "CollisionEngine.h"
 #include <boost/foreach.hpp>
+#include "QuadTree.h"
 
 CollisionEngine::CollisionEngine()
 {
@@ -11,72 +12,64 @@ CollisionEngine::~CollisionEngine()
     //dtor
 }
 
-void CollisionEngine::handleCollisions(std::vector<CollisionEntity*> collidables, std::shared_ptr<EventEngine> eventEngine)
+void CollisionEngine::performCollisionDetection(SDL_Rect bounds, std::vector<CollisionEntity*> collidables, std::shared_ptr<EventEngine> eventEngine)
 {
-    std::vector<CollisionEntity*> collidersLeft = collidables;
-    BOOST_FOREACH(CollisionEntity *collider1, collidables)
+    QuadTree quadTree(0, bounds);
+    for(std::vector<CollisionEntity*>::iterator it = collidables.begin(); it != collidables.end(); ++it)
     {
-        BOOST_FOREACH(CollisionEntity *collider2, collidersLeft)
+        quadTree.insert(*it);
+    }
+
+    for(std::vector<CollisionEntity*>::iterator it = collidables.begin(); it != collidables.end(); ++it)
+    {
+        std::vector<CollisionEntity*> tmp;
+        std::vector<CollisionEntity*> colliders = quadTree.retrieve(tmp, *it);
+        handleCollisions(*it, &colliders, eventEngine);
+    }
+}
+
+void CollisionEngine::handleCollisions(CollisionEntity *collider1, std::vector<CollisionEntity*> *collidables, std::shared_ptr<EventEngine> eventEngine)
+{
+    BOOST_FOREACH(CollisionEntity *collider2, *collidables)
+    {
+        if(collider1 != collider2) //Not the same object
         {
-            if(collider1 != collider2) //Not the same object
+            if(collider1->getCtype() == C_MOVEABLE) //If this thing is allowed to move we can push it out
             {
-                if(collider1->getCtype() == C_MOVEABLE) //If this thing is allowed to move we can push it out
-                {
-                    if(collider2->getCtype() == C_MOVEABLE) //If they both can move maybe we can push both of them out of colliding
-                    {
-                        CollisionResult collisionResult = testForCollision(collider1, collider2);
-                        if(collisionResult.isColliding) //If they're colliding
-                        {
-                            Rect collider1pos = collider1->getPosDim();
-                            collider1pos.x = collider1pos.x + (collisionResult.minAxis.x * (collisionResult.minDistance / 2));
-                            collider1pos.y = collider1pos.y + (collisionResult.minAxis.y * (collisionResult.minDistance / 2));
-                            collider1->setPos(collider1pos.x, collider1pos.y);
-                            EventCollision collider1Event(collider1, collider2, collisionResult);
-                            eventEngine->addCollisionEvent(collider1Event);
-
-                            Rect collider2pos = collider2->getPosDim();
-                            collider2pos.x = collider2pos.x - (collisionResult.minAxis.x * (collisionResult.minDistance / 2));
-                            collider2pos.y = collider2pos.y - (collisionResult.minAxis.y * (collisionResult.minDistance / 2));
-                            collider2->setPos(collider2pos.x, collider2pos.y);
-                            EventCollision collider2Event(collider2, collider1, collisionResult);
-                            eventEngine->addCollisionEvent(collider2Event);
-                        }
-                        else
-                        {
-                            //collider1->setOnGround(false);
-                            //collider2->setOnGround(false);
-                        }
-                     }
-                    else //Nope just move collider1 out then
-                    {
-                        CollisionResult collisionResult = testForCollision(collider1, collider2);
-                        if(collisionResult.isColliding) //If they're colliding
-                        {
-                            Rect posDim = collider1->getPosDim();
-                            posDim.x = posDim.x + (collisionResult.minAxis.x * collisionResult.minDistance);
-                            posDim.y = posDim.y + (collisionResult.minAxis.y * collisionResult.minDistance);
-                            collider1->setPos(posDim.x, posDim.y);
-
-                            EventCollision collider1Event(collider1, collider2, collisionResult);
-                            eventEngine->addCollisionEvent(collider1Event);
-                            EventCollision collider2Event(collider2, collider1, collisionResult);
-                            eventEngine->addCollisionEvent(collider2Event);
-                        }
-                        else
-                        {
-                            //collider1->setOnGround(false);
-                        }
-                    }
-                }
-                else if(collider2->getCtype() == C_MOVEABLE) //Well I hope this object can move else we can't do fuck all about them colliding
+                if(collider2->getCtype() == C_MOVEABLE) //If they both can move maybe we can push both of them out of colliding
                 {
                     CollisionResult collisionResult = testForCollision(collider1, collider2);
                     if(collisionResult.isColliding) //If they're colliding
                     {
-                        Rect posDim = collider2->getPosDim();
+                        Rect collider1pos = collider1->getPosDim();
+                        collider1pos.x = collider1pos.x + (collisionResult.minAxis.x * (collisionResult.minDistance / 2));
+                        collider1pos.y = collider1pos.y + (collisionResult.minAxis.y * (collisionResult.minDistance / 2));
+                        collider1->setPos(collider1pos.x, collider1pos.y);
+                        EventCollision collider1Event(collider1, collider2, collisionResult);
+                        eventEngine->addCollisionEvent(collider1Event);
+
+                        Rect collider2pos = collider2->getPosDim();
+                        collider2pos.x = collider2pos.x - (collisionResult.minAxis.x * (collisionResult.minDistance / 2));
+                        collider2pos.y = collider2pos.y - (collisionResult.minAxis.y * (collisionResult.minDistance / 2));
+                        collider2->setPos(collider2pos.x, collider2pos.y);
+                        EventCollision collider2Event(collider2, collider1, collisionResult);
+                        eventEngine->addCollisionEvent(collider2Event);
+                    }
+                    else
+                    {
+                        //collider1->setOnGround(false);
+                        //collider2->setOnGround(false);
+                    }
+                 }
+                else //Nope just move collider1 out then
+                {
+                    CollisionResult collisionResult = testForCollision(collider1, collider2);
+                    if(collisionResult.isColliding) //If they're colliding
+                    {
+                        Rect posDim = collider1->getPosDim();
                         posDim.x = posDim.x + (collisionResult.minAxis.x * collisionResult.minDistance);
                         posDim.y = posDim.y + (collisionResult.minAxis.y * collisionResult.minDistance);
-                        collider2->setPos(posDim.x, posDim.y);
+                        collider1->setPos(posDim.x, posDim.y);
 
                         EventCollision collider1Event(collider1, collider2, collisionResult);
                         eventEngine->addCollisionEvent(collider1Event);
@@ -85,22 +78,31 @@ void CollisionEngine::handleCollisions(std::vector<CollisionEntity*> collidables
                     }
                     else
                     {
-                        //collider2->setOnGround(false);
+                        //collider1->setOnGround(false);
                     }
                 }
-
             }
-        }
-        std::vector<CollisionEntity*>::size_type i = 0;
-        bool notFound = true;
-        while(i < collidersLeft.size() && notFound)
-        {
-            if(collidersLeft[i] == collider1)
+            else if(collider2->getCtype() == C_MOVEABLE) //Well I hope this object can move else we can't do fuck all about them colliding
             {
-                collidersLeft.erase(collidersLeft.begin() + i);
-                notFound = false;
+                CollisionResult collisionResult = testForCollision(collider1, collider2);
+                if(collisionResult.isColliding) //If they're colliding
+                {
+                    Rect posDim = collider2->getPosDim();
+                    posDim.x = posDim.x + (collisionResult.minAxis.x * collisionResult.minDistance);
+                    posDim.y = posDim.y + (collisionResult.minAxis.y * collisionResult.minDistance);
+                    collider2->setPos(posDim.x, posDim.y);
+
+                    EventCollision collider1Event(collider1, collider2, collisionResult);
+                    eventEngine->addCollisionEvent(collider1Event);
+                    EventCollision collider2Event(collider2, collider1, collisionResult);
+                    eventEngine->addCollisionEvent(collider2Event);
+                }
+                else
+                {
+                    //collider2->setOnGround(false);
+                }
             }
-            i++;
+
         }
     }
 }

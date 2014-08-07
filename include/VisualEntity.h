@@ -32,8 +32,6 @@ class VisualEntity: public Entity
 
         void setPos( float x, float y );
 
-        void setPrevPos( float x, float y );
-
         int getSprite() {return sprite;}
 
     private:

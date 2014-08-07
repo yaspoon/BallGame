@@ -53,13 +53,13 @@
             new Block(20, 20, 260 + i * 20, 440 - (20 * i), L_DEFAULT, blockShape);
         }
 
-        for(int i = 0; i < (levelDimensions.w / 48); i++)
+        /*for(int i = 0; i < (levelDimensions.w / 48); i++)
         {
             new Block("images/tree-1.png", 48, 76, i * (48 * 2), 432, L_BACKGROUND0);
             new Block("images/tree-2.png", 48, 76, 48 + i * (48 * 2), 384, L_BACKGROUND1);
-        }
+        }*/
 
-        new Block("images/sun.png", 200, 200, 320, 0, L_BACKGROUND1);
+        //new Block("images/sun.png", 200, 200, 320, 0, L_BACKGROUND1);
 
         CollisionShape triangleShape;
         triangleShape.points.push_back((vec2){0, 100});

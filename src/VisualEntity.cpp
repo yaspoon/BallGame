@@ -16,8 +16,6 @@ VisualEntity::VisualEntity()
     posDim.h = 40;
     posDim.x = 0;
     posDim.y = 0;
-    posDim.prevX = 0;
-    posDim.prevY = 0;
 
     sprite = BALLGAME.getResourceManager()->loadTexture("images/null.png");
     BALLGAME.getCurrentLevel()->addDrawableObject(this, L_DEFAULT);
@@ -31,8 +29,6 @@ VisualEntity::VisualEntity( std::string filename, float x_i, float y_i, float wi
     posDim.h = height;
     posDim.x = x_i;
     posDim.y = y_i;
-    posDim.prevX = x_i;
-    posDim.prevY = y_i;
 
     sprite = BALLGAME.getResourceManager()->loadTexture(filename);
     BALLGAME.getCurrentLevel()->addDrawableObject(this, drawingLayer);
@@ -97,10 +93,4 @@ void VisualEntity::setPos( float x, float y )
 {
     posDim.x = x;
     posDim.y = y;
-}
-
-void VisualEntity::setPrevPos( float x, float y )
-{
-    posDim.prevX = x;
-    posDim.prevY = y;
 }
