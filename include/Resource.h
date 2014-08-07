@@ -9,7 +9,8 @@ enum ResourceType
         RES_UNKNOWN = 0,
         RES_SURFACE,
         RES_TEXTURE,
-        RES_AUDIO
+        RES_AUDIO,
+        RES_TEXT
 };
 
 class Resource
