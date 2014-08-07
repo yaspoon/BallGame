@@ -1,6 +1,7 @@
 #include "ResourceManager.h"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+//#include <SDL2/SDL_ttf.h>
 #include "bgCommon.h"
 #include "BallGame.h"
 
@@ -119,6 +120,48 @@ int ResourceManager::loadTexture(std::string filepath)
     return retval;
 }
 
+int ResourceManager::loadText(std::string text)
+{
+    int retval = -1;
+    std::map<std::string,int>::iterator it = resourcesMap.find(text);
+    if(it != resourcesMap.end()) //Resource potentially exists in system
+    {
+        Resource tmp = resources[it->second];
+        if(tmp.getResourcePath().compare(text) == 0)
+        {
+            tmp.setReferenceCount(tmp.getReferenceCount() + 1);
+            resources[it->second] = tmp;
+            retval = tmp.getId();
+        }
+        else
+        {
+            std::cout << "Hashing collision" << std::endl;
+        }
+    }
+    else //Resource doesn't exist yet
+    {
+        Resource newText;
+        newText.setId(resourceCount);
+        newText.setType(RES_TEXT);
+        newText.setResourcePath(text);
+        newText.setReferenceCount(1);
+        newText.setTexture(internal_loadText(text));
+        if(newText.getTexture() != NULL)
+        {
+            resources.push_back(newText);
+            resourcesMap[text] = resourceCount;
+            retval = resourceCount;
+            resourceCount++;
+        }
+        else
+        {
+            std::cout << "Error:Failed to load test SDL_Error:" << SDL_GetError() << std::endl;
+        }
+    }
+
+    return retval;
+}
+
 void ResourceManager::unloadResource(int resource)
 {
     Resource tmp = resources[resource];
@@ -182,4 +225,21 @@ SDL_Texture *ResourceManager::internal_loadTexture(std::string filepath)
     }
 
     return retval;
+}
+
+SDL_Texture *ResourceManager::internal_loadText(std::string text)
+{
+    SDL_Texture *retval = NULL;
+    RenderEngine renderer = BALLGAME.getRenderEngine();
+    SDL_Color color = (SDL_Color){255, 255, 255};
+    SDL_Surface *tmp = TTF_RenderText_Solid(renderer.getFont(), text.c_str(), color);
+
+    if(tmp != NULL)
+    {
+        retval = SDL_CreateTextureFromSurface(renderer.getRenderer(), tmp);
+        SDL_FreeSurface(tmp);
+    }
+
+    return retval;
+
 }
