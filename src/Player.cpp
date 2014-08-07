@@ -12,6 +12,7 @@ Player::Player()
 {
     BALLGAME.getEventEngine()->registerForEvents(this, EV_INPUT);
     moveSpeed = 250;
+    onGroundText = BALLGAME.getResourceManager()->loadText("OnGround");
     CollisionEntity::setCtype( C_MOVEABLE );
     CollisionShape shape;
     //shape.radius = 20.0f;
@@ -57,7 +58,7 @@ void Player::handleInputEvent(EventInput inputEvent)
             case KEY_JUMP:
                 if(CollisionEntity::getOnGround())
                 {
-                    CollisionEntity::setYvel(-500.0);
+                    CollisionEntity::setYvel(-500.0f);
                     CollisionEntity::setOnGround(false);
                 }
             break;
@@ -110,7 +111,9 @@ void Player::handleCollisionEvent(CollisionEntity *collisionEntity, CollisionRes
         if(result.minDistance < 0.0f)
         {
             setOnGround(true);
-            setYvel(0.0f);
+            float currentYvel = getYvel();
+            currentYvel = (currentYvel < 0.0f) ? currentYvel : 0.0f;
+            setYvel(currentYvel);
         }
         else
         {
@@ -158,4 +161,10 @@ void Player::draw(RenderEngine renderEngine, vec2 offset)
     }
 
     renderEngine.draw(getSprite(), NULL, &dest);
+
+    if(CollisionEntity::getOnGround())
+    {
+        SDL_Rect textDest = {0, 0, 50, 20};
+        renderEngine.draw(onGroundText, NULL, &textDest);
+    }
 }

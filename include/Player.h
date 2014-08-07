@@ -26,6 +26,7 @@ class Player: public CollisionEntity
 
     private:
         int moveSpeed;
+        int onGroundText;
 };
 
 #endif // _PLAYER_H__
