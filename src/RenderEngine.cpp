@@ -32,6 +32,15 @@ bool RenderEngine::initialise()
             renderer = SDL_CreateRenderer(mainWindow, -1, 0);
             if(renderer != NULL)
             {
+                if(TTF_Init() == -1)
+                {
+                    std::cout << "Failed to init TTF library TTF_ERROR:" << TTF_GetError() << std::endl;
+                }
+                else
+                {
+                    font = TTF_OpenFont("DejaVuSans-Bold.ttf", 18);
+                }
+
                 std::cout << "Created window and renderer successfully" << std::endl;
                 retval = true;
             }
@@ -80,6 +89,7 @@ void RenderEngine::draw(int sprite, SDL_Rect *src, SDL_Rect *dest)
             SDL_DestroyTexture(tmp);
         }
         break;
+        case RES_TEXT:
         case RES_TEXTURE:
         {
             if(SDL_RenderCopy(renderer, spriteResource.getTexture(), src, dest) < 0)
@@ -111,6 +121,11 @@ void RenderEngine::setWindowTitle(std::string title)
 SDL_Renderer *RenderEngine::getRenderer()
 {
     return renderer;
+}
+
+TTF_Font *RenderEngine::getFont()
+{
+    return font;
 }
 
 std::shared_ptr<SDL_Window*> RenderEngine::getWindow()

@@ -2,6 +2,7 @@
 #define RENDERENGINE_H
 
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_ttf.h>
 #include <iostream>
 #include <memory>
 #include "ResourceManager.h"
@@ -19,6 +20,7 @@ class RenderEngine
         void setWindowTitle(std::string title);
         bool cleanup();
         SDL_Renderer *getRenderer();
+        TTF_Font *getFont();
         std::shared_ptr<SDL_Window*> getWindow();
         ScreenDimensions getScreenDimensions();
         void setBackgroundColour(SDL_Color color);
@@ -26,6 +28,7 @@ class RenderEngine
     private:
         SDL_Renderer *renderer;
         SDL_Window *mainWindow;
+        TTF_Font *font;
         int screenWidth;
         int screenHeight;
 };
