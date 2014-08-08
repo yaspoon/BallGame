@@ -87,9 +87,14 @@
         return drawableObjects;
     }
 
-    std::vector<CollisionEntity*> Level::getCollidableObjects()
+    std::vector<CollisionEntity*> Level::getmoveableObjects()
     {
-        return collidableObjects;
+        return moveableObjects;
+    }
+
+    std::vector<CollisionEntity*> Level::getimmoveableObjects()
+    {
+        return immoveableObjects;
     }
 
     int Level::getNumObjects()
@@ -201,17 +206,40 @@
 
     void Level::addCollidableObject(CollisionEntity *collider)
     {
-        collidableObjects.push_back(collider);
+        COLLIDABLE type = collider->getCtype();
+        switch(type)
+        {
+            case C_MOVEABLE:
+                moveableObjects.push_back(collider);
+                break;
+            case C_IMMOVABLE:
+                immoveableObjects.push_back(collider);
+                break;
+        }
     }
 
     void Level::removeCollidableObject(CollisionEntity *collider)
     {
-        for(std::vector<CollisionEntity*>::size_type i = 0; i < collidableObjects.size(); i++)
+        std::vector<CollisionEntity*> tmp = immoveableObjects;
+        tmp.insert(tmp.end(), moveableObjects.begin(), moveableObjects.end());
+        for(std::vector<CollisionEntity*>::size_type i = 0; i < tmp.size(); i++)
         {
-            if(collidableObjects[i] == collider)
+            switch(collider->getCtype())
             {
-                collidableObjects.erase(collidableObjects.begin() + i);
+                case C_MOVEABLE:
+                    if(moveableObjects[i] == collider)
+                    {
+                        moveableObjects.erase(moveableObjects.begin() + i);
+                    }
+                    break;
+                case C_IMMOVABLE:
+                    if(immoveableObjects[i] == collider)
+                    {
+                        immoveableObjects.erase(immoveableObjects.begin() + i);
+                    }
+                    break;
             }
+
         }
     }
     //------------------------------Mutators
