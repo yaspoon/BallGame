@@ -271,14 +271,15 @@
 	<cmath>
 	<limits>
 
-1407152901 /home/brock/code/cpp/BallGame/include/RenderEngine.h
+1407422282 /home/brock/code/cpp/BallGame/include/RenderEngine.h
 	<SDL2/SDL.h>
+	<SDL2/SDL_ttf.h>
 	<iostream>
 	<memory>
 	"ResourceManager.h"
 	"bgCommon.h"
 
-1407147387 source:/home/brock/code/cpp/BallGame/src/BallGame.cpp
+1407433794 source:/home/brock/code/cpp/BallGame/src/BallGame.cpp
 	"BallGame.h"
 	"VisualEntity.h"
 	"Timer.h"
@@ -290,7 +291,7 @@
 	<math.h>
 	<algorithm>
 
-1407147387 /home/brock/code/cpp/BallGame/include/BallGame.h
+1407422282 /home/brock/code/cpp/BallGame/include/BallGame.h
 	<SDL2/SDL.h>
 	<SDL2/SDL_opengl.h>
 	"Entity.h"
@@ -302,37 +303,37 @@
 	"EventEngine.h"
 	"CollisionEngine.h"
 
-1407147387 /home/brock/code/cpp/BallGame/include/Entity.h
+1407164923 /home/brock/code/cpp/BallGame/include/Entity.h
 	"bgCommon.h"
 	"EventSystem.h"
 	"EventInput.h"
 
-1407147387 /home/brock/code/cpp/BallGame/include/bgCommon.h
+1407433794 /home/brock/code/cpp/BallGame/include/bgCommon.h
 	<iostream>
 
 1401886964 /home/brock/code/cpp/BallGame/include/CollisionHandle.h
 
-1407155395 /home/brock/code/cpp/BallGame/include/VisualEntity.h
+1407433794 /home/brock/code/cpp/BallGame/include/VisualEntity.h
 	"Entity.h"
 	"RenderEngine.h"
 	<vector>
 
-1407152857 /home/brock/code/cpp/BallGame/include/Level.h
+1407418984 /home/brock/code/cpp/BallGame/include/Level.h
 	"Block.h"
 	"Player.h"
 	"RenderEngine.h"
 	"CollisionEntity.h"
 
-1407154954 /home/brock/code/cpp/BallGame/include/Block.h
+1407248399 /home/brock/code/cpp/BallGame/include/Block.h
 	"CollisionEntity.h"
 
-1407147387 /home/brock/code/cpp/BallGame/include/Player.h
+1407422282 /home/brock/code/cpp/BallGame/include/Player.h
 	"CollisionEntity.h"
 
 1406553383 /home/brock/code/cpp/BallGame/include/Timer.h
 	"SDL2/SDL.h"
 
-1407154980 source:/home/brock/code/cpp/BallGame/src/Block.cpp
+1407433471 source:/home/brock/code/cpp/BallGame/src/Block.cpp
 	"Block.h"
 
 1406553383 source:/home/brock/code/cpp/BallGame/src/EngineManager.cpp
@@ -340,25 +341,26 @@
 
 1406553383 /home/brock/code/cpp/BallGame/include/EngineManager.h
 
-1407147387 source:/home/brock/code/cpp/BallGame/src/Entity.cpp
+1407164923 source:/home/brock/code/cpp/BallGame/src/Entity.cpp
 	"Entity.h"
 	"BallGame.h"
 
-1407160192 source:/home/brock/code/cpp/BallGame/src/Level.cpp
+1407474273 source:/home/brock/code/cpp/BallGame/src/Level.cpp
 	"Level.h"
 	<boost/foreach.hpp>
 	"BallGame.h"
+	"MoveableBlock.h"
 
-1407147387 source:/home/brock/code/cpp/BallGame/src/Main.cpp
+1407164923 source:/home/brock/code/cpp/BallGame/src/Main.cpp
 	"BallGame.h"
 	<SDL2/SDL.h>
 
-1407160187 source:/home/brock/code/cpp/BallGame/src/Player.cpp
+1407422282 source:/home/brock/code/cpp/BallGame/src/Player.cpp
 	"Player.h"
 	<SDL2/SDL.h>
 	"BallGame.h"
 
-1407153005 source:/home/brock/code/cpp/BallGame/src/RenderEngine.cpp
+1407477720 source:/home/brock/code/cpp/BallGame/src/RenderEngine.cpp
 	"RenderEngine.h"
 	<SDL2/SDL.h>
 	"bgCommon.h"
@@ -372,7 +374,7 @@
 1406553383 source:/home/brock/code/cpp/BallGame/src/Timer.cpp
 	"Timer.h"
 
-1407156879 source:/home/brock/code/cpp/BallGame/src/VisualEntity.cpp
+1407433794 source:/home/brock/code/cpp/BallGame/src/VisualEntity.cpp
 	"VisualEntity.h"
 	"BallGame.h"
 	<string>
@@ -386,18 +388,18 @@
 	"Resource.h"
 	<string.h>
 
-1406553383 /home/brock/code/cpp/BallGame/include/Resource.h
+1407422282 /home/brock/code/cpp/BallGame/include/Resource.h
 	<SDL2/SDL.h>
 	<string>
 
-1406553383 source:/home/brock/code/cpp/BallGame/src/ResourceManager.cpp
+1407422282 source:/home/brock/code/cpp/BallGame/src/ResourceManager.cpp
 	"ResourceManager.h"
 	<SDL2/SDL.h>
 	<SDL2/SDL_image.h>
 	"bgCommon.h"
 	"BallGame.h"
 
-1406553383 /home/brock/code/cpp/BallGame/include/ResourceManager.h
+1407422282 /home/brock/code/cpp/BallGame/include/ResourceManager.h
 	<string>
 	<map>
 	<vector>
@@ -419,12 +421,12 @@
 
 1406553383 /home/brock/code/cpp/BallGame/include/Event.h
 
-1407147387 source:/home/brock/code/cpp/BallGame/src/EventEngine.cpp
+1407164923 source:/home/brock/code/cpp/BallGame/src/EventEngine.cpp
 	"EventEngine.h"
 	"SDL2/SDL.h"
 	"boost/foreach.hpp"
 
-1407147387 /home/brock/code/cpp/BallGame/include/EventEngine.h
+1407164923 /home/brock/code/cpp/BallGame/include/EventEngine.h
 	"EventSystem.h"
 	"EventCollision.h"
 	"Entity.h"
@@ -438,18 +440,18 @@
 
 1406553383 /home/brock/code/cpp/BallGame/include/EventInput.h
 
-1407147387 /home/brock/code/cpp/BallGame/include/EventCollision.h
+1407164923 /home/brock/code/cpp/BallGame/include/EventCollision.h
 	"CollisionEntity.h"
 
-1407147387 /home/brock/code/cpp/BallGame/include/CollisionEntity.h
+1407429415 /home/brock/code/cpp/BallGame/include/CollisionEntity.h
 	"VisualEntity.h"
 	"bgCommon.h"
 
-1407147387 source:/home/brock/code/cpp/BallGame/src/CollisionEntity.cpp
+1407422282 source:/home/brock/code/cpp/BallGame/src/CollisionEntity.cpp
 	"BallGame.h"
 	"CollisionEntity.h"
 
-1407147387 source:/home/brock/code/cpp/BallGame/src/EventCollision.cpp
+1407164923 source:/home/brock/code/cpp/BallGame/src/EventCollision.cpp
 	"EventCollision.h"
 
 1406553383 /home/brock/code/cpp/BallGame/include/EventSystem.h
@@ -458,11 +460,12 @@
 1406553383 source:/home/brock/code/cpp/BallGame/src/EventSystem.cpp
 	"EventSystem.h"
 
-1407147387 source:/home/brock/code/cpp/BallGame/src/CollisionEngine.cpp
+1407475150 source:/home/brock/code/cpp/BallGame/src/CollisionEngine.cpp
 	"CollisionEngine.h"
 	<boost/foreach.hpp>
+	"QuadTree.h"
 
-1407147387 /home/brock/code/cpp/BallGame/include/CollisionEngine.h
+1407433794 /home/brock/code/cpp/BallGame/include/CollisionEngine.h
 	"CollisionEntity.h"
 	"EventEngine.h"
 	"bgCommon.h"
@@ -474,4 +477,16 @@
 
 1406697036 source:/home/brock/code/cpp/BallGame/src/CollisionResult.cpp
 	"CollisionResult.h"
+
+1407422282 source:/home/brock/code/cpp/BallGame/src/MoveableBlock.cpp
+	"MoveableBlock.h"
+
+1407422282 /home/brock/code/cpp/BallGame/include/MoveableBlock.h
+	"Block.h"
+
+1407477205 source:/home/brock/code/cpp/BallGame/src/QuadTree.cpp
+	"QuadTree.h"
+
+1407477217 /home/brock/code/cpp/BallGame/include/QuadTree.h
+	"CollisionEntity.h"
 
