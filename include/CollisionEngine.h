@@ -11,7 +11,7 @@ class CollisionEngine
     public:
         CollisionEngine();
         virtual ~CollisionEngine();
-        void handleCollisions(std::vector<CollisionEntity*> collidables, std::shared_ptr<EventEngine> eventEngine);
+        void handleCollisions(std::vector<CollisionEntity*> moveables, std::vector<CollisionEntity*> immoveables, std::shared_ptr<EventEngine> eventEngine);
         CollisionResult testForCollision(CollisionEntity* collider1, CollisionEntity *collider2);
     protected:
     private:
