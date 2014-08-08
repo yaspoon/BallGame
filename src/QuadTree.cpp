@@ -46,6 +46,7 @@ void QuadTree::insert(CollisionEntity *collider)
             split();
         }
 
+        std::vector<CollisionEntity*> newObjects;
         int i = 0;
         while(i < objects.size())
         {
@@ -53,13 +54,16 @@ void QuadTree::insert(CollisionEntity *collider)
             if(index != -1)
             {
                 nodes[index]->insert(objects[i]);
-                objects.erase(objects.begin() + i);
+                //objects.erase(objects.begin() + i);
             }
             else
             {
-                i++;
+                newObjects.push_back(objects[i]);
             }
+            i++;
         }
+        objects.clear();
+        objects = newObjects;
     }
 }
 
@@ -102,7 +106,7 @@ int QuadTree::getIndex(CollisionEntity *collider)
     int index = -1;
     Rect posDim = collider->getPosDim();
     int verticalMidpoint = bounds.w / 2;
-    int horizontalMidpoint = bounds.y / 2;
+    int horizontalMidpoint = bounds.h / 2;
 
     bool topQuadrant = posDim.y < horizontalMidpoint && posDim.y + posDim.h < horizontalMidpoint;
     bool bottomQuadrant = posDim.y > horizontalMidpoint && posDim.y + posDim.h > horizontalMidpoint;
