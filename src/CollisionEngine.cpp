@@ -11,10 +11,11 @@ CollisionEngine::~CollisionEngine()
     //dtor
 }
 
-void CollisionEngine::handleCollisions(std::vector<CollisionEntity*> collidables, std::shared_ptr<EventEngine> eventEngine)
+void CollisionEngine::handleCollisions(std::vector<CollisionEntity*> moveables, std::vector<CollisionEntity*> immoveables, std::shared_ptr<EventEngine> eventEngine)
 {
-    std::vector<CollisionEntity*> collidersLeft = collidables;
-    BOOST_FOREACH(CollisionEntity *collider1, collidables)
+    std::vector<CollisionEntity*> collidersLeft = immoveables;
+    collidersLeft.insert(collidersLeft.end(), moveables.begin(), moveables.end());
+    BOOST_FOREACH(CollisionEntity *collider1, moveables)
     {
         BOOST_FOREACH(CollisionEntity *collider2, collidersLeft)
         {
@@ -90,17 +91,6 @@ void CollisionEngine::handleCollisions(std::vector<CollisionEntity*> collidables
                 }
 
             }
-        }
-        std::vector<CollisionEntity*>::size_type i = 0;
-        bool notFound = true;
-        while(i < collidersLeft.size() && notFound)
-        {
-            if(collidersLeft[i] == collider1)
-            {
-                collidersLeft.erase(collidersLeft.begin() + i);
-                notFound = false;
-            }
-            i++;
         }
     }
 }
