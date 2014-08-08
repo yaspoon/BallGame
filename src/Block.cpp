@@ -4,7 +4,6 @@
 Block::Block()
 :CollisionEntity()
 {
-    CollisionEntity::setCtype( C_IMMOVABLE);
 }
 
 Block::Block(int width, int height, float x, float y, LAYER drawingLayer)
@@ -14,7 +13,7 @@ Block::Block(int width, int height, float x, float y, LAYER drawingLayer)
 }
 
 Block::Block(int width, int height, float x, float y, LAYER drawingLayer, CollisionShape shape)
-:CollisionEntity( "./images/block.bmp", x, y, width, height, drawingLayer, CS_AABB, shape)
+:CollisionEntity( "./images/block.bmp", x, y, width, height, drawingLayer, CS_AABB, shape, C_IMMOVABLE)
 {
     CollisionEntity::setCtype( C_IMMOVABLE );
 }
@@ -26,7 +25,7 @@ Block::Block(std::string filePath, int width, int height, float x, float y, LAYE
 }
 
 Block::Block(std::string filePath, int width, int height, float x, float y, LAYER drawingLayer, CollisionShape shape)
-:CollisionEntity(filePath, x, y, width, height, drawingLayer, CS_AABB, shape)
+:CollisionEntity(filePath, x, y, width, height, drawingLayer, CS_AABB, shape, C_IMMOVABLE)
 {
     CollisionEntity::setCtype( C_IMMOVABLE );
 }
