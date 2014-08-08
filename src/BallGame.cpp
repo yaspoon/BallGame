@@ -78,9 +78,13 @@ using namespace std;
                 //Make all the game objects update themselves to any changes
                 updateFrame();
 
-                collisionEngine.performCollisionDetection(currentLevel->getLevelDimensions(), currentLevel->getCollidableObjects(), eventEngine);
+                collisionEngine.performCollisionDetection(currentLevel->getLevelDimensions(), currentLevel->getmoveableObjects(), currentLevel->getimmoveableObjects(), eventEngine);
 
-                BOOST_FOREACH(CollisionEntity *entity, currentLevel->getCollidableObjects())
+                BOOST_FOREACH(CollisionEntity *entity, currentLevel->getmoveableObjects())
+                {
+                    checkBounds(entity);
+                }
+                BOOST_FOREACH(CollisionEntity *entity, currentLevel->getimmoveableObjects())
                 {
                     checkBounds(entity);
                 }

@@ -8,12 +8,11 @@ Author: Brock
 #include "BallGame.h"
 
 Player::Player()
-:CollisionEntity( "./images/ball.png", 0, 20, 40, 40, L_DEFAULT, CS_AABB)
+:CollisionEntity( "./images/ball.png", 0, 20, 40, 40, L_DEFAULT, CS_AABB, C_MOVEABLE)
 {
     BALLGAME.getEventEngine()->registerForEvents(this, EV_INPUT);
     moveSpeed = 250;
     onGroundText = BALLGAME.getResourceManager()->loadText("OnGround");
-    CollisionEntity::setCtype( C_MOVEABLE );
     CollisionShape shape;
     //shape.radius = 20.0f;
     shape.points.push_back((vec2){20, 0});

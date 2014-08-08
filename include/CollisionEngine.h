@@ -11,8 +11,9 @@ class CollisionEngine
     public:
         CollisionEngine();
         virtual ~CollisionEngine();
-        void performCollisionDetection(SDL_Rect bounds, std::vector<CollisionEntity*> collidables, std::shared_ptr<EventEngine> eventEngine);
-        void handleCollisions(CollisionEntity *collider1, std::vector<CollisionEntity*> *collidables, std::shared_ptr<EventEngine> eventEngine);
+
+        void performCollisionDetection(SDL_Rect bounds, std::vector<CollisionEntity*> moveables, std::vector<CollisionEntity*> immoveables, std::shared_ptr<EventEngine> eventEngine);
+        void handleCollisions(CollisionEntity* collider1, std::vector<CollisionEntity*> colliders, std::shared_ptr<EventEngine> eventEngine);
         CollisionResult testForCollision(CollisionEntity* collider1, CollisionEntity *collider2);
     protected:
     private:

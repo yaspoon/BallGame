@@ -20,9 +20,10 @@ CollisionEntity::CollisionEntity(std::string filename, float x, float y, float w
     this->shapeType = CS_UNKNOWN;
 }
 
-CollisionEntity::CollisionEntity(std::string filename, float x, float y, float width, float height, LAYER drawingLayer, ColliderShapeType shapeType)
+CollisionEntity::CollisionEntity(std::string filename, float x, float y, float width, float height, LAYER drawingLayer, ColliderShapeType shapeType, COLLIDABLE cType)
 :VisualEntity(filename, x, y, width, height, drawingLayer)
 {
+    this->cType = cType;
     if(drawingLayer == L_DEFAULT)
     {
         BALLGAME.getCurrentLevel()->addCollidableObject(this);
@@ -33,9 +34,10 @@ CollisionEntity::CollisionEntity(std::string filename, float x, float y, float w
     this->shapeType = shapeType;
 }
 
-CollisionEntity::CollisionEntity(std::string filename, float x, float y, float width, float height, LAYER drawingLayer, ColliderShapeType shapeType, CollisionShape shape)
+CollisionEntity::CollisionEntity(std::string filename, float x, float y, float width, float height, LAYER drawingLayer, ColliderShapeType shapeType, CollisionShape shape, COLLIDABLE cType)
 :VisualEntity(filename, x, y, width, height, drawingLayer)
 {
+    this->cType = cType;
     if(drawingLayer == L_DEFAULT)
     {
         BALLGAME.getCurrentLevel()->addCollidableObject(this);

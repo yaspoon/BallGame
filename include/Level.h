@@ -17,7 +17,8 @@ class Level
     std::vector<VisualEntity*> backgroundObjects0;
     std::vector<VisualEntity*> backgroundObjects1;
     std::vector<VisualEntity*> foregroundObjects;
-    std::vector<CollisionEntity*> collidableObjects;
+    std::vector<CollisionEntity*> moveableObjects;
+    std::vector<CollisionEntity*> immoveableObjects;
     SDL_Rect levelDimensions;
     std::string m_nextLevel;
     std::shared_ptr<Player> m_player;
@@ -42,7 +43,8 @@ class Level
 
     std::vector<VisualEntity*> getDrawableObjects();
 
-    std::vector<CollisionEntity*> getCollidableObjects();
+    std::vector<CollisionEntity*> getmoveableObjects();
+    std::vector<CollisionEntity*> getimmoveableObjects();
 
     int getNumObjects();
 

@@ -22,8 +22,8 @@ class CollisionEntity: public VisualEntity
     public:
         CollisionEntity();
         CollisionEntity(std::string filename, float x, float y, float width, float height, LAYER drawingLayer);
-        CollisionEntity(std::string filename, float x, float y, float width, float height, LAYER drawingLayer, ColliderShapeType shapeType);
-        CollisionEntity(std::string filename, float x, float y, float width, float height, LAYER drawingLayer, ColliderShapeType shapeType, CollisionShape shape);
+        CollisionEntity(std::string filename, float x, float y, float width, float height, LAYER drawingLayer, ColliderShapeType shapeType, COLLIDABLE cType);
+        CollisionEntity(std::string filename, float x, float y, float width, float height, LAYER drawingLayer, ColliderShapeType shapeType, CollisionShape shape, COLLIDABLE cType);
         virtual ~CollisionEntity();
 
         float getXvel();

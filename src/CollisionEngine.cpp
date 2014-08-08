@@ -12,25 +12,27 @@ CollisionEngine::~CollisionEngine()
     //dtor
 }
 
-void CollisionEngine::performCollisionDetection(SDL_Rect bounds, std::vector<CollisionEntity*> collidables, std::shared_ptr<EventEngine> eventEngine)
+void CollisionEngine::performCollisionDetection(SDL_Rect bounds, std::vector<CollisionEntity*> moveables, std::vector<CollisionEntity*> immoveables, std::shared_ptr<EventEngine> eventEngine)
 {
     QuadTree quadTree(0, bounds);
+    std::vector<CollisionEntity*> collidables = immoveables;
+    collidables.insert(collidables.end(), moveables.begin(), moveables.end());
     for(std::vector<CollisionEntity*>::iterator it = collidables.begin(); it != collidables.end(); ++it)
     {
         quadTree.insert(*it);
     }
 
-    for(std::vector<CollisionEntity*>::iterator it = collidables.begin(); it != collidables.end(); ++it)
+    for(std::vector<CollisionEntity*>::iterator it = moveables.begin(); it != moveables.end(); ++it)
     {
         std::vector<CollisionEntity*> tmp;
         std::vector<CollisionEntity*> colliders = quadTree.retrieve(tmp, *it);
-        handleCollisions(*it, &colliders, eventEngine);
+        handleCollisions(*it, colliders, eventEngine);
     }
 }
 
-void CollisionEngine::handleCollisions(CollisionEntity *collider1, std::vector<CollisionEntity*> *collidables, std::shared_ptr<EventEngine> eventEngine)
+void CollisionEngine::handleCollisions(CollisionEntity* collider1, std::vector<CollisionEntity*> colliders, std::shared_ptr<EventEngine> eventEngine)
 {
-    BOOST_FOREACH(CollisionEntity *collider2, *collidables)
+    BOOST_FOREACH(CollisionEntity *collider2, colliders)
     {
         if(collider1 != collider2) //Not the same object
         {

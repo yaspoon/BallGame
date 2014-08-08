@@ -4,7 +4,12 @@
 
 #define BALLGAME BallGame::instance()
 
-typedef enum { C_IMMOVABLE, C_MOVEABLE } COLLIDABLE;
+typedef enum
+{
+    C_UNKNOWN = 0,
+    C_IMMOVABLE,
+    C_MOVEABLE
+} COLLIDABLE;
 
 typedef struct Rect_s {
   float x;
