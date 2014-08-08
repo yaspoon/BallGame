@@ -39,6 +39,10 @@ bool RenderEngine::initialise()
                 else
                 {
                     font = TTF_OpenFont("DejaVuSans-Bold.ttf", 18);
+                    if(font == NULL)
+                    {
+                        std::cout << "Failed to load font TTF_Error:" << TTF_GetError() << std::endl;
+                    }
                 }
 
                 std::cout << "Created window and renderer successfully" << std::endl;
