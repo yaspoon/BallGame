@@ -26,6 +26,7 @@
 					<Add library="GL" />
 					<Add library="SDL2" />
 					<Add library="SDL2_image" />
+					<Add library="SDL2_ttf" />
 				</Linker>
 			</Target>
 			<Target title="Windows">
@@ -74,6 +75,7 @@
 		<Unit filename="include/EventInput.h" />
 		<Unit filename="include/EventSystem.h" />
 		<Unit filename="include/Level.h" />
+		<Unit filename="include/MoveableBlock.h" />
 		<Unit filename="include/Player.h" />
 		<Unit filename="include/RenderEngine.h" />
 		<Unit filename="include/Resource.h" />
@@ -93,6 +95,7 @@
 		<Unit filename="src/EventSystem.cpp" />
 		<Unit filename="src/Level.cpp" />
 		<Unit filename="src/Main.cpp" />
+		<Unit filename="src/MoveableBlock.cpp" />
 		<Unit filename="src/Player.cpp" />
 		<Unit filename="src/RenderEngine.cpp" />
 		<Unit filename="src/Resource.cpp" />
