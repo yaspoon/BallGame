@@ -19,8 +19,11 @@ void QuadTree::clear()
     objects.clear();
     for(int i = 0; i < 4; i++)
     {
-        nodes[i]->clear();
-        nodes[i].reset(NULL);
+        if(nodes[i].get() != NULL)
+        {
+            nodes[i]->clear();
+            nodes[i].reset(NULL);
+        }
     }
 }
 
@@ -97,7 +100,7 @@ void QuadTree::split()
     SDL_Rect node3Bounds = {x, y + subheight, subwidth, subheight};
     nodes[2] = std::unique_ptr<QuadTree>(new QuadTree(level + 1, node3Bounds));
 
-    SDL_Rect node4Bounds = {x + subwidth, y = subheight, subwidth, subheight};
+    SDL_Rect node4Bounds = {x + subwidth, y + subheight, subwidth, subheight};
     nodes[3] = std::unique_ptr<QuadTree>(new QuadTree(level + 1, node4Bounds));
 }
 
@@ -105,8 +108,8 @@ int QuadTree::getIndex(CollisionEntity *collider)
 {
     int index = -1;
     Rect posDim = collider->getPosDim();
-    int verticalMidpoint = bounds.w / 2;
-    int horizontalMidpoint = bounds.h / 2;
+    int verticalMidpoint = bounds.x + bounds.w / 2;
+    int horizontalMidpoint = bounds.y + bounds.h / 2;
 
     bool topQuadrant = posDim.y < horizontalMidpoint && posDim.y + posDim.h < horizontalMidpoint;
     bool bottomQuadrant = posDim.y > horizontalMidpoint && posDim.y + posDim.h > horizontalMidpoint;
