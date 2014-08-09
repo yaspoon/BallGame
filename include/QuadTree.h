@@ -17,8 +17,8 @@ class QuadTree
         std::vector<CollisionEntity*> objects;
         SDL_Rect bounds;
         std::unique_ptr<QuadTree> nodes[4];
-        const int MAX_OBJECTS = 5;
-        const int MAX_LEVELS = 10;
+        const int MAX_OBJECTS = 10;
+        const int MAX_LEVELS = 5;
 
         void split();
         int getIndex(CollisionEntity *collider);

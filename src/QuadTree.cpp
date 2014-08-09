@@ -19,8 +19,11 @@ void QuadTree::clear()
     objects.clear();
     for(int i = 0; i < 4; i++)
     {
-        nodes[i]->clear();
-        nodes[i].reset(NULL);
+        if(nodes[i].get() != NULL)
+        {
+            nodes[i]->clear();
+            nodes[i].reset(NULL);
+        }
     }
 }
 
@@ -97,7 +100,7 @@ void QuadTree::split()
     SDL_Rect node3Bounds = {x, y + subheight, subwidth, subheight};
     nodes[2] = std::unique_ptr<QuadTree>(new QuadTree(level + 1, node3Bounds));
 
-    SDL_Rect node4Bounds = {x + subwidth, y = subheight, subwidth, subheight};
+    SDL_Rect node4Bounds = {x + subwidth, y + subheight, subwidth, subheight};
     nodes[3] = std::unique_ptr<QuadTree>(new QuadTree(level + 1, node4Bounds));
 }
 
