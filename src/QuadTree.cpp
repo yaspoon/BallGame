@@ -108,8 +108,8 @@ int QuadTree::getIndex(CollisionEntity *collider)
 {
     int index = -1;
     Rect posDim = collider->getPosDim();
-    int verticalMidpoint = bounds.w / 2;
-    int horizontalMidpoint = bounds.h / 2;
+    int verticalMidpoint = bounds.x + bounds.w / 2;
+    int horizontalMidpoint = bounds.y + bounds.h / 2;
 
     bool topQuadrant = posDim.y < horizontalMidpoint && posDim.y + posDim.h < horizontalMidpoint;
     bool bottomQuadrant = posDim.y > horizontalMidpoint && posDim.y + posDim.h > horizontalMidpoint;
