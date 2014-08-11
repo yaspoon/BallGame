@@ -57,11 +57,6 @@ void CollisionEngine::handleCollisions(CollisionEntity* collider1, std::vector<C
                         EventCollision collider2Event(collider2, collider1, collisionResult);
                         eventEngine->addCollisionEvent(collider2Event);
                     }
-                    else
-                    {
-                        //collider1->setOnGround(false);
-                        //collider2->setOnGround(false);
-                    }
                  }
                 else //Nope just move collider1 out then
                 {
@@ -77,10 +72,6 @@ void CollisionEngine::handleCollisions(CollisionEntity* collider1, std::vector<C
                         eventEngine->addCollisionEvent(collider1Event);
                         EventCollision collider2Event(collider2, collider1, collisionResult);
                         eventEngine->addCollisionEvent(collider2Event);
-                    }
-                    else
-                    {
-                        //collider1->setOnGround(false);
                     }
                 }
             }
@@ -98,10 +89,6 @@ void CollisionEngine::handleCollisions(CollisionEntity* collider1, std::vector<C
                     eventEngine->addCollisionEvent(collider1Event);
                     EventCollision collider2Event(collider2, collider1, collisionResult);
                     eventEngine->addCollisionEvent(collider2Event);
-                }
-                else
-                {
-                    //collider2->setOnGround(false);
                 }
             }
 
