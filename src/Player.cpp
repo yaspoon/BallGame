@@ -109,10 +109,12 @@ void Player::handleCollisionEvent(CollisionEntity *collisionEntity, CollisionRes
     {
         if(result.minDistance < 0.0f)
         {
-            setOnGround(true);
             float currentYvel = getYvel();
-            currentYvel = (currentYvel < 0.0f) ? currentYvel : 0.0f;
-            setYvel(currentYvel);
+            if(currentYvel > 0.0f)
+            {
+                setOnGround(true);
+                setYvel(0.0f);
+            }
         }
         else
         {
