@@ -24,6 +24,7 @@ class RenderEngine
         std::shared_ptr<SDL_Window*> getWindow();
         ScreenDimensions getScreenDimensions();
         void setBackgroundColour(SDL_Color color);
+        bool toggleFullScreen();
     protected:
     private:
         SDL_Renderer *renderer;

@@ -146,3 +146,16 @@ void RenderEngine::setBackgroundColour(SDL_Color color)
         std::cout << "ERROR:Failed to set draw color SDL_Error:" << SDL_GetError() << std::endl;
     }
 }
+
+bool RenderEngine::toggleFullScreen()
+{
+    bool retval = false;
+    Uint32 windowFlags = SDL_GetWindowFlags(mainWindow);
+    windowFlags = windowFlags ^ SDL_WINDOW_FULLSCREEN_DESKTOP;
+    if(SDL_SetWindowFullscreen(mainWindow, windowFlags) == 0)
+    {
+         retval = true;
+    }
+
+    return retval;
+}
