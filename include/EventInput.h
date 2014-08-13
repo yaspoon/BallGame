@@ -17,7 +17,9 @@ enum InputKey
     KEY_RIGHT,
     KEY_UP,
     KEY_DOWN,
-    KEY_JUMP
+    KEY_JUMP,
+    KEY_Q,
+    KEY_F1
 };
 
 enum InputController
