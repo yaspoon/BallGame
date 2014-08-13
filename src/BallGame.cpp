@@ -58,21 +58,7 @@ using namespace std;
             *           Event Handling
             *
             *****************************************************/
-                eventEngine->processEvents();
-                BOOST_FOREACH(EventSystem sysEv, eventEngine->getSystemEvents())
-                {
-                    switch(sysEv.getSystemType())
-                    {
-                        case EV_SYS_QUIT:
-                            quit = true;
-                            break;
-                        case EV_SYS_UNKNOWN:
-                            break;
-                        default:
-                            break;
-                    }
-                }
-
+                eventHandling();
                 /*End of Event Handling*/
 
                 //Make all the game objects update themselves to any changes
@@ -197,6 +183,43 @@ void BallGame::checkBounds(CollisionEntity *entity)
     }
 
     entity->setPos( posDim.x, posDim.y );
+}
+
+void BallGame::eventHandling()
+{
+    eventEngine->processEvents(); //Gather all events and then send them to the respective game objects
+
+    BOOST_FOREACH(EventSystem sysEv, eventEngine->getSystemEvents())
+    {
+        switch(sysEv.getSystemType())
+        {
+            case EV_SYS_QUIT:
+                quit = true;
+                break;
+            case EV_SYS_UNKNOWN:
+                break;
+            default:
+                break;
+        }
+    }
+
+    BOOST_FOREACH(EventInput input, eventEngine->getInputEvents())
+    {
+        if(input.getType() == EV_INPUT_KEYDOWN)
+        {
+            switch(input.getKey())
+            {
+                case KEY_Q:
+                    quit = true;
+                    break;
+                case KEY_F1:
+                    renderEngine.toggleFullScreen();
+                    break;
+            }
+        }
+    }
+
+    eventEngine->clearEventQueues(); //Clear all the events from the queues ready for next frame
 }
 
 

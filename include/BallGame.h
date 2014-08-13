@@ -42,6 +42,7 @@ private:
     BallGame();
 
     void checkBounds(CollisionEntity *entity);
+    void eventHandling();
 
 public:
 
