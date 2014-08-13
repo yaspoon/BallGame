@@ -7,7 +7,8 @@ EventEngine::EventEngine()
     inputMap[KEY_LEFT] = SDL_SCANCODE_LEFT;
     inputMap[KEY_RIGHT] = SDL_SCANCODE_RIGHT;
     inputMap[KEY_JUMP] = SDL_SCANCODE_SPACE;
-    systemMap[EV_SYS_QUIT] = SDL_SCANCODE_Q;
+    inputMap[KEY_Q] = SDL_SCANCODE_Q;
+    inputMap[KEY_F1] = SDL_SCANCODE_F1;
 }
 
 EventEngine::~EventEngine()
@@ -31,9 +32,15 @@ void EventEngine::generateEvents()
                 {
                     if(event.key.repeat == 0)
                     {
-                        if(systemMap[EV_SYS_QUIT] == event.key.keysym.scancode)
+                        if(inputMap[KEY_Q] == event.key.keysym.scancode)
                         {
-                            systemEvents.push_back(EventSystem(EV_SYS_QUIT));
+                            inputEvents.push_back(EventInput(EV_INPUT_KEYDOWN, KEY_Q));
+                            break;
+                        }
+
+                        if(inputMap[KEY_F1] == event.key.keysym.scancode)
+                        {
+                            inputEvents.push_back(EventInput(EV_INPUT_KEYDOWN, KEY_F1));
                             break;
                         }
 
@@ -127,15 +134,28 @@ void EventEngine::processEvents()
     {
         collEv.sendToObject();
     }
-
-    inputEvents.clear();
-    collisionEvents.clear();
-
 }
 
 std::vector<EventSystem> EventEngine::getSystemEvents()
 {
     return systemEvents;
+}
+
+std::vector<EventInput> EventEngine::getInputEvents()
+{
+    return inputEvents;
+}
+
+std::vector<EventCollision> EventEngine::getCollisionEvents()
+{
+    return collisionEvents;
+}
+
+void EventEngine::clearEventQueues()
+{
+    inputEvents.clear();
+    collisionEvents.clear();
+    systemEvents.clear();
 }
 
 bool EventEngine::registerForEvents(Entity *entityToReg, EventType typeToReg)
