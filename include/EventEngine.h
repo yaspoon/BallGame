@@ -19,6 +19,9 @@ class EventEngine
         void addEvent(Event newEvent);
         void addCollisionEvent(EventCollision collision);
         std::vector<EventSystem> getSystemEvents();
+        std::vector<EventInput> getInputEvents();
+        std::vector<EventCollision> getCollisionEvents();
+        void clearEventQueues();
         bool registerForEvents(Entity *entityToReg, EventType typeToReg);
         bool deregisterForEvents(Entity *entityToDeReg, EventType typeToDeReg);
     protected:
