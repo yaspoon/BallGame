@@ -80,13 +80,15 @@ using namespace std;
 
                 collisionEngine.performCollisionDetection(currentLevel->getLevelDimensions(), currentLevel->getmoveableObjects(), currentLevel->getimmoveableObjects(), eventEngine);
 
+                SDL_Rect dim = currentLevel->getLevelDimensions();
+
                 BOOST_FOREACH(CollisionEntity *entity, currentLevel->getmoveableObjects())
                 {
-                    checkBounds(entity);
+                    checkBounds(entity, dim.w, dim.h);
                 }
                 BOOST_FOREACH(CollisionEntity *entity, currentLevel->getimmoveableObjects())
                 {
-                    checkBounds(entity);
+                    checkBounds(entity, dim.w, dim.h);
                 }
 
                 //checkCollisions();
@@ -168,12 +170,9 @@ using namespace std;
         }
     }
 
-void BallGame::checkBounds(CollisionEntity *entity)
+void BallGame::checkBounds(CollisionEntity *entity, int screenWidth, int screenHeight)
 {
     //STUB("Needs all the pointers removing");
-    SDL_Rect tmp = currentLevel->getLevelDimensions();
-    int screenWidth = tmp.w;
-    int screenHeight = tmp.h;
     Rect posDim = entity->getPosDim();
 
     if( posDim.x < 0 )
