@@ -12,6 +12,12 @@
 #include "EventEngine.h"
 #include "CollisionEngine.h"
 
+struct ThreadData
+{
+    std::vector<Entity *> *objectList;
+    int number;
+};
+
 class BallGame
 {
 
@@ -41,7 +47,7 @@ private:
 
     BallGame();
 
-    void checkBounds(CollisionEntity *entity);
+    void checkBounds(CollisionEntity *entity, int screenWidth, int screenHeight);
 
 public:
 
