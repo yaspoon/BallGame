@@ -27,6 +27,7 @@
 					<Add library="SDL2" />
 					<Add library="SDL2_image" />
 					<Add library="SDL2_ttf" />
+					<Add library="pthread" />
 				</Linker>
 			</Target>
 			<Target title="Windows">
@@ -74,13 +75,17 @@
 		<Unit filename="include/EventEngine.h" />
 		<Unit filename="include/EventInput.h" />
 		<Unit filename="include/EventSystem.h" />
+		<Unit filename="include/Iterator.h" />
 		<Unit filename="include/Level.h" />
+		<Unit filename="include/LinkedList.h" />
+		<Unit filename="include/LinkedListNode.h" />
 		<Unit filename="include/MoveableBlock.h" />
 		<Unit filename="include/Player.h" />
 		<Unit filename="include/QuadTree.h" />
 		<Unit filename="include/RenderEngine.h" />
 		<Unit filename="include/Resource.h" />
 		<Unit filename="include/ResourceManager.h" />
+		<Unit filename="include/ThreadPool.h" />
 		<Unit filename="include/Timer.h" />
 		<Unit filename="include/VisualEntity.h" />
 		<Unit filename="include/bgCommon.h" />
@@ -102,6 +107,7 @@
 		<Unit filename="src/RenderEngine.cpp" />
 		<Unit filename="src/Resource.cpp" />
 		<Unit filename="src/ResourceManager.cpp" />
+		<Unit filename="src/ThreadPool.cpp" />
 		<Unit filename="src/Timer.cpp" />
 		<Unit filename="src/VisualEntity.cpp" />
 		<Extensions>

@@ -6,7 +6,8 @@
 enum EventSystemType
 {
         EV_SYS_UNKNOWN = 0,
-        EV_SYS_QUIT
+        EV_SYS_QUIT,
+        EV_SYS_RUNTHREAD
 };
 
 class EventSystem: public Event

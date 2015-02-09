@@ -11,11 +11,16 @@
 #include "ResourceManager.h"
 #include "EventEngine.h"
 #include "CollisionEngine.h"
+#include "ThreadPool.h"
 
-struct ThreadData
+struct UpdateThread
 {
-    std::vector<Entity *> *objectList;
     int number;
+    int *count;
+    pthread_mutex_t *countLock;
+    float dt;
+    std::vector<Entity *> *objectList;
+    pthread_cond_t *done;
 };
 
 class BallGame
@@ -29,6 +34,7 @@ private:
     std::shared_ptr<EventEngine> eventEngine;
     const static int FRAMES_PER_SECOND = 60;
     std::string m_gameName;
+    ThreadPool threadPool;
 
     bool quit;
 
@@ -75,5 +81,6 @@ public:
     int ballGameMain();
 
     void updateFrame();
+    static void *updateFrameThread(void *data);
 };
 #endif

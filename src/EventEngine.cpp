@@ -17,6 +17,8 @@ EventEngine::~EventEngine()
 
 void EventEngine::generateEvents()
 {
+    systemEvents.clear();
+
     SDL_Event event;
     while( SDL_PollEvent(&event))
     {
@@ -31,6 +33,10 @@ void EventEngine::generateEvents()
                 {
                     if(event.key.repeat == 0)
                     {
+                        if(event.key.keysym.scancode == SDL_SCANCODE_H)
+                        {
+                            systemEvents.push_back(EventSystem(EV_SYS_RUNTHREAD));
+                        }
                         if(systemMap[EV_SYS_QUIT] == event.key.keysym.scancode)
                         {
                             systemEvents.push_back(EventSystem(EV_SYS_QUIT));

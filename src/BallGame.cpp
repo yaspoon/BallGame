@@ -32,6 +32,13 @@ using namespace std;
 
     }
 
+    static void *runThread(void *data)
+    {
+        static int count = 0;
+        std::cout << "Running thread for the " << count << " time" << std::endl;
+        count++;
+    }
+
 //--------------------------------------Methods/
     int BallGame::ballGameMain()
     {
@@ -65,6 +72,13 @@ using namespace std;
                     {
                         case EV_SYS_QUIT:
                             quit = true;
+                            break;
+                        case EV_SYS_RUNTHREAD:
+                        {
+                            ThreadFunction func = runThread;
+                            DataCleanup clean = NULL;
+                            threadPool.addJob(func, (void*)NULL, clean);
+                        }
                             break;
                         case EV_SYS_UNKNOWN:
                             break;
@@ -157,16 +171,58 @@ using namespace std;
         return currentLevel;
     }
 
-
     void BallGame::updateFrame()
     {
         Uint32 thisframe = SDL_GetTicks();
         float dt = (float)( thisframe - lastframe ) / 1000.f;
         lastframe = thisframe;
 
-        BOOST_FOREACH( Entity *object, currentLevel->getLevelObjects())
+        std::vector<Entity *> list = currentLevel->getLevelObjects();
+        std::vector<UpdateThread> updateData(threadPool.getThreadCount());
+        pthread_mutex_t countLock = PTHREAD_MUTEX_INITIALIZER;
+        pthread_cond_t done = PTHREAD_COND_INITIALIZER;
+        int count = threadPool.getThreadCount();
+
+        pthread_mutex_lock(&countLock);
+
+        for(int i = 0; i < threadPool.getThreadCount(); i++)
         {
-            object->update( dt );
+            updateData[i].objectList = &list;
+            updateData[i].dt = dt;
+            updateData[i].count = &count;
+            updateData[i].number = i;
+
+            updateData[i].done = &done;
+            updateData[i].countLock = &countLock;
+
+            threadPool.addJob(updateFrameThread, (void *)&updateData[i], NULL);
+        }
+
+        pthread_cond_wait(&done, &countLock);
+    }
+
+    void *BallGame::updateFrameThread(void *data)
+    {
+        struct UpdateThread *updateData = (struct UpdateThread*)data;
+        std::vector<Entity*> *list = updateData->objectList;
+
+        //BOOST_FOREACH( Entity *object, currentLevel->getLevelObjects())
+        for(int i = updateData->number; i < updateData->objectList->size(); i += (*updateData->count) + updateData->number)
+        {
+            Entity *object = (*list)[i];
+            object->update(updateData->dt);
+        }
+
+        pthread_mutex_lock(updateData->countLock);
+        (*updateData->count)--;
+        if((*updateData->count) > 0)
+        {
+            pthread_mutex_unlock(updateData->countLock);
+        }
+        else
+        {
+            pthread_mutex_unlock(updateData->countLock);
+            pthread_cond_signal(updateData->done);
         }
     }
 

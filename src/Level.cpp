@@ -48,7 +48,7 @@
         new Block(20, 20, 960, 400, L_DEFAULT, blockShape);
 
 
-        for(int i = 0; i < 6; i++)
+        for(int i = 0; i < 1000; i++)
         {
             new Block(20, 20, 260 + i * 20, 440 - (20 * i), L_DEFAULT, blockShape);
         }
