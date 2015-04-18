@@ -7,7 +7,7 @@ int mainRetVal = 1;
 
 //--------------------------------Methods/
 
-int main()
+int main(int argc, char *argv[])
 {
     mainRetVal = BALLGAME.ballGameMain();
     return mainRetVal;
