@@ -10,11 +10,16 @@ Brock York
 
 Building for Wandoze(Windows):
 
+Getting the source
+1. Install git-bash https://github.com/msysgit/msysgit/releases/download/Git-1.9.5-preview20150319/Git-1.9.5-preview20150319.exe
+2. Open git-bash by double clicking on the git-bash icon
+3. clone source git clone https://github.com/yaspoon/BallGame.git
+
 TLDR;
 1. Download this premade zip I created:
 2. Extract code:blocks zip and run code blocks
 3. Follow get the source step
-4. Build source and run
+4. Build source and run by following Building step bellow
 5. ???
 6. Profit from OSS knowledge
 
@@ -45,14 +50,8 @@ Getting Boost library
 2. Copy boost_1_58_0\boost directory to C:\Program Files (x86)\CodeBlocks\MinGW\include
 3. You should now have a C:\Program Files (x86)\CodeBlocks\MinGW\include\boost directory filled with the boost headers
 
-
-Getting the source
-1. Install git-bash https://github.com/msysgit/msysgit/releases/download/Git-1.9.5-preview20150319/Git-1.9.5-preview20150319.exe
-2. Open git-bash by double clicking on the git-bash icon
-3. clone source git clone https://github.com/yaspoon/BallGame.git
-
 Building
-1. Go into BallGame directory and open BallGame.cbp
+1. Go into BallGame directory and open BallGame.cbp with code:blocks
 2. Press F9 to build and run or goto build->run at the top menu
 
 
