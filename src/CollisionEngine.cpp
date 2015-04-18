@@ -1,5 +1,6 @@
 #include "CollisionEngine.h"
 #include <boost/foreach.hpp>
+#include <math.h>
 
 CollisionEngine::CollisionEngine()
 {

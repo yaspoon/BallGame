@@ -1,5 +1,6 @@
 #include "BallGame.h"
 #include "CollisionEntity.h"
+#include <math.h>
 
 CollisionEntity::CollisionEntity()
 :VisualEntity()
