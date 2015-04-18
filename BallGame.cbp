@@ -36,8 +36,20 @@
 				<Option compiler="gcc" />
 				<Option use_console_runner="0" />
 				<Compiler>
+					<Add option="-mwindows -Dmain=SDL_main" />
+					<Add option="-Dmain=SDL_main" />
 					<Add directory="include" />
 				</Compiler>
+				<Linker>
+					<Add library="mingw32" />
+					<Add library="SDL2main" />
+					<Add library="SDL2" />
+					<Add library="SDL2_image" />
+					<Add library="SDL2_ttf" />
+					<Add library="opengl32" />
+					<Add library="glu32" />
+					<Add library="gdi32" />
+				</Linker>
 			</Target>
 			<Target title="LinuxCrossCompile">
 				<Option platforms="Unix;" />
@@ -53,11 +65,6 @@
 			<Add option="-std=c++11" />
 			<Add option="-Wall" />
 		</Compiler>
-		<Linker>
-			<Add library="opengl32" />
-			<Add library="glu32" />
-			<Add library="gdi32" />
-		</Linker>
 		<Unit filename="Makefile">
 			<Option target="Linux" />
 		</Unit>
