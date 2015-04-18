@@ -16,7 +16,7 @@ Getting the source
 3. clone source git clone https://github.com/yaspoon/BallGame.git
 
 TLDR;
-1. Download this premade zip I created:
+1. Download this premade zip I created:https://www.dropbox.com/s/hoi3zm0inxc4qgm/CodeBlocksSDL2-dev.zip?dl=0
 2. Extract code:blocks zip and run code blocks
 3. Follow get the source step
 4. Build source and run by following Building step bellow
